@@ -1,2 +1,7 @@
+# ignore repo-level protected files
 data
 archive
+
+# ignore server-level protected files and modules
+server/data
+server/node_modules
