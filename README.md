@@ -9,8 +9,8 @@ Place data files in @/server/data
 ### Build / Serve
 
 ```
-yarn
-yarn start
+$ yarn
+$ yarn start
 ```
 
 ### API 
