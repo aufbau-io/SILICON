@@ -1,6 +1,6 @@
 # Silicon
 
-An electronic music search engine -  data collected from discogs.
+An electronic music search engine -  data collected from discogs. <br>
 Starter build with node server serving json files as APIs.
 
 ### Data
