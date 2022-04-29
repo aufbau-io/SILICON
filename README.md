@@ -7,6 +7,12 @@ yarn
 yarn start
 ```
 
+### Data
+
+```
+Place data files in @/server/data
+```
+
 ### API 
 
 ```
@@ -14,12 +20,6 @@ http://localhost:3001/records
 http://localhost:3001/artists
 http://localhost:3001/labels
 http://localhost:3001/styles
-```
-
-### Data
-
-```
-Place data files in @/server/data
 ```
 
 ### Reference
