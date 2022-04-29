@@ -16,6 +16,12 @@ http://localhost:3001/labels
 http://localhost:3001/styles
 ```
 
+### Data
+
+```
+Place data files in @/server/data
+```
+
 ### Reference
 
 ```
