@@ -1,16 +1,16 @@
 # Silicon
 
-### Build
-
-```
-yarn
-yarn start
-```
-
 ### Data
 
 ```
 Place data files in @/server/data
+```
+
+### Build / Serve
+
+```
+yarn
+yarn start
 ```
 
 ### API 
