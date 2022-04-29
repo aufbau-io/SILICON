@@ -1,6 +1,6 @@
 const labelRoutes = (app, fs) => {
   // variables
-  const dataPath = "./data/labels.json";
+  const dataPath = "./data/filtered_labels.json";
 
   // READ
   app.get("/labels", (req, res) => {

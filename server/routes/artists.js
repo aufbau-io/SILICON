@@ -1,6 +1,6 @@
 const artistRoutes = (app, fs) => {
   // variables
-  const dataPath = "./data/artists.json";
+  const dataPath = "./data/filtered_artists.json";
 
   // READ
   app.get("/artists", (req, res) => {

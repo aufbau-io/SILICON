@@ -1,6 +1,6 @@
 const styleRoutes = (app, fs) => {
   // variables
-  const dataPath = "./data/styles.json";
+  const dataPath = "./data/filtered_styles.json";
 
   // READ
   app.get("/styles", (req, res) => {

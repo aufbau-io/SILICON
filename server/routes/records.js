@@ -1,6 +1,6 @@
 const recordRoutes = (app, fs) => {
   // variables
-  const dataPath = "./data/records.json";
+  const dataPath = "./data/filtered_records.json";
 
   // READ
   app.get("/records", (req, res) => {
