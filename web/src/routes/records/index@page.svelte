@@ -1,0 +1,13 @@
+<script context="module">
+	import Hero from '$lib/components/common/pageHero.svelte';
+</script>
+
+<svelte:head>
+	<title>Sustainable Digital Design</title>
+</svelte:head>
+
+<Hero
+	index="03/03"
+	name="Records"
+	description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+/>
