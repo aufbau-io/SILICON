@@ -5,7 +5,8 @@
 	let map = {
 		'/artists': 'labels',
 		'/labels': 'records',
-		'/records': 'artists'
+		'/records': 'matrix',
+		'/matrix': '/'
 	};
 
 	let nextUrl = map[url];
