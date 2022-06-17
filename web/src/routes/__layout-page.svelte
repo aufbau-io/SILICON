@@ -1,12 +1,17 @@
 <script>
 	import '../app.css';
 	import { onMount } from 'svelte';
-	import { page } from '$app/stores';
+	let Geometry;
 
 	import Header from '$lib/components/header/header.svelte';
 	import Footer from '$lib/components/footer/footer.svelte';
-	import NavStrip from '$lib/components/common/navStrip.svelte';
 
+	onMount(async () => {
+		const module = await import('$lib/components/geometry/Geometry.svelte');
+		Geometry = module.default;
+	});
+
+	/*
 	// important for accessibility
 	if (import.meta.env.DEV) {
 		onMount(() =>
@@ -15,20 +20,19 @@
 				MyAxeObserver.observe(document);
 			})
 		);
-	}
+	}*/
 </script>
 
 <Header />
+<svelte:component this={Geometry} />
+
 <main>
 	<slot />
 </main>
-{#key $page.url.pathname}
-	<NavStrip />
-{/key}
 <Footer />
 
 <style>
 	main {
-		margin: 40px;
+		min-height: calc(100vh - 370px);
 	}
 </style>

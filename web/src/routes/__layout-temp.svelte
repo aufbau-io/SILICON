@@ -1,6 +1,7 @@
 <script>
 	import '../app.css';
 	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
 
 	import Header from '$lib/components/header/header.svelte';
 	import Footer from '$lib/components/footer/footer.svelte';
@@ -21,6 +22,9 @@
 <main>
 	<slot />
 </main>
+{#key $page.url.pathname}
+	<NavStrip />
+{/key}
 <Footer />
 
 <style>
