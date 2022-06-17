@@ -26,27 +26,6 @@
 		margin: 110px 98px 110px 98px;
 	}
 
-	main div {
-		display: flex;
-		flex-direction: column;
-		margin-right: auto;
-		max-width: 440px;
-	}
-
-	p,
-	h3,
-	h6 {
-		padding-bottom: 24px;
-	}
-
-	h5 {
-		padding-bottom: 12px;
-	}
-
-	.extra-padding {
-		padding-bottom: 48px;
-	}
-
 	.base {
 		display: flex;
 		justify-content: space-between;
