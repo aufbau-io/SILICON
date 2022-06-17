@@ -2,7 +2,7 @@
 </script>
 
 <svelte:head>
-	<title>Silicon</title>
+	<title>SILICON•WEB</title>
 </svelte:head>
 
 <p>smoking area</p>

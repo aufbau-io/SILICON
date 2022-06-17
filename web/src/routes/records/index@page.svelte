@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>Sustainable Digital Design</title>
+	<title>SILICON•WEB</title>
 </svelte:head>
 
 <Hero

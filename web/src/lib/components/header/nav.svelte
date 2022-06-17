@@ -21,7 +21,7 @@
 
 <style>
 	nav a {
-		font-size: 15px;
+		font-size: 16px;
 		line-height: 110%;
 		font-weight: 400;
 		letter-spacing: 0.05em;
