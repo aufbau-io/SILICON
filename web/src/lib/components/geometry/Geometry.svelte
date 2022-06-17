@@ -2,8 +2,6 @@
 	import { onMount } from 'svelte';
 	import * as THREE from 'three';
 
-	import map from './map.svg';
-
 	let container;
 
 	let camera, scene, renderer;
@@ -24,7 +22,7 @@
 		scene = new THREE.Scene();
 		scene.background = new THREE.Color(0x171717);
 
-		const light = new THREE.DirectionalLight(0x00bbaa);
+		const light = new THREE.DirectionalLight(0xf0f0f0);
 		light.position.set(0, 1, 1);
 		scene.add(light);
 
@@ -92,13 +90,13 @@
 		const colors3 = geometry3.attributes.color;
 
 		for (let i = 0; i < count; i++) {
-			color.setHSL((positions1.getY(i) / radius + 1) / 2, 1.0, 0.5);
-			colors1.setXYZ(i, color.r, color.r, color.r);
+			color.setRGB(1.5, (positions1.getY(i) / radius + 1) / 2, 1);
+			colors1.setXYZ(i, color.r, color.b, color.b);
 
-			color.setHSL(0, (positions2.getY(i) / radius + 1) / 2, 0.5);
-			colors2.setXYZ(i, color.r, color.b, color.b);
+			color.setRGB(0.5, (positions2.getY(i) / radius + 1) / 2, 1);
+			colors2.setXYZ(i, color.g, color.b, color.g);
 
-			color.setRGB(1, 0.8 - (positions3.getY(i) / radius + 1) / 2, 0);
+			color.setRGB(1.5, 0.8 - (positions3.getY(i) / radius + 1) / 2, 0);
 			colors3.setXYZ(i, color.r, color.g, color.b);
 		}
 
@@ -129,13 +127,14 @@
 		wireframe = new THREE.Mesh(geometry2, wireframeMaterial);
 		mesh.add(wireframe);
 		mesh.position.x = 400;
-		mesh.rotation.y = 0;
+		mesh.rotation.y = -0;
 		scene.add(mesh);
 
 		mesh = new THREE.Mesh(geometry3, material);
 		wireframe = new THREE.Mesh(geometry3, wireframeMaterial);
 		mesh.add(wireframe);
 		mesh.rotation.y = +1.87;
+		mesh.rotation.x = -0.87;
 		scene.add(mesh);
 
 		renderer = new THREE.WebGLRenderer({ antialias: false });
