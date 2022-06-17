@@ -28,6 +28,7 @@
 	<Logo />
 	<Nav {navItems} />
 	<AnimationButton />
+	<div />
 	<CollabTicker />
 </header>
 
