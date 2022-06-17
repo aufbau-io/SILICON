@@ -27,7 +27,7 @@
 
 	button:hover,
 	.active {
-		color: var(--green);
+		color: var(--pink);
 	}
 
 	.disabled,

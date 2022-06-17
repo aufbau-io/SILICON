@@ -51,6 +51,6 @@
 		font-weight: 300;
 		font-size: 22px;
 		padding-bottom: 16px;
-		color: var(--green);
+		color: var(--pink);
 	}
 </style>

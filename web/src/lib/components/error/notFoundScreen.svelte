@@ -78,7 +78,7 @@
 		padding: 0 1rem;
 
 		align-items: center;
-		stroke: var(--green);
+		stroke: var(--pink);
 	}
 
 	.nav h2 {

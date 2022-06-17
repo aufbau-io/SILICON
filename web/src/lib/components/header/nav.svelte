@@ -29,6 +29,6 @@
 	}
 
 	.active {
-		color: var(--green);
+		color: var(--pink);
 	}
 </style>

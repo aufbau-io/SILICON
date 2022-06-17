@@ -23,7 +23,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: var(--green);
+		background: var(--pink);
 		color: var(--black);
 	}
 </style>

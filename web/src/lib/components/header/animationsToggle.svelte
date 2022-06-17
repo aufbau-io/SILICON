@@ -30,7 +30,7 @@
 		cursor: pointer;
 	}
 	.active {
-		background: var(--green);
+		background: var(--pink);
 		color: var(--black);
 	}
 </style>
