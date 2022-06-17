@@ -21,9 +21,8 @@
 	}
 
 	main {
-		max-height: 543px;
 		display: flex;
-		margin: 110px 98px 110px 98px;
+		margin: 0px 98px 0px 98px;
 	}
 
 	.base {

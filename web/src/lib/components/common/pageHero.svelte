@@ -14,9 +14,9 @@
 	section {
 		display: flex;
 		justify-content: space-between;
-		min-height: 255px;
+		min-height: calc(100vh - 144px);
 		padding: 40px 0;
-		border-bottom: solid 1px var(--white-30);
+		background: #171717aa;
 	}
 
 	.item {
