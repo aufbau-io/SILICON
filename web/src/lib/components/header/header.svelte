@@ -16,10 +16,6 @@
 		{
 			name: 'RECORDS',
 			href: '/records'
-		},
-		{
-			name: 'MATRIX',
-			href: '/matrix'
 		}
 	];
 </script>
