@@ -33,6 +33,6 @@
 
 <style>
 	main {
-		min-height: calc(100vh - 370px);
+		min-height: calc(100vh - 365px);
 	}
 </style>
