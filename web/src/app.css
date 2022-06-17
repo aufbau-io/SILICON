@@ -1,7 +1,6 @@
 @import '@fontsource/roboto-mono';
 
 @tailwind base;
-@tailwind components;
 /* putting custom CSS before `@tailwind utilities;` so utilities can override it */
 
 /* APP */
@@ -212,5 +211,3 @@ a.sml {
 		font-size: 14px;
 	}
 }
-
-@tailwind utilities;
