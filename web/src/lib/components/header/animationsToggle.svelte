@@ -25,6 +25,7 @@
 	p {
 		line-height: 120%;
 		padding: 0 0.4rem;
+		font-size: 15px;
 	}
 	.toggle {
 		cursor: pointer;
