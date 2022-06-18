@@ -8,7 +8,7 @@
 		<main />
 
 		<div class="base">
-			<p class="sml">© Copyright 2022</p>
+			<p class="sml">Copyright 2022</p>
 			<Logo />
 			<p class="sml">86-90 Paul Street London</p>
 		</div>
@@ -31,9 +31,5 @@
 		align-items: center;
 		height: 56px;
 		border-top: solid 1px var(--white-50);
-	}
-
-	.base p {
-		padding-bottom: 0;
 	}
 </style>

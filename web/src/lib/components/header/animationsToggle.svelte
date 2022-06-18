@@ -30,7 +30,7 @@
 		cursor: pointer;
 	}
 	.active {
-		background: var(--pink);
+		background: var(--accent-muted);
 		color: var(--black);
 	}
 </style>

@@ -3,5 +3,6 @@
 <style>
 	h4 {
 		font-family: dahlia;
+		letter-spacing: 0.08em;
 	}
 </style>

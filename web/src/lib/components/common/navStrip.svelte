@@ -24,7 +24,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: var(--pink);
+		background: var(--accent);
 		color: var(--black);
 	}
 </style>

@@ -29,6 +29,6 @@
 	}
 
 	.active {
-		color: var(--pink);
+		color: var(--accent);
 	}
 </style>

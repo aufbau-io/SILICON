@@ -27,7 +27,7 @@
 
 	button:hover,
 	.active {
-		color: var(--pink);
+		color: var(--accent);
 	}
 
 	.disabled,

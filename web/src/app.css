@@ -10,7 +10,8 @@
 	--white: #f7f6f1;
 	--white-30: #f7f6f14d;
 	--white-50: #f7f6f180;
-	--pink: #21bc32;
+	--accent: #21bc32;
+	--accent-muted: #21bc32dd;
 	--error: #be4040;
 }
 

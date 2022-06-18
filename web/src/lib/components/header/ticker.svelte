@@ -72,6 +72,7 @@
 	}
 
 	.ticker__item {
+		font-feature-settings: 'ss02' on;
 		display: inline-block;
 		padding: 0 0;
 
