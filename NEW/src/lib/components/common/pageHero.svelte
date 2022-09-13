@@ -11,7 +11,6 @@
 			<h1 class="clickable">X</h1>
 		</a>
 	</div>
-	``
 </section>
 
 <style>
