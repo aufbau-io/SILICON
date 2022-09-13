@@ -32,6 +32,7 @@
 
 	h1.clickable:hover {
 		font-family: nb-television-3d, sans-serif;
+		color: var(--accent);
 	}
 
 	.item {
