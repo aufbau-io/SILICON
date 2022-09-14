@@ -1,7 +1,7 @@
 <script>
-	$: search = false;
+	$: search = true;
 	function turnOn() {
-		search = !search;
+		search = true;
 	}
 </script>
 
@@ -125,7 +125,7 @@
 	.search {
 		position: absolute;
 		left: 50%;
-		top: 50%;
+		top: calc(70px + 400px);
 		display: flex;
 		align-items: baseline;
 		justify-content: center;
