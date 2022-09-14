@@ -3,7 +3,7 @@
 
 	function fuckOff() {
 		console.log('here');
-		alert("Free country ain't it ?");
+		alert("YOU'VE HAD TOO MUCH TO DRINK MATE");
 	}
 </script>
 
@@ -24,7 +24,7 @@
 		</a>
 		<a on:click={fuckOff} href="">
 			<h2>01</h2>
-			<h1>CAN I JUST GO ?</h1>
+			<h1>FUCK OFF</h1>
 			<Arrow direction="right" />
 		</a>
 	</div>

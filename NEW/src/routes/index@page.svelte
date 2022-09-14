@@ -127,31 +127,25 @@
 		left: 50%;
 		top: 50%;
 		display: flex;
-		align-items: center;
+		align-items: baseline;
 		justify-content: center;
 		transform: translate(-50%, -50%);
 		background: var(--black);
 		width: 100vw;
-		height: 340px;
+		height: 100px;
 	}
 
 	input {
-		background: none;
-		margin: 6px 0;
-		padding: 6px 0;
 		text-align: center;
-		width: 100vw;
-		height: 340px;
-		background: var(--black);
-		color: var(--white);
+		width: calc(100vw - 80px);
+		background: none;
+		color: var(--accent);
 	}
 
 	input[type='text'] {
-		font-family: nb-television-3d, sans-serif;
-		font-style: normal;
-		font-weight: 300;
+		font-family: nb-television-2d, sans-serif;
 		font-size: 120px;
-		line-height: 340px;
+		line-height: 0px;
 	}
 
 	input:focus {
@@ -159,6 +153,7 @@
 	}
 
 	input::placeholder {
+		font-family: nb-television-3d, sans-serif;
 		color: var(--white);
 	}
 </style>
