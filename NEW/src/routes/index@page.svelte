@@ -156,4 +156,11 @@
 		font-family: nb-television-3d, sans-serif;
 		color: var(--white);
 	}
+
+	input::selection {
+		background: blue; /* WebKit/Blink Browsers */
+	}
+	::-moz-selection {
+		background: blue; /* Gecko Browsers */
+	}
 </style>
