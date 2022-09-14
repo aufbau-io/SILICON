@@ -101,7 +101,6 @@
 
 	h1 {
 		font-family: nb-television-2d, sans-serif;
-		cursor: pointer;
 	}
 
 	h1:hover {
