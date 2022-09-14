@@ -1,4 +1,8 @@
-<script context="module">
+<script>
+	$: search = false;
+	function turnOn() {
+		search = !search;
+	}
 </script>
 
 <svelte:head>
@@ -7,72 +11,82 @@
 
 <main>
 	<div class="item flex">
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
-		<h1>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCH</h1>
 	</div>
-	<div class="search"><input type="text" placeholder="FUCK DJs JUST DIG" /></div>
+	{#key search}
+		{#if search}
+			<div class="search">
+				<input
+					type="text"
+					placeholder="....................................."
+					style="text-transform:uppercase"
+				/>
+			</div>
+		{/if}
+	{/key}
 </main>
 
 <style>
@@ -118,7 +132,7 @@
 		transform: translate(-50%, -50%);
 		background: var(--black);
 		width: 100vw;
-		height: 200px;
+		height: 340px;
 	}
 
 	input {
@@ -127,8 +141,9 @@
 		padding: 6px 0;
 		text-align: center;
 		width: 100vw;
-		background: var(--accent);
-		color: var(--black);
+		height: 340px;
+		background: var(--black);
+		color: var(--white);
 	}
 
 	input[type='text'] {
@@ -136,7 +151,7 @@
 		font-style: normal;
 		font-weight: 300;
 		font-size: 120px;
-		line-height: 150%;
+		line-height: 340px;
 	}
 
 	input:focus {
@@ -144,6 +159,6 @@
 	}
 
 	input::placeholder {
-		color: var(--black);
+		color: var(--white);
 	}
 </style>
