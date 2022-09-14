@@ -124,14 +124,15 @@
 	.search {
 		position: absolute;
 		left: 50%;
-		top: calc(70px + 400px);
+		top: calc(60px + 400px);
 		display: flex;
 		align-items: baseline;
 		justify-content: center;
 		transform: translate(-50%, -50%);
 		background: var(--black);
+		margin-bottom: 10px;
 		width: 100vw;
-		height: 100px;
+		height: 70px;
 	}
 
 	input {
@@ -139,6 +140,8 @@
 		width: calc(100vw - 80px);
 		background: none;
 		color: var(--accent);
+		background: var(--black);
+		height: 120px;
 	}
 
 	input[type='text'] {
