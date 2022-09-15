@@ -1,6 +1,6 @@
 <script>
 	import { supabase } from '$lib/clients/supabaseClient';
-	import Bouncer from './bouncer.svelte';
+	import Bouncer from '../ascii/bouncer.svelte';
 
 	let loading = false;
 	let email;
