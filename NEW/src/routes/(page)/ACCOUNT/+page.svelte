@@ -1,4 +1,4 @@
-<script context="module">
+<script>
 	import Hero from '$lib/components/common/pageHero.svelte';
 </script>
 

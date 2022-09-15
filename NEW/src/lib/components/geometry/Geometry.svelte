@@ -1,10 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
 	import * as THREE from 'three';
-	import { index } from '$lib/store/store.js';
-
-	$: $index, lookAtIndex($index);
-
 	let group;
 
 	let container;
@@ -179,11 +175,6 @@
 	function onDocumentMouseMove(event) {
 		mouseX = event.clientX - windowHalfX;
 		mouseY = event.clientY - windowHalfY;
-	}
-
-	function lookAtIndex(index) {
-		console.log(index);
-		group.rotation.y = ((Math.PI * 2) / 3) * -index;
 	}
 
 	function animate() {

@@ -1,5 +1,5 @@
 <script>
-	import '../app.css';
+	import '../../app.css';
 	import { onMount } from 'svelte';
 	let Geometry;
 
@@ -10,17 +10,6 @@
 		const module = await import('$lib/components/geometry/Geometry.svelte');
 		Geometry = module.default;
 	});
-
-	/*
-	// important for accessibility
-	if (import.meta.env.DEV) {
-		onMount(() =>
-			import('https://unpkg.com/agnostic-axe@3').then(({ AxeObserver, logViolations }) => {
-				const MyAxeObserver = new AxeObserver(logViolations);
-				MyAxeObserver.observe(document);
-			})
-		);
-	}*/
 </script>
 
 <!--svelte:component this={Geometry} /-->

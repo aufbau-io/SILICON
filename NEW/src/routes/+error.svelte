@@ -1,11 +1,3 @@
-<script context="module">
-	export function load({ error, status }) {
-		return {
-			props: { error, status }
-		};
-	}
-</script>
-
 <script>
 	import ErrorScreen from '$lib/components/error/errorScreen.svelte'; // your own Error screen component
 	import NotFoundScreen from '$lib/components/error/notFoundScreen.svelte'; // your own 404 screen component
