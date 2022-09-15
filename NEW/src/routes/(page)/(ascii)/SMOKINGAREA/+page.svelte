@@ -3,9 +3,6 @@
 	import { supabase } from '$lib/clients/supabaseClient';
 	import Auth from '$lib/components/auth/Auth.svelte';
 	import Profile from '$lib/components/auth/Profile.svelte';
-
-	import Hero from '$lib/components/common/pageHero.svelte';
-
 	user.set(supabase.auth.user());
 
 	supabase.auth.onAuthStateChange((_, session) => {
@@ -13,9 +10,7 @@
 	});
 </script>
 
-<section>
-	<Hero name="SMOKING AREA" />
-</section>
+<section />
 
 <style>
 	section {

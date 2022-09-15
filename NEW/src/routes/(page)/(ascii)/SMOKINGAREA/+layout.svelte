@@ -1,8 +1,14 @@
 <script>
 	import { supabase } from '$lib/clients/supabaseClient';
+	import Smoker from '$lib/components/ascii/smoker.svelte';
 </script>
 
+<Smoker />
 <slot />
+
+<div class="title">
+	<h1>SMOKING AREA</h1>
+</div>
 
 <div class="container">
 	<div class="item flex">
@@ -93,6 +99,19 @@
 
 		height: calc(100vh - 120px);
 		overflow: hidden;
+	}
+
+	.title {
+		position: absolute;
+		left: 0;
+		top: 70px;
+		padding: 0 40px;
+		display: flex;
+		align-items: baseline;
+		justify-content: left;
+		height: 110px;
+		width: calc(100vw);
+		background: #121212bb;
 	}
 
 	form {

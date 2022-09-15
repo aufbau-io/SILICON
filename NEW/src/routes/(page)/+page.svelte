@@ -1,13 +1,9 @@
 <script>
-	import Smoker from '$lib/components/ascii/smoker.svelte';
-
 	$: search = true;
 	function turnOn() {
 		search = true;
 	}
 </script>
-
-<Smoker />
 
 <svelte:head>
 	<title>SILICON FM</title>
@@ -83,7 +79,11 @@
 	{#key search}
 		{#if search}
 			<div class="search">
-				<input type="text" placeholder="SEARCH..." style="text-transform:uppercase" />
+				<input
+					type="text"
+					placeholder="..............................................................................................................."
+					style="text-transform:uppercase"
+				/>
 			</div>
 		{/if}
 	{/key}
@@ -95,6 +95,7 @@
 		max-height: calc(100vh - 100px);
 		max-width: calc(100vw - 40px);
 		padding: 16px 0;
+		background: #121212aa;
 		overflow: hidden;
 	}
 
@@ -102,12 +103,10 @@
 		font-family: nb-television-2d, sans-serif;
 	}
 
-	/*
 	h1:hover {
 		font-family: nb-television-3d, sans-serif;
 		color: var(--accent);
 	}
-	*/
 
 	.item {
 		width: 100%;
@@ -115,7 +114,6 @@
 
 	.item.flex {
 		display: flex;
-		color: var(--white-10);
 		width: 150vw;
 		gap: 0 20px;
 		flex-flow: row wrap;
@@ -125,23 +123,25 @@
 
 	.search {
 		position: absolute;
-		left: 0;
-		top: 65px;
-		padding: 0 40px;
+		left: 50%;
+		top: calc(60px + 400px);
 		display: flex;
 		align-items: baseline;
-		justify-content: left;
+		justify-content: center;
+		transform: translate(-50%, -50%);
+		background: var(--black);
+		margin-bottom: 10px;
+		width: 100vw;
 		height: 70px;
-		width: calc(100vw);
 	}
 
 	input {
-		text-align: left;
+		text-align: center;
+		width: calc(100vw - 80px);
 		background: none;
 		color: var(--accent);
-		background: #121212bb;
+		background: var(--black);
 		height: 120px;
-		width: calc(100vw);
 	}
 
 	input[type='text'] {
@@ -155,8 +155,8 @@
 	}
 
 	input::placeholder {
-		font-family: nb-television-2d, sans-serif;
-		color: var(--ACCENT);
+		font-family: nb-television-3d, sans-serif;
+		color: var(--white);
 	}
 
 	input::selection {
