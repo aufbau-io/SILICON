@@ -114,6 +114,10 @@
 		background: #121212bb;
 	}
 
+	.title h1 {
+		color: var(--accent);
+	}
+
 	form {
 		background: #121212bb;
 		padding: 40px 0;

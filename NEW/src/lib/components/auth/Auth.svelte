@@ -135,6 +135,10 @@
 		padding: 16px 0;
 	}
 
+	input {
+		color: var(--accent);
+	}
+
 	input[type='email'] {
 		font-family: nb-architekt, sans-serif;
 		font-size: 40px;

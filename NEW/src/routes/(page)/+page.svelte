@@ -11,77 +11,77 @@
 
 <main>
 	<div class="item flex">
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
-		<h1 on:click={turnOn}>SEARCH</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
 	</div>
 	{#key search}
 		{#if search}
 			<div class="search">
 				<input
 					type="text"
-					placeholder="..............................................................................................................."
+					placeholder="....................................................................................."
 					style="text-transform:uppercase"
 				/>
 			</div>
@@ -101,6 +101,7 @@
 
 	h1 {
 		font-family: nb-television-2d, sans-serif;
+		color: var(--white-10);
 	}
 
 	h1:hover {
@@ -155,8 +156,8 @@
 	}
 
 	input::placeholder {
-		font-family: nb-television-3d, sans-serif;
-		color: var(--white);
+		font-family: nb-television-2d, sans-serif;
+		color: var(--ACCENT);
 	}
 
 	input::selection {
