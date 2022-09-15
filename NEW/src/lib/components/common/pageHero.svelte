@@ -17,7 +17,7 @@
 	section {
 		display: flex;
 		justify-content: space-between;
-		padding: 20px 0;
+		padding: 20px 0 0 0;
 		background: #121212aa;
 	}
 
