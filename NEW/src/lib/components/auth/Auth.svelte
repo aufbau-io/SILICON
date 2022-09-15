@@ -37,7 +37,7 @@
 
 <style>
 	form {
-		margin: 40px 0;
+		margin: 8px 0;
 	}
 
 	div {
