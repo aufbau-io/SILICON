@@ -115,7 +115,7 @@
 
 	.item.flex {
 		display: flex;
-		width: 150vw;
+		width: 200vw;
 		gap: 0 20px;
 		flex-flow: row wrap;
 		padding: 0 40px;
