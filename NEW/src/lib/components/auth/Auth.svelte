@@ -35,9 +35,100 @@
 </form>
 <Bouncer />
 
+<div class="container">
+	<div class="item flex">
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+		<h1>SECURITY</h1>
+	</div>
+</div>
+
 <style>
+	.container {
+		position: absolute;
+		top: 55px;
+		left: 0px;
+		width: calc(100vw - 40px);
+		overflow: hidden;
+		z-index: -10;
+	}
+	.item.flex {
+		color: var(--white-10);
+		display: flex;
+		width: 140vw;
+		gap: 0 20px;
+		flex-flow: row wrap;
+		padding: 0 40px;
+		user-select: none;
+
+		height: calc(100vh - 120px);
+		overflow: hidden;
+	}
+
 	form {
-		margin: 8px 0;
+		background: #121212bb;
+		padding: 40px 0;
 	}
 
 	div {
