@@ -17,7 +17,6 @@
 	section {
 		display: flex;
 		justify-content: space-between;
-		min-height: calc(100vh - 150px);
 		padding: 20px 0;
 		background: #121212aa;
 	}
@@ -43,6 +42,5 @@
 		display: flex;
 		justify-content: space-between;
 		flex-flow: row wrap;
-		padding: 0 40px;
 	}
 </style>

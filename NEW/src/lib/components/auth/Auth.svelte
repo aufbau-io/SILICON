@@ -18,9 +18,8 @@
 	};
 </script>
 
-<form class="row flex-center flex" on:submit|preventDefault={handleLogin}>
-	<div class="col-6 form-widget">
-		<h1 class="header">Supabase + Svelte</h1>
+<form on:submit|preventDefault={handleLogin}>
+	<div>
 		<p class="description">Sign in via magic link with your email below</p>
 		<div>
 			<input class="inputField" type="email" placeholder="Your email" bind:value={email} />
