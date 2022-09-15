@@ -7,9 +7,6 @@
 <section>
 	<div class="item flex">
 		<h1>{name}</h1>
-		<a href="/">
-			<h1 class="clickable">X</h1>
-		</a>
 	</div>
 </section>
 
