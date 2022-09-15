@@ -77,8 +77,7 @@
 	section {
 		position: absolute;
 		bottom: 50px;
-		left: 50%;
-		transform: translateX(-15%);
+		right: 5%;
 		color: var(--white);
 		display: inline-block;
 		white-space: pre;
