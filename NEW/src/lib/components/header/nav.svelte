@@ -12,6 +12,7 @@
 
 	let activeMapping = {
 		'/BACKSTAGE': '/BACKSTAGE',
+		'/SMOKINGAREA': '/SMOKINGAREA',
 		'/': '/'
 	};
 </script>
