@@ -139,7 +139,7 @@
 		text-align: left;
 		background: none;
 		color: var(--accent);
-		background: var(--black);
+		background: #121212bb;
 		height: 120px;
 		width: calc(100vw);
 	}
