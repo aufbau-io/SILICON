@@ -78,7 +78,7 @@
 	section {
 		position: absolute;
 		bottom: 50px;
-		right: 5%;
+		right: 0;
 		color: var(--white);
 		display: inline-block;
 		white-space: pre;
