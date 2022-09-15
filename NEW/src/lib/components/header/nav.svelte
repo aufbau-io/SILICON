@@ -11,7 +11,7 @@
 	}
 
 	let activeMapping = {
-		'/ACCOUNT': '/ACCOUNT',
+		'/BACKSTAGE': '/BACKSTAGE',
 		'/': '/'
 	};
 </script>
