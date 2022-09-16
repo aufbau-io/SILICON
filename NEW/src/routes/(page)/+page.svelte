@@ -11,70 +11,13 @@
 
 <main>
 	<div class="item flex">
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
+		{#each Array(100) as _, i}
+		<h1 on:click={turnOn}>WHAT</h1>
+		<h1 on:click={turnOn}>ARE</h1>
+		<h1 on:click={turnOn}>YOU</h1>
+		<h1 on:click={turnOn}>SEARCHING</h1>
+		<h1 on:click={turnOn}>FOR?</h1>
+		{/each}
 	</div>
 	{#key search}
 		{#if search}
@@ -115,7 +58,7 @@
 
 	.item.flex {
 		display: flex;
-		width: 200vw;
+		width: 150vw;
 		gap: 0 20px;
 		flex-flow: row wrap;
 		padding: 0 40px;
