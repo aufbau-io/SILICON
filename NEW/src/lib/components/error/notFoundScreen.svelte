@@ -19,12 +19,22 @@
 	<div class="nav">
 		<a href="/" class="top-border">
 			<h2>00</h2>
-			<h1>SANDPIT</h1>
+			<h1>MAIN ROOM</h1>
 			<Arrow direction="up" />
 		</a>
-		<a on:click={fuckOff} href="">
+		<a href="/" class="top-border">
 			<h2>01</h2>
-			<h1>FUCK OFF</h1>
+			<h1>SMOKING AREA</h1>
+			<Arrow direction="left" />
+		</a>
+		<a href="/" class="top-border">
+			<h2>02</h2>
+			<h1>BACKSTAGE</h1>
+			<Arrow direction="down" />
+		</a>
+		<a on:click={fuckOff} href="https://www.nycyellowcabtaxi.com/">
+			<h2>03</h2>
+			<h1>TAXI</h1>
 			<Arrow direction="right" />
 		</a>
 	</div>
