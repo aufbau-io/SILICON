@@ -2,13 +2,12 @@
 	import ErrorScreen from '$lib/components/error/errorScreen.svelte'; // your own Error screen component
 	import NotFoundScreen from '$lib/components/error/notFoundScreen.svelte'; // your own 404 screen component
 
-	export let error;
-	export let status;
+	import { page } from '$app/stores';
 </script>
 
 <!-- Used '==' instead of '===' to match string/number status code (just to be sure) -->
-{#if status == 404}
+{#if $page.status == 404}
 	<NotFoundScreen />
 {:else}
-	<ErrorScreen {error} {status} />
+	<ErrorScreen status={$page.status} error={$page.error.message} />
 {/if}
