@@ -12,6 +12,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>SILICON FM</title>
+</svelte:head>
+
 <!--svelte:component this={Geometry} /-->
 
 <!--Header /-->
