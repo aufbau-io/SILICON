@@ -13,6 +13,8 @@
 		</div>
 	</div>
 
+	<div class="modal">under construction</div>
+
 	<div class="title" />
 </main>
 
@@ -24,9 +26,19 @@
 		overflow: hidden;
 	}
 
+	.modal {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		padding: 72px;
+		background: var(--black);
+		border: solid 1px var(--white-50);
+	}
+
 	.container {
 		position: absolute;
-		left: -32px;
+		left: -30px;
 		top: -90px;
 		z-index: -10;
 	}
