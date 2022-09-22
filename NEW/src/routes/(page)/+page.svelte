@@ -2,6 +2,10 @@
 	import Smoker from './smoker.svelte';
 </script>
 
+<svelte:head>
+	<title>SILICON FM</title>
+</svelte:head>
+
 <main>
 	<Smoker />
 
