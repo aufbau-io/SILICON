@@ -1,112 +1,66 @@
 <script>
-	$: search = true;
-	function turnOn() {
-		search = true;
-	}
+	import Smoker from './smoker.svelte';
 </script>
 
-<svelte:head>
-	<title>SILICON FM</title>
-</svelte:head>
-
 <main>
-	<div class="item flex">
-		{#each Array(100) as _, i}
-		<h1 on:click={turnOn}>WHAT</h1>
-		<h1 on:click={turnOn}>ARE</h1>
-		<h1 on:click={turnOn}>YOU</h1>
-		<h1 on:click={turnOn}>SEARCHING</h1>
-		<h1 on:click={turnOn}>FOR?</h1>
-		{/each}
+	<Smoker />
+
+	<div class="container">
+		<div class="item flex">
+			{#each Array(300) as _, i}
+				<h1>SEARCHING</h1>
+			{/each}
+		</div>
 	</div>
-	{#key search}
-		{#if search}
-			<div class="search">
-				<input
-					type="text"
-					placeholder="....................................................................................."
-					style="text-transform:uppercase"
-				/>
-			</div>
-		{/if}
-	{/key}
+
+	<div class="title" />
 </main>
 
 <style>
 	main {
-		justify-content: space-between;
-		max-height: calc(100vh - 100px);
-		max-width: calc(100vw - 40px);
-		padding: 16px 0;
-		background: #121212aa;
+		position: relative;
+		height: 100vh;
+		width: 100vw;
 		overflow: hidden;
 	}
 
-	h1 {
-		font-family: nb-television-2d, sans-serif;
-		color: var(--white-10);
+	.container {
+		position: absolute;
+		left: -32px;
+		top: -90px;
+		z-index: -10;
 	}
-
-	h1:hover {
-		font-family: nb-television-3d, sans-serif;
-		color: var(--accent);
-	}
-
-	.item {
-		width: 100%;
-	}
-
 	.item.flex {
+		color: var(--white-50);
 		display: flex;
-		width: 150vw;
-		gap: 0 20px;
+		width: 140vw;
+		gap: 0 8px;
 		flex-flow: row wrap;
 		padding: 0 40px;
 		user-select: none;
 	}
 
-	.search {
+	.title {
+		display: flex;
+		flex-flow: column nowrap;
 		position: absolute;
-		left: 50%;
-		top: calc(60px + 400px);
+		padding: 20px;
 		display: flex;
 		align-items: baseline;
-		justify-content: center;
-		transform: translate(-50%, -50%);
-		background: var(--black);
-		margin-bottom: 10px;
-		width: 100vw;
-		height: 70px;
+		justify-content: left;
+		height: 110px;
+		width: calc(100vw);
 	}
 
-	input {
-		text-align: center;
-		width: calc(100vw - 80px);
-		background: none;
-		color: var(--accent);
-		background: var(--black);
-		height: 120px;
-	}
-
-	input[type='text'] {
+	h1 {
 		font-family: nb-television-2d, sans-serif;
-		font-size: 120px;
-		line-height: 0px;
+		letter-spacing: -4px;
+		font-size: 60px;
+		text-shadow: 4px 4px var(--white-30);
 	}
 
-	input:focus {
-		outline: none;
-	}
-
-	input::placeholder {
-		font-family: nb-television-2d, sans-serif;
-		color: var(--ACCENT);
-	}
-
-	input::selection {
-		background: blue; /* WebKit/Blink Browsers */
-	}
-	::-moz-selection {
-		background: blue; /* Gecko Browsers */
+	.title h1 {
+		font-family: nb-television, sans-serif;
+		color: var(--white-30);
 	}
 </style>

@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	let Geometry;
 
-	import Header from '$lib/components/header/header.svelte';
+	// import Header from '$lib/components/header/header.svelte';
 	import Footer from '$lib/components/footer/footer.svelte';
 
 	onMount(async () => {
@@ -14,14 +14,11 @@
 
 <!--svelte:component this={Geometry} /-->
 
-<Header />
+<!--Header /-->
+<Footer />
 <main>
 	<slot />
 </main>
-<Footer />
 
 <style>
-	main {
-		min-height: calc(100vh - 100px);
-	}
 </style>

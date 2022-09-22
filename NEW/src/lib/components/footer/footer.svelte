@@ -3,32 +3,32 @@
 
 <footer>
 	<section>
-		<main />
-
 		<div class="base">
-			<p class="xs">Copyright 2022</p>
-			<p class="sml">silicon fm</p>
+			<p class="">silicon fm</p>
 			<a class="sml" href="https://aufbau.io">ein aufbau ding</a>
-			<p class="xs">86-90 Paul Street London</p>
 		</div>
 	</section>
 </footer>
 
 <style>
 	footer {
-		margin: 0 40px;
-	}
-
-	main {
-		display: flex;
-		margin: 0px 98px 0px 98px;
+		position: absolute;
+		top: 0;
+		width: 100vw;
+		padding: 0 20px;
+		background: #121212bb;
+		border-bottom: solid 1px var(--white-50);
+		color: var(--white);
 	}
 
 	.base {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		height: 50px;
-		border-top: solid 1px var(--white-50);
+		height: 42px;
+	}
+
+	.semi {
+		color: var(--white-20);
 	}
 </style>
