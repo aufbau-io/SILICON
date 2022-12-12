@@ -17,6 +17,7 @@
 		width: 100vw;
 		padding: 0 20px;
 		background: #121212bb;
+		z-index: 10;
 		border-bottom: solid 1px var(--white-50);
 		color: var(--white);
 	}
@@ -30,5 +31,12 @@
 
 	.semi {
 		color: var(--white-20);
+	}
+
+	@media only screen and (max-width: 768px) {
+		footer {
+			z-index: 100;
+			background: #121212;
+		}
 	}
 </style>

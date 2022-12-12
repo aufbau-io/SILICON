@@ -3,8 +3,8 @@
 </script>
 
 <slot />
-<div id="phoneBlock"><p class="sml">wip, use desktop</p></div>
 
+<!-- <div id="phoneBlock"><p class="sml">wip, use desktop</p></div> -->
 <style>
 	#phphoneBlock {
 		opacity: 0;

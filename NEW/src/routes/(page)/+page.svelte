@@ -22,7 +22,6 @@
 	main {
 		position: relative;
 		height: 100vh;
-		width: 100vw;
 		overflow: hidden;
 	}
 
@@ -34,6 +33,12 @@
 		padding: 72px;
 		background: var(--black);
 		border: solid 1px var(--white-50);
+		z-index: 10;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
 	}
 
 	.container {

@@ -72,6 +72,11 @@
 
 /* END CUSTOM SCROLLBAR */
 
+body,
+html {
+	height: 100%;
+}
+
 body {
 	font-family: nb-architekt, sans-serif;
 	background: var(--black);

@@ -64,6 +64,8 @@
 
 <style>
 	section {
+		max-width: calc(100vw - 350px);
+		overflow: hidden;
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -77,5 +79,12 @@
 		font-family: 'nb-television-2d';
 		font-size: 12px;
 		background: var(--black);
+		z-index: 10;
+	}
+
+	@media only screen and (max-width: 768px) {
+		section {
+			max-width: 100vw;
+		}
 	}
 </style>
