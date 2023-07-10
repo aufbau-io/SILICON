@@ -5,3 +5,11 @@ archive
 # ignore server-level protected files and modules
 server/data
 server/node_modules
+
+# .env files
+*/.env
+*/.env.*
+*/.env.local
+*/.env.development.local
+*/.env.test.local
+*/.env.production.local
