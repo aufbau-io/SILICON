@@ -1,10 +1,16 @@
 # ignore repo-level protected files
-data
+data/json
+data/pkl
 archive
 
 # ignore server-level protected files and modules
 server/data
 server/node_modules
+
+# ignore node modules and yarn lockfile
+*/node_modules
+*/yarn.lock
+*/package-lock.json
 
 # .env files
 */.env
