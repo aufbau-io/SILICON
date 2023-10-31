@@ -1,7 +1,7 @@
 # Silicon
 
 Electronic music search engine. <br>
-Starter build with node server serving json files as APIs.
+v3 rebuild using Render, Svelte, WebGL
 
 ### Data
 
