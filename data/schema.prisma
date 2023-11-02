@@ -8,41 +8,73 @@ generator client {
 }
 
 model Artist {
-  id              String    @id @map("artist_id")
-  groups          String[]  @map("artist_groups")
-  profile         String?   @map("artist_profile")
-  members         String[]  @map("artist_members")
-  name            String?   @map("artist_name")
-  sites           String[]  @map("artist_sites")
-  realName        String?   @map("artist_real_name")
-  aliases         String[]  @map("artist_aliases")
-  records         Record[]
+  id        String    @id @map("artist_id")
+  name      String?   @map("artist_name")
+  realName  String?   @map("artist_real_name")
+  profile   String?   @map("artist_profile")
+  sites     String[]  @map("artist_sites")
+  groups    Artist[]  @relation("GroupMembers")
+  members   Artist[]  @relation("GroupMembers")
+  aliases   Artist[]  @relation("Aliases")
+  aliasOf   Artist[]  @relation("Aliases")
+  year      Year[]
+  genres    Genre[]
+  styles    Style[]
+  records   Record[]
+  countries Country[]
 }
 
 model Label {
-  id              String   @id @map("label_id")
-  name            String?   @map("label_name")
-  parentLabel     String[]  @map("label_parent_label")
-  subLabels       String[]  @map("label_sub_labels")
-  sites           String[]  @map("label_sites")
-  profile         String?  @map("label_profile")
-  records         Record[]
+  id           String    @id @map("label_id")
+  name         String?   @map("label_name")
+  profile      String?   @map("label_profile")
+  sites        String[]  @map("label_sites")
+  parentLabels Label[]   @relation("SubLabels")
+  subLabels    Label[]   @relation("SubLabels")
+  year         Year[]
+  genres       Genre[]
+  styles       Style[]
+  records      Record[]
+  countries    Country[]
 }
 
 model Record {
-  id              Int     @id @map("record_id")
-  rating          Float?   @map("record_rating")
-  name            String?  @map("record_name")
-  year            String?  @map("record_year")
-  youtubeIds      String[] @map("record_youtube_ids")
-  countries       String[] @map("countries")
-  genres          String[] @map("record_genres")
-  styles          Style[]
-  artists         Artist[]
-  labels          Label[]
+  id         Int       @id @map("record_id")
+  name       String?   @map("record_name")
+  rating     Float?    @map("record_rating")
+  youtubeIds String[]  @map("record_youtube_ids")
+  year       Year[]
+  countries  Country[]
+  genres     Genre[]
+  styles     Style[]
+  artists    Artist[]
+  labels     Label[]
 }
 
 model Style {
-  id              String    @id
-  records         Record[]
+  id      String   @id
+  records Record[]
+  labels  Label[]
+  artists Artist[]
+}
+
+model Genre {
+  id      String   @id
+  records Record[]
+  labels  Label[]
+  artists Artist[]
+}
+
+model Country {
+  id      String   @id
+  records Record[]
+  labels  Label[]
+  artists Artist[]
+}
+
+model Year {
+  id      Int      @id
+  records Record[]
+  labels  Label[]
+  artists Artist[]
 }

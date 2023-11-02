@@ -6,37 +6,37 @@ const prisma = new PrismaClient();
 
 async function main() {
 
-//const artistData = JSON.parse(fs.readFileSync(path.join(__dirname, "json/filtered_artists.json"), "utf-8"));
-//   for (const key in artistData) {
-//     const item = artistData[key];
-//     await prisma.artist.create({
-//       data: {
-//         id: item.artist_id,
-//         groups: (item.artist_groups == null) ? [] : item.artist_id,
-//         profile: item.artist_profile,
-//         members: (item.artist_members == null) ? [] : item.artist_members,
-//         name: item.artist_name,
-//         sites: (item.artist_sites == null) ? [] : item.artist_sites,
-//         realName: item.artist_real_name,
-//         aliases: (item.artist_aliases == null) ? [] : item.artist_aliases,
-//       },
-//     });
-//   }
+const artistData = JSON.parse(fs.readFileSync(path.join(__dirname, "json/filtered_artists.json"), "utf-8"));
+  for (const key in artistData) {
+    const item = artistData[key];
+    await prisma.artist.create({
+      data: {
+        id: item.artist_id,
+        groups: (item.artist_groups == null) ? [] : item.artist_id,
+        profile: item.artist_profile,
+        members: (item.artist_members == null) ? [] : item.artist_members,
+        name: item.artist_name,
+        sites: (item.artist_sites == null) ? [] : item.artist_sites,
+        realName: item.artist_real_name,
+        aliases: (item.artist_aliases == null) ? [] : item.artist_aliases,
+      },
+    });
+  }
 
-//const labelData = JSON.parse(fs.readFileSync(path.join(__dirname, "json/filtered_labels.json"), "utf-8"));
-//   for (const key in labelData) {
-//     const item = labelData[key];
-//     await prisma.label.create({
-//       data: {
-//         id: item.label_id,
-//         name: item.label_name,
-//         parentLabel: (item.label_parent_label == null) ? [] : item.label_parent_label,
-//         subLabels: (item.label_sub_labels == null) ? [] : item.label_sub_labels,
-//         sites: (item.label_sites == null) ? [] : item.label_sites,
-//         profile: item.label_profile
-//       },
-//     });
-//   }
+const labelData = JSON.parse(fs.readFileSync(path.join(__dirname, "json/filtered_labels.json"), "utf-8"));
+  for (const key in labelData) {
+    const item = labelData[key];
+    await prisma.label.create({
+      data: {
+        id: item.label_id,
+        name: item.label_name,
+        parentLabel: (item.label_parent_label == null) ? [] : item.label_parent_label,
+        subLabels: (item.label_sub_labels == null) ? [] : item.label_sub_labels,
+        sites: (item.label_sites == null) ? [] : item.label_sites,
+        profile: item.label_profile
+      },
+    });
+  }
 
 	const styles = JSON.parse(fs.readFileSync(path.join(__dirname, "json/filtered_styles.json"), "utf-8"));
 	for (const style of styles) {
