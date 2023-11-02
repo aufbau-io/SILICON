@@ -1,12 +1,18 @@
 # Silicon
 
 Electronic music search engine. <br>
-Starter build with node server serving json files as APIs.
+v3 rebuild using Render, Svelte, WebGL
 
 ### Data
 
 ```
-Place data files in @/server/data
+Data lives on Render
+```
+
+### View Data
+```
+$ cd data
+$ npx prisma studio
 ```
 
 ### Build / Serve
@@ -14,19 +20,4 @@ Place data files in @/server/data
 ```
 $ yarn
 $ yarn start
-```
-
-### API 
-
-```
-http://localhost:3001/records
-http://localhost:3001/artists
-http://localhost:3001/labels
-http://localhost:3001/styles
-```
-
-### Reference
-
-```
-https://robkendal.co.uk/blog/how-to-build-a-restful-node-js-api-server-using-json-files
 ```
