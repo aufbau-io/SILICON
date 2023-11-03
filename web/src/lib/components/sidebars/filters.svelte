@@ -4,7 +4,9 @@
 
 <div class="filters">
   <p class="">years</p>
+  <p class="">countries</p>
   <p class="">genres</p>
+  <p class="">styles</p>
   <p class="">rating</p>
 </div>
 

@@ -72,10 +72,12 @@
 	}
 
 	h1 {
+		-webkit-text-stroke: .85px var(--primary);
+		color: var(--background);
+
 		font-family: var(--font-header);
-		font-size: 44px;
+		font-size: 48px;
 		letter-spacing: 2px;
-		color: var(--primary);
 	}
 
 	a.no-style {

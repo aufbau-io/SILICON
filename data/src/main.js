@@ -115,39 +115,161 @@ async function main() {
   //   "id"
   // );
 
-  console.log("Step 6: Update Artists and Labels with relations");
+  console.log(
+    "Step 6: Find years, countries, genres, and styles for artists and labels"
+  );
+
+  // Maps to keep track of the countries, years, genres, and styles associated with each artist and label
+  const artistCountriesYearsGenresStylesMap = {};
+  const labelCountriesYearsGenresStylesMap = {};
+
+  // Iterate over the records to collect countries, years, genres, and styles for artists and labels
+  Object.values(recordData).forEach((record) => {
+    // Artists
+    record.record_artists.forEach((artistId) => {
+      if (!artistCountriesYearsGenresStylesMap[artistId]) {
+        artistCountriesYearsGenresStylesMap[artistId] = {
+          countries: new Set(),
+          years: new Set(),
+          genres: new Set(),
+          styles: new Set(),
+        };
+      }
+      record.countries.forEach((countryId) =>
+        artistCountriesYearsGenresStylesMap[artistId].countries.add(countryId)
+      );
+      if (record.record_year) {
+        artistCountriesYearsGenresStylesMap[artistId].years.add(
+          record.record_year
+        );
+      }
+      record.record_genres.forEach((genreId) =>
+        artistCountriesYearsGenresStylesMap[artistId].genres.add(genreId)
+      );
+      record.record_styles.forEach((styleId) =>
+        artistCountriesYearsGenresStylesMap[artistId].styles.add(styleId)
+      );
+    });
+
+    // Labels
+    record.record_labels.forEach((labelId) => {
+      if (!labelCountriesYearsGenresStylesMap[labelId]) {
+        labelCountriesYearsGenresStylesMap[labelId] = {
+          countries: new Set(),
+          years: new Set(),
+          genres: new Set(),
+          styles: new Set(),
+        };
+      }
+      record.countries.forEach((countryId) =>
+        labelCountriesYearsGenresStylesMap[labelId].countries.add(countryId)
+      );
+      if (record.record_year) {
+        labelCountriesYearsGenresStylesMap[labelId].years.add(
+          record.record_year
+        );
+      }
+      record.record_genres.forEach((genreId) =>
+        labelCountriesYearsGenresStylesMap[labelId].genres.add(genreId)
+      );
+      record.record_styles.forEach((styleId) =>
+        labelCountriesYearsGenresStylesMap[labelId].styles.add(styleId)
+      );
+    });
+  });
+
+  // Now we have a map of artists and labels to their associated countries and years
+  // Next, we use this map to update our artists and labels
+
+  console.log("Step 7: Update Artists and Labels with relations");
+
   await batchUpdateRelations(
     prisma.artist,
-    Object.values(artistData).map((item) => ({
-      id: item.artist_id,
-      data: {
-        groups: { connect: (item.artist_groups || []).map((id) => ({ id })) },
-        members: { connect: (item.artist_members || []).map((id) => ({ id })) },
-        aliases: {
-          create: (item.artist_aliases || []).map((alias) => ({ name: alias })),
+    Object.values(artistData).map((item) => {
+      // Retrieve the combined relations for the artist
+      const artistRelations = artistCountriesYearsGenresStylesMap[
+        item.artist_id
+      ] || {
+        countries: new Set(),
+        years: new Set(),
+        genres: new Set(),
+        styles: new Set(),
+      };
+
+      return {
+        id: item.artist_id,
+        data: {
+          // groups: { connect: (item.artist_groups || []).map((id) => ({ id })) },
+          // members: {
+          //   connect: (item.artist_members || []).map((id) => ({ id })),
+          // },
+          // aliases: {
+          //   connectOrCreate: (item.artist_aliases || []).map((alias) => ({
+          //     where: { id: alias },
+          //     create: { id: alias },
+          //   })),
+          // },
+          countries: {
+            connect: Array.from(artistRelations.countries).map((id) => ({
+              id,
+            })),
+          },
+          year: {
+            connect: Array.from(artistRelations.years).map((year) => ({
+              id: parseInt(year, 10),
+            })),
+          },
+          genres: {
+            connect: Array.from(artistRelations.genres).map((id) => ({ id })),
+          },
+          styles: {
+            connect: Array.from(artistRelations.styles).map((id) => ({ id })),
+          },
         },
-      },
-    })),
+      };
+    }),
     "id"
   );
 
   await batchUpdateRelations(
     prisma.label,
-    Object.values(labelData).map((item) => ({
-      id: item.label_id,
-      data: {
-        parentLabels: {
-          connect: Array.isArray(item.label_parent_label)
-            ? item.label_parent_label.map((id) => ({ id }))
-            : [],
+    Object.values(labelData).map((item) => {
+      // Retrieve the combined relations for the label
+      const labelRelations = labelCountriesYearsGenresStylesMap[
+        item.label_id
+      ] || {
+        countries: new Set(),
+        years: new Set(),
+        genres: new Set(),
+        styles: new Set(),
+      };
+
+      return {
+        id: item.label_id,
+        data: {
+          // parentLabels: {
+          //   connect: (item.label_parent_labels || []).map((id) => ({ id })),
+          // },
+          // subLabels: {
+          //   connect: (item.label_sub_labels || []).map((id) => ({ id })),
+          // },
+          countries: {
+            connect: Array.from(labelRelations.countries).map((id) => ({ id })),
+          },
+          year: {
+            connect: Array.from(labelRelations.years).map((year) => ({
+              id: parseInt(year, 10),
+            })),
+          },
+          genres: {
+            connect: Array.from(labelRelations.genres).map((id) => ({ id })),
+          },
+          styles: {
+            connect: Array.from(labelRelations.styles).map((id) => ({ id })),
+          },
         },
-        subLabels: {
-          connect: Array.isArray(item.label_sub_labels)
-            ? item.label_sub_labels.map((id) => ({ id }))
-            : [],
-        },
-      },
-    })),
+      };
+    }),
     "id"
   );
 
