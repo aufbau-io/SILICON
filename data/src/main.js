@@ -89,31 +89,31 @@ async function main() {
   // );
 
   // Create a new object with records from index 140350 onwards
-  let slicedRecordDataObject = Object.keys(recordData)
-    .slice(140350)
-    .reduce((obj, key) => {
-      obj[key] = recordData[key];
-      return obj;
-    }, {});
+  // let slicedRecordDataObject = Object.keys(recordData)
+  //   .slice(400000)
+  //   .reduce((obj, key) => {
+  //     obj[key] = recordData[key];
+  //     return obj;
+  //   }, {});
 
-  console.log("Step 5: Update Records with relations");
-  await batchUpdateRelations(
-    prisma.record,
-    Object.values(slicedRecordDataObject).map((item) => ({
-      id: parseInt(item.record_id, 10),
-      data: {
-        genres: { connect: (item.record_genres || []).map((id) => ({ id })) },
-        styles: { connect: (item.record_styles || []).map((id) => ({ id })) },
-        countries: { connect: (item.countries || []).map((id) => ({ id })) },
-        artists: { connect: item.record_artists.map((id) => ({ id })) },
-        labels: { connect: item.record_labels.map((id) => ({ id })) },
-        year: item.record_year
-          ? { connect: { id: parseInt(item.record_year, 10) } }
-          : undefined,
-      },
-    })),
-    "id"
-  );
+  // console.log("Step 5: Update Records with relations");
+  // await batchUpdateRelations(
+  //   prisma.record,
+  //   Object.values(recordData).map((item) => ({
+  //     id: parseInt(item.record_id, 10),
+  //     data: {
+  //       genres: { connect: (item.record_genres || []).map((id) => ({ id })) },
+  //       styles: { connect: (item.record_styles || []).map((id) => ({ id })) },
+  //       countries: { connect: (item.countries || []).map((id) => ({ id })) },
+  //       artists: { connect: item.record_artists.map((id) => ({ id })) },
+  //       labels: { connect: item.record_labels.map((id) => ({ id })) },
+  //       year: item.record_year
+  //         ? { connect: { id: parseInt(item.record_year, 10) } }
+  //         : undefined,
+  //     },
+  //   })),
+  //   "id"
+  // );
 
   console.log("Step 6: Update Artists and Labels with relations");
   await batchUpdateRelations(

@@ -1,0 +1,461 @@
+<script>
+	import { onMount } from 'svelte';
+	import { screenType } from '$lib/store/store';
+	import { page } from '$app/stores';
+	import { afterNavigate } from '$app/navigation';
+
+	import * as THREE from 'three';
+
+	// import vertexShader from './shaders/perlin/perlinVertex.glsl';
+	// import fragmentShader from './shaders/perlin/perlinFragment.glsl';
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+	import { ImprovedNoise } from 'three/addons/math/ImprovedNoise.js';
+
+	import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+	import WebGL from 'three/addons/capabilities/WebGL.js';
+
+	if ( WebGL.isWebGL2Available() === false ) {
+		document.body.appendChild( WebGL.getWebGL2ErrorMessage() );
+	}
+
+	const INITIAL_THRESHOLD = 0.5;
+	const INITIAL_OPACITY = 0.9;
+	const INITIAL_STEPS = 100;
+
+	const INITIAL_SHOW_X_PLANE = false;
+	const INITIAL_SHOW_Y_PLANE = false;
+	const INITIAL_SHOW_Z_PLANE = false;
+
+	let container;
+  let controls;
+
+	let camera, scene, renderer;
+	let mesh;
+
+	let width = window.innerWidth;
+	let height = window.innerHeight;
+
+	const clock = new THREE.Clock();
+
+  // ---------------------------------------------------------------------------
+	// Texture -------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
+
+	const size = 128;
+	const scale = 6;
+	const data = new Uint8Array( size * size * size );
+
+	let i = 0;
+	const perlin = new ImprovedNoise();
+	const vector = new THREE.Vector3();
+
+	for ( let z = 0; z < size; z ++ ) {
+
+		for ( let y = 0; y < size; y ++ ) {
+
+			for ( let x = 0; x < size; x ++ ) {
+
+				vector.set( x, y, z ).divideScalar( size );
+
+				const d = perlin.noise( vector.x * scale, vector.y * scale, vector.z * scale );
+
+				data[ i ++ ] = d * 128 + 128;
+
+			}
+
+		}
+
+	}
+
+	const texture = new THREE.Data3DTexture( data, size, size, size );
+	texture.format = THREE.RedFormat;
+	texture.minFilter = THREE.LinearFilter;
+	texture.magFilter = THREE.LinearFilter;
+	texture.unpackAlignment = 1;
+	texture.needsUpdate = true;
+
+	// ---------------------------------------------------------------------------
+	// Planes --------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
+
+	// Add these to the top, near other variables
+	let planes = [];
+	const planeHelpers = [];
+	const planeMatrices = [];
+
+
+  // ---------------------------------------------------------------------------
+	// Material ------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
+
+	const vertexShader = /* glsl */`
+		in vec3 position;
+
+		uniform mat4 modelMatrix;
+		uniform mat4 modelViewMatrix;
+		uniform mat4 projectionMatrix;
+		uniform vec3 cameraPos;
+
+		out vec3 vOrigin;
+		out vec3 vDirection;
+
+		void main() {
+			vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+			vOrigin = vec3( inverse( modelMatrix ) * vec4( cameraPos, 1.0 ) ).xyz;
+			vDirection = position - vOrigin;
+
+			gl_Position = projectionMatrix * mvPosition;
+		}
+	`;
+
+	const fragmentShader = /* glsl */`
+		precision highp float;
+		precision highp sampler3D;
+
+		uniform mat4 modelViewMatrix;
+		uniform mat4 projectionMatrix;
+
+		in vec3 vOrigin;
+		in vec3 vDirection;
+
+		out vec4 color;
+
+		uniform sampler3D map;
+
+		uniform float threshold;
+		uniform float steps;
+		uniform float baseOpacity;
+		uniform float time;
+
+		vec2 hitBox( vec3 orig, vec3 dir ) {
+			const vec3 box_min = vec3( - 0.5 );
+			const vec3 box_max = vec3( 0.5 );
+			vec3 inv_dir = 1.0 / dir;
+			vec3 tmin_tmp = ( box_min - orig ) * inv_dir;
+			vec3 tmax_tmp = ( box_max - orig ) * inv_dir;
+			vec3 tmin = min( tmin_tmp, tmax_tmp );
+			vec3 tmax = max( tmin_tmp, tmax_tmp );
+			float t0 = max( tmin.x, max( tmin.y, tmin.z ) );
+			float t1 = min( tmax.x, min( tmax.y, tmax.z ) );
+			return vec2( t0, t1 );
+		}
+
+		float noise(vec3 position) {
+				// A simple gradient noise function
+				vec3 ip = floor(position);
+				vec3 fp = fract(position);
+				float n = mix(mix(dot(ip, vec3(1.0, 57.0, 113.0)), dot(ip + vec3(1.0, 0.0, 0.0), vec3(1.0, 57.0, 113.0)), fp.x),
+											mix(dot(ip + vec3(0.0, 1.0, 0.0), vec3(1.0, 57.0, 113.0)), dot(ip + vec3(1.0, 1.0, 0.0), vec3(1.0, 57.0, 113.0)), fp.x), fp.y);
+				return fract(atan(n) * 437585.453);
+		}
+
+		float sample1( vec3 p ) {
+				// Oscillate coordinates within the hitbox
+				p += vec3(cos(time), sin(time), cos(time + 3.14159 / 2.0)) * 0.15;
+				return texture(map, p).r;
+		}
+
+		void main() {
+    color = vec4(0.0);
+    vec3 rayDir = normalize(vDirection);
+    vec2 bounds = hitBox(vOrigin, rayDir);
+
+    if (bounds.x > bounds.y) discard;
+    bounds.x = max(bounds.x, 0.0);
+
+    vec3 p = vOrigin + bounds.x * rayDir;
+    vec3 inc = 1.0 / abs(rayDir);
+    float delta = min(inc.x, min(inc.y, inc.z));
+
+    // float animatedSteps = steps - sin(time) * 5.0;
+    delta /= steps;
+
+    for (float t = bounds.x; t < bounds.y; t += delta) {
+        vec3 pos = p + 0.5;
+        float n = noise(pos * 10.0 - time * 1.0);
+        float animatedThreshold = threshold + n * 0.1;
+
+        float d = sample1(pos);
+
+        if (d > animatedThreshold) {
+            vec3 colorShift = vec3(0.75) + 0.5 * cos(time + pos + vec3(4, 1, -4) + n);
+            color.rgb = colorShift;
+            color.a = baseOpacity;
+            break;
+        }
+
+        p += rayDir * delta;
+    }
+
+    if (color.a == 0.0) discard;
+}
+`;
+
+	// Plane shaders
+	const planeVertexShader = /* glsl */`
+		in vec3 position;
+		in vec2 uv;
+
+		uniform mat4 modelViewMatrix;
+		uniform mat4 projectionMatrix;
+
+		out vec2 vUv;
+
+		void main() {
+			vUv = uv;
+			gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+		}
+	`;
+
+	const planeFragmentShader = /* glsl */`
+    precision highp float;
+    precision highp sampler3D;
+
+    in vec2 vUv;
+    out vec4 color;
+
+    uniform sampler3D map;
+    uniform float slicePosition;
+    uniform float threshold;
+    uniform int sliceAxis; // 0 = X, 1 = Y, 2 = Z
+    uniform float time;
+
+    void main() {
+        vec3 samplePos;
+
+        // Adding time-based transformations to the slicePosition
+        float animatedSlicePosition = slicePosition + sin(time) * 0.05;
+
+        if (sliceAxis == 0) {
+            samplePos = vec3(animatedSlicePosition, vUv.y, 1.0 - vUv.x);
+        } else if (sliceAxis == 1) {
+            samplePos = vec3(vUv.x, animatedSlicePosition, vUv.y);
+        } else {
+            samplePos = vec3(vUv.x, vUv.y, animatedSlicePosition);
+        }
+
+        // Applying the same threshold animation from the volumetric shader
+        float animatedThreshold = threshold + sin(time * 2.0) * 0.05;
+
+        // Sample the volume texture at the animated position
+        float sampledValue = texture(map, samplePos).r;
+        bool isAboveThreshold = sampledValue > animatedThreshold;
+
+        // Setting the color based on the sampled value and threshold
+        color = isAboveThreshold ? vec4(vec3(sampledValue), 1.0) : vec4(0.137, 0.137, 0.137, 1.0);
+
+        // Highlight the edges of the slice
+        float edgeThreshold = 0.001;
+        if(vUv.x < edgeThreshold || vUv.x > 1.0 - edgeThreshold || vUv.y < edgeThreshold || vUv.y > 1.0 - edgeThreshold) {
+            color = vec4(0.5, 0.5, 0.5, 1.0);
+        }
+    }
+`;
+
+
+
+
+
+
+	init();
+	animate();
+
+	function init() {
+		camera = new THREE.PerspectiveCamera(20, width / height, 0.1, 10000);
+		camera.position.x = 3; 	
+		camera.position.y = 2; 	
+		camera.position.z = 3; 	
+
+		scene = new THREE.Scene();
+
+		setScene();
+
+		renderer = new THREE.WebGLRenderer({ antialias: false });
+		renderer.setPixelRatio(window.devicePixelRatio);
+		renderer.setSize(width, height);
+
+		renderer.setClearColor(0x232323, 1);
+		renderer.autoClearColor = true;
+		renderer.autoClearDepth = true;
+		renderer.autoClearStencil = true;
+
+		controls = new OrbitControls(camera, renderer.domElement);
+		controls.target.set(0, 0, 0);  // Explicitly set target to origin
+		controls.update();
+
+		onMount(() => {
+			container.appendChild(renderer.domElement);
+		});
+	}
+
+	function setHome () {
+		const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+			const material = new THREE.RawShaderMaterial( {
+				glslVersion: THREE.GLSL3,
+				uniforms: {
+					time: { value: 0.0 },
+					map: { value: texture },
+					cameraPos: { value: new THREE.Vector3() },
+					threshold: { value: INITIAL_THRESHOLD },
+					steps: { value: INITIAL_STEPS },
+					baseOpacity: { value: INITIAL_OPACITY },
+				},
+				vertexShader,
+				fragmentShader,
+				side: THREE.BackSide,
+				transparent: true,
+			} );
+
+			mesh = new THREE.Mesh( geometry, material );
+			scene.add( mesh );
+
+			// Add box helper
+			// const box = new THREE.BoxHelper( mesh, 0x88ff88);
+			// scene.add( box );
+
+			for (let i = 0; i < 3; i++) {
+				const planeGeom = new THREE.PlaneGeometry(1, 1);
+				const planeMat = new THREE.RawShaderMaterial({
+						glslVersion: THREE.GLSL3,
+						uniforms: {
+								map: { value: texture },
+								time: { value: 0.0 },
+								cameraPos: { value: new THREE.Vector3() },
+								threshold: { value: INITIAL_THRESHOLD },
+								steps: { value: INITIAL_STEPS },
+								baseOpacity: { value: 1.0 },
+								slicePosition: { value: 0.5 },
+								sliceAxis: { value: null },
+						},
+						vertexShader: planeVertexShader,
+						fragmentShader: planeFragmentShader,
+						side: THREE.DoubleSide
+				});
+				const plane = new THREE.Mesh(planeGeom, planeMat);
+				planes.push(plane);
+				scene.add(plane);
+			}
+
+
+				// Align planes
+				planes[0].rotateY(Math.PI / 2);
+				planes[1].rotateX(Math.PI / 2);
+
+				planes[0].material.uniforms.sliceAxis.value = 0;
+				planes[1].material.uniforms.sliceAxis.value = 1;
+				planes[2].material.uniforms.sliceAxis.value = 2;
+
+				planes[0].visible = INITIAL_SHOW_X_PLANE;
+				planes[1].visible = INITIAL_SHOW_Y_PLANE;
+				planes[2].visible = INITIAL_SHOW_Z_PLANE;
+
+				// gui -----------------------------------------------------------------
+
+				function updateMaterial() {
+					material.uniforms.threshold.value = parameters.threshold;
+					material.uniforms.steps.value = parameters.steps;
+					material.uniforms.baseOpacity.value = parameters.baseOpacity;
+
+
+					planes.forEach(plane => {
+						plane.material.uniforms.threshold.value = parameters.threshold;
+						plane.material.uniforms.steps.value = parameters.steps;
+						plane.material.uniforms.baseOpacity.value = 1.0;
+				});
+			}
+
+				function updatePlanes() {
+					planes.forEach((plane, index) => {
+						if (index === 0) {
+							plane.visible = planeData['X Plane'];
+							plane.position.x = planeData['X Position'];
+							plane.material.uniforms.slicePosition.value = planeData['X Position'] + 0.5; // normalize to [0, 1]
+						} else if (index === 1) {
+							plane.visible = planeData['Y Plane'];
+							plane.position.y = planeData['Y Position'];
+							plane.material.uniforms.slicePosition.value = planeData['Y Position'] + 0.5;
+						} else if (index === 2) {
+							plane.visible = planeData['Z Plane'];
+							plane.position.z = planeData['Z Position'];
+							plane.material.uniforms.slicePosition.value = planeData['Z Position'] + 0.5;
+						}
+					});
+				}
+
+			const parameters = { threshold: INITIAL_THRESHOLD, steps: INITIAL_STEPS, baseOpacity: INITIAL_OPACITY };
+
+				const gui = new GUI();
+				// gui.add( parameters, 'threshold', 0, 1, 0.01 ).onChange( updateMaterial );
+				// gui.add( parameters, 'steps', 0, 300, 1 ).onChange( updateMaterial );
+				// gui.add(parameters, 'baseOpacity', 0, 1).onChange( updateMaterial );
+
+				// const planeFolder = gui.addFolder('Planes');
+				const planeData = {
+						'X Plane': INITIAL_SHOW_X_PLANE,
+						'X Position': 0,
+						'Y Plane': INITIAL_SHOW_Y_PLANE,
+						'Y Position': 0,
+						'Z Plane': INITIAL_SHOW_Z_PLANE,
+						'Z Position': 0,
+				};
+				
+
+				gui.add(planeData, 'X Plane').name('Show X Plane').onChange(updatePlanes);
+				gui.add(planeData, 'X Position', -0.5, 0.5).onChange(updatePlanes);
+				gui.add(planeData, 'Y Plane').name('Show Y Plane').onChange(updatePlanes);
+				gui.add(planeData, 'Y Position', -0.5, 0.5).onChange(updatePlanes);
+				gui.add(planeData, 'Z Plane').name('Show Z Plane').onChange(updatePlanes);
+				gui.add(planeData, 'Z Position', -0.5, 0.5).onChange(updatePlanes);
+
+				window.addEventListener( 'resize', onWindowResize );
+	}
+
+
+	function setScene () {
+
+		if ($page.url.pathname == '/') {
+			setHome();
+		}
+
+	}
+
+	afterNavigate (onNavigate);
+	function onNavigate() {
+
+		for( var i = scene.children.length - 1; i >= 0; i--) { 
+				let obj = scene.children[i];
+				scene.remove(obj); 
+		}
+
+		setScene();
+
+	}
+
+	function onWindowResize() {
+		let width = window.innerWidth;
+		let height = window.innerHeight;
+
+		camera.aspect = width / height;
+		camera.updateProjectionMatrix();
+
+		renderer.setSize(width, height);
+	}
+
+	function animate() {
+		requestAnimationFrame(animate);
+		mesh.material.uniforms.cameraPos.value.copy( camera.position );
+		mesh.material.uniforms.time.value = clock.getElapsedTime() * 0.01;
+		renderer.render( scene, camera );
+	}
+</script>
+
+<div bind:this={container} class:geometry={true} />
+
+<style>
+	.geometry {
+		position: absolute;
+		overflow: hidden;
+		z-index: 1;
+	}
+</style>
