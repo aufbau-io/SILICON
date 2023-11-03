@@ -1,11 +1,11 @@
 <script>
 </script>
 
-<section>
+<!-- <section>
 	<div class="main">
 		<p>keep dancing</p>
 	</div>	
-</section>
+</section> -->
 
 <style>
 	section {

@@ -1,5 +1,6 @@
 <script>
 	import { screenType } from '$lib/store/store';
+	import Filters from '$lib/components/sidebars/filters.svelte';
 </script>
 
 	<main>
@@ -12,7 +13,11 @@
 				</div>
 			</a>
 
-		</div>-
+		</div>
+
+		<div class="filters">
+			<Filters />
+		</div>
 
 		{#if $screenType == 3}
 		<div class="end">
@@ -32,7 +37,7 @@
 
 <style>
 	main {
-		width: 220px;
+		width: 240px;
 		height: 100%;
 
 		margin: auto;
@@ -41,7 +46,7 @@
 		flex-flow: column nowrap;
 		justify-content: space-between;
 		/* align-items: flex-start; */
-		border-right: solid 1px var(--primary-50);
+		/* border-right: solid 1px var(--primary-50); */
 
 	
 		font-size: 12px;
@@ -88,6 +93,15 @@
 
 		margin: 20px;
 		padding: 5px;
+	}
+
+	.filters {
+		display: flex;
+		height: 100%;
+		flex-flow: column nowrap;
+		align-items: flex-start;
+		gap: 20px;
+		padding: 0 20px;
 	}
 
 	.end p, .end a {
