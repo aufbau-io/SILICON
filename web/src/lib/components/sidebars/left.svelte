@@ -65,7 +65,6 @@
 		width: 100%;
 		height: 100px;
 		/* border-bottom: solid 1px var(--primary); */
-		padding-bottom: 10px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
