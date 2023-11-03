@@ -400,7 +400,7 @@
 
 			const parameters = { threshold: INITIAL_THRESHOLD, steps: INITIAL_STEPS, baseOpacity: INITIAL_OPACITY };
 
-				const gui = new GUI();
+				// const gui = new GUI();
 				// gui.add( parameters, 'threshold', 0, 1, 0.01 ).onChange( updateMaterial );
 				// gui.add( parameters, 'steps', 0, 300, 1 ).onChange( updateMaterial );
 				// gui.add(parameters, 'baseOpacity', 0, 1).onChange( updateMaterial );
@@ -458,7 +458,7 @@
 				// GUI setup
 				const planeData = { 'Year': initialYear };
 
-				const yearControl = gui.add(planeData, 'Year', startYear, endYear).step(1).onChange(updateYear);
+				// const yearControl = gui.add(planeData, 'Year', startYear, endYear).step(1).onChange(updateYear);
 
 				// Call the update function initially to set the initial state
 				updateYear(initialYear);

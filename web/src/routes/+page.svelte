@@ -22,6 +22,10 @@
 
 		/* background: var(--primary-50); */
 		overflow: auto;
+		z-index: 1;
+
+		user-select: none;
+		pointer-events: none;
 	}
 
 
@@ -35,14 +39,13 @@
 		gap: 10px;
 
 		color: var(--background);
-		border: var(--border);
+		border: solid 1px var(--primary);
 		padding:  20px;
 	}
 
 	.main p {
 		padding: 10px;
-		border: solid 1px var(--background);
-		background:  var(--background);
+		/* background:  var(--background); */
 		color: var(--primary);
 	}
 

@@ -4,8 +4,10 @@
 	import { onMount } from 'svelte';
 	import { screenType, isIframe } from '$lib/store/store';
 
-	import Header from '$lib/components/header/header.svelte';
-	import Footer from '$lib/components/footer/footer.svelte';
+	// import Header from '$lib/components/header/header.svelte';
+	// import Footer from '$lib/components/footer/footer.svelte';
+	import LeftSidebar from '$lib/components/sidebars/left.svelte';
+	import RightSidebar from '$lib/components/sidebars/right.svelte';
 
 	let Geometry;
 
@@ -74,9 +76,20 @@
 			<Header />
 		</header> -->
 
-		<!-- <body>
+		<div class="sidebar left">
+			<LeftSidebar />
+		</div>
+
+
+		<div class="sidebar right">
+			<RightSidebar />
+		</div>
+
+		<body>
 			<slot />
-		</body> -->
+		</body>
+
+
 
 		<!-- {#if $screenType == 3}
 		<footer>
@@ -95,14 +108,31 @@
 
 	header {
 		position: absolute;
+		z-index: 1;
 		top: 0;
 		width: 100%;
 	}
 
 	footer {
 		position: absolute;
+		z-index: 1;
 		bottom: 0;
 		width: 100%;
+	}
+
+	.sidebar {
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		height: 100%;
+	}
+	
+	.sidebar.left {
+		left: 0;
+	}
+
+	.sidebar.right {
+		right: 0;
 	}
 
 	body {
