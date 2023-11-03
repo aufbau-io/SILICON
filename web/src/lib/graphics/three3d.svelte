@@ -22,7 +22,7 @@
 	const INITIAL_OPACITY = 0.9;
 	const INITIAL_STEPS = 100;
 
-	const INITIAL_SHOW_X_PLANE = false;
+	const INITIAL_SHOW_X_PLANE = true;
 	const INITIAL_SHOW_Y_PLANE = false;
 	const INITIAL_SHOW_Z_PLANE = false;
 
@@ -220,6 +220,16 @@
     uniform float threshold;
     uniform int sliceAxis; // 0 = X, 1 = Y, 2 = Z
     uniform float time;
+    uniform float baseOpacity;
+
+    float noise(vec3 position) {
+        // Same noise function as used in the main shader
+        vec3 ip = floor(position);
+        vec3 fp = fract(position);
+        float n = mix(mix(dot(ip, vec3(1.0, 57.0, 113.0)), dot(ip + vec3(1.0, 0.0, 0.0), vec3(1.0, 57.0, 113.0)), fp.x),
+                      mix(dot(ip + vec3(0.0, 1.0, 0.0), vec3(1.0, 57.0, 113.0)), dot(ip + vec3(1.0, 1.0, 0.0), vec3(1.0, 57.0, 113.0)), fp.x), fp.y);
+        return fract(atan(n) * 437585.453);
+    }
 
     void main() {
         vec3 samplePos;
@@ -235,21 +245,27 @@
             samplePos = vec3(vUv.x, vUv.y, animatedSlicePosition);
         }
 
-        // Applying the same threshold animation from the volumetric shader
-        float animatedThreshold = threshold + sin(time * 2.0) * 0.05;
+        float n = noise(samplePos * 10.0 - time * 1.0);
+        float animatedThreshold = threshold + n * 0.1;
 
         // Sample the volume texture at the animated position
         float sampledValue = texture(map, samplePos).r;
         bool isAboveThreshold = sampledValue > animatedThreshold;
 
-        // Setting the color based on the sampled value and threshold
-        color = isAboveThreshold ? vec4(vec3(sampledValue), 1.0) : vec4(0.137, 0.137, 0.137, 1.0);
+        // Use similar color calculation as in the main shader
+        if (isAboveThreshold) {
+            vec3 colorShift = vec3(0.137) + 0.0 * sin(time + samplePos + n);
+            color.rgb = colorShift;
+            color.a = baseOpacity;
+        } else {
+            color = vec4(0.657, 0.137, 0.137, 0.0);
+        }
 
         // Highlight the edges of the slice
-        float edgeThreshold = 0.001;
-        if(vUv.x < edgeThreshold || vUv.x > 1.0 - edgeThreshold || vUv.y < edgeThreshold || vUv.y > 1.0 - edgeThreshold) {
-            color = vec4(0.5, 0.5, 0.5, 1.0);
-        }
+        // float edgeThreshold = 0.001;
+        // if(vUv.x < edgeThreshold || vUv.x > 1.0 - edgeThreshold || vUv.y < edgeThreshold || vUv.y > 1.0 - edgeThreshold) {
+        //     color = vec4(0.137, 0.137, 0.137, 1.0);
+        // }
     }
 `;
 
@@ -352,36 +368,35 @@
 
 				// gui -----------------------------------------------------------------
 
-				function updateMaterial() {
-					material.uniforms.threshold.value = parameters.threshold;
-					material.uniforms.steps.value = parameters.steps;
-					material.uniforms.baseOpacity.value = parameters.baseOpacity;
+			// 	function updateMaterial() {
+			// 		material.uniforms.threshold.value = parameters.threshold;
+			// 		material.uniforms.steps.value = parameters.steps;
+			// 		material.uniforms.baseOpacity.value = parameters.baseOpacity;
 
+			// 		planes.forEach(plane => {
+			// 			plane.material.uniforms.threshold.value = parameters.threshold;
+			// 			plane.material.uniforms.steps.value = parameters.steps;
+			// 			plane.material.uniforms.baseOpacity.value = 1.0;
+			// 	});
+			// }
 
-					planes.forEach(plane => {
-						plane.material.uniforms.threshold.value = parameters.threshold;
-						plane.material.uniforms.steps.value = parameters.steps;
-						plane.material.uniforms.baseOpacity.value = 1.0;
-				});
-			}
-
-				function updatePlanes() {
-					planes.forEach((plane, index) => {
-						if (index === 0) {
-							plane.visible = planeData['X Plane'];
-							plane.position.x = planeData['X Position'];
-							plane.material.uniforms.slicePosition.value = planeData['X Position'] + 0.5; // normalize to [0, 1]
-						} else if (index === 1) {
-							plane.visible = planeData['Y Plane'];
-							plane.position.y = planeData['Y Position'];
-							plane.material.uniforms.slicePosition.value = planeData['Y Position'] + 0.5;
-						} else if (index === 2) {
-							plane.visible = planeData['Z Plane'];
-							plane.position.z = planeData['Z Position'];
-							plane.material.uniforms.slicePosition.value = planeData['Z Position'] + 0.5;
-						}
-					});
-				}
+				// function updatePlanes() {
+				// 	planes.forEach((plane, index) => {
+				// 		if (index === 0) {
+				// 			plane.visible = planeData['X Plane'];
+				// 			plane.position.x = planeData['X Position'];
+				// 			plane.material.uniforms.slicePosition.value = planeData['X Position'] + 0.5; // normalize to [0, 1]
+				// 		} else if (index === 1) {
+				// 			plane.visible = planeData['Y Plane'];
+				// 			plane.position.y = planeData['Y Position'];
+				// 			plane.material.uniforms.slicePosition.value = planeData['Y Position'] + 0.5;
+				// 		} else if (index === 2) {
+				// 			plane.visible = planeData['Z Plane'];
+				// 			plane.position.z = planeData['Z Position'];
+				// 			plane.material.uniforms.slicePosition.value = planeData['Z Position'] + 0.5;
+				// 		}
+				// 	});
+				// }
 
 			const parameters = { threshold: INITIAL_THRESHOLD, steps: INITIAL_STEPS, baseOpacity: INITIAL_OPACITY };
 
@@ -391,22 +406,64 @@
 				// gui.add(parameters, 'baseOpacity', 0, 1).onChange( updateMaterial );
 
 				// const planeFolder = gui.addFolder('Planes');
-				const planeData = {
-						'X Plane': INITIAL_SHOW_X_PLANE,
-						'X Position': 0,
-						'Y Plane': INITIAL_SHOW_Y_PLANE,
-						'Y Position': 0,
-						'Z Plane': INITIAL_SHOW_Z_PLANE,
-						'Z Position': 0,
-				};
+				// const planeData = {
+				// 		'X Plane': INITIAL_SHOW_X_PLANE,
+				// 		'X Position': 0,
+				// 		'Y Plane': INITIAL_SHOW_Y_PLANE,
+				// 		'Y Position': 0,
+				// 		'Z Plane': INITIAL_SHOW_Z_PLANE,
+				// 		'Z Position': 0,
+				// };
 				
 
-				gui.add(planeData, 'X Plane').name('Show X Plane').onChange(updatePlanes);
-				gui.add(planeData, 'X Position', -0.5, 0.5).onChange(updatePlanes);
-				gui.add(planeData, 'Y Plane').name('Show Y Plane').onChange(updatePlanes);
-				gui.add(planeData, 'Y Position', -0.5, 0.5).onChange(updatePlanes);
-				gui.add(planeData, 'Z Plane').name('Show Z Plane').onChange(updatePlanes);
-				gui.add(planeData, 'Z Position', -0.5, 0.5).onChange(updatePlanes);
+				// gui.add(planeData, 'X Plane').name('Show X Plane').onChange(updatePlanes);
+				// gui.add(planeData, 'X Position', -0.5, 0.5).onChange(updatePlanes);
+				// gui.add(planeData, 'Y Plane').name('Show Y Plane').onChange(updatePlanes);
+				// gui.add(planeData, 'Y Position', -0.5, 0.5).onChange(updatePlanes);
+				// gui.add(planeData, 'Z Plane').name('Show Z Plane').onChange(updatePlanes);
+				// gui.add(planeData, 'Z Position', -0.5, 0.5).onChange(updatePlanes);
+
+				// YEAR CHANGES --------------------------------------------------------
+				
+				// Define the initial year and the range of years
+				const startYear = 1960;
+				const endYear = 2023;
+
+				// The year to start with when the code runs
+				const initialYear = 1992;
+
+
+				// Map the year range to a position range for the X plane
+				// Assuming that the X plane's position should vary between -0.5 and 0.5 over the years
+				const minPositionX = -0.4999;
+				const maxPositionX = 0.4999;
+
+				// Calculate the step size for each year
+				const positionStep = (maxPositionX - minPositionX) / (endYear - startYear);
+
+				// This function updates the X plane's position based on the year
+				function updateYear(year) {
+						const normalizedPosition = (year - startYear) * positionStep + minPositionX;
+
+						// Assuming 'planes' is an array of your planes and the X plane is at index 0
+						let xPlane = planes[0];
+						xPlane.position.x = normalizedPosition; // Update the X plane's position
+						xPlane.material.uniforms.slicePosition.value = normalizedPosition + 0.5; // Update the slicePosition uniform
+
+						// If you have any animations or render calls, they should be triggered here
+						// For example:
+						// renderer.render(scene, camera);
+				}
+
+				// GUI setup
+				const planeData = { 'Year': initialYear };
+
+				const yearControl = gui.add(planeData, 'Year', startYear, endYear).step(1).onChange(updateYear);
+
+				// Call the update function initially to set the initial state
+				updateYear(initialYear);
+
+				// YEAR CHANGES --------------------------------------------------------
 
 				window.addEventListener( 'resize', onWindowResize );
 	}
@@ -446,6 +503,11 @@
 		requestAnimationFrame(animate);
 		mesh.material.uniforms.cameraPos.value.copy( camera.position );
 		mesh.material.uniforms.time.value = clock.getElapsedTime() * 0.01;
+
+		planes.forEach(plane => {
+			plane.material.uniforms.cameraPos.value.copy( camera.position );
+			plane.material.uniforms.time.value = clock.getElapsedTime() * 0.01;
+		});
 		renderer.render( scene, camera );
 	}
 </script>
