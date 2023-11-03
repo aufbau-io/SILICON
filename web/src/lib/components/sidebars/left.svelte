@@ -91,7 +91,7 @@
 		align-self: flex-end;
 		align-items: center;
 		justify-content: flex-start;
-		border: solid 1px var(--primary);
+		border: solid 1px var(--primary-50);
 
 		margin: 20px;
 		padding: 5px;
