@@ -11,11 +11,11 @@
 
 <style>
 	main {
-		width: 300px;
-		height: calc(100% - 40px);
+		width: 340px;
+		height: 100%;
 
 		margin: auto;
-		margin: 20px 0;
+		margin: 0;
 
 		display: flex;
 		flex-flow: column nowrap;
@@ -28,6 +28,8 @@
 
 		backdrop-filter: blur(10px);
 	}
+
+
 
 
 	@media only screen and (max-width: 768px) {

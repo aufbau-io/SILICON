@@ -3,11 +3,12 @@
 </script>
 
 <div class="filters">
-  <p class="">years</p>
-  <p class="">countries</p>
-  <p class="">genres</p>
-  <p class="">styles</p>
-  <p class="">rating</p>
+  <div class="filter"><p>dealer's choice</p></div>
+  <div class="filter"><p>years</p></div>
+  <div class="filter"><p>countries</p></div>
+  <div class="filter"><p>genres</p></div>
+  <div class="filter"><p>styles</p></div>
+  <div class="filter"><p>rating</p></div>
 </div>
 
 <style>
@@ -17,6 +18,21 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    /* gap: 20px; */
+  }
+
+  .filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+    border-bottom: solid 1px var(--primary-50);
+  }
+
+  .filter p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>

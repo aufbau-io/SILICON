@@ -12,7 +12,7 @@
 
 :root {
 	--background: #232323;
-	--background-50: #d0d0d080;
+	--background-50: #23232380;
 	--primary: #d0d0d0;
 	--primary-50: #d0d0d080;
 
@@ -52,12 +52,11 @@
 	font-weight: 700;
 }
 
-/* body {
+/* html {
 	margin: 0;
 	background-attachment: fixed;
 	background-color: var(--background);
 	background-size: 100% 100%;
-	background: linear-gradient(var(--background), var(--background));
 } */
 
 h1,

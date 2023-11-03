@@ -29,6 +29,7 @@
 		overflow: auto;
 		color: var(--primary);
 		width: 100%;
+		padding: 0 20px;
 	}
 
 	.results::-webkit-scrollbar {
@@ -40,6 +41,7 @@
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
+	border-bottom: solid 1px var(--primary-50);
 	padding: 20px;
 }
 

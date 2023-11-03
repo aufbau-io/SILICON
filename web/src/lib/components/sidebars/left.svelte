@@ -57,14 +57,15 @@
 	.top {
 		display: flex;
 		flex-flow: column nowrap;
-		gap: 20px;
-		padding: 20px;
+		/* gap: 20px; */
+		/* padding: 20px; */
+
 	}
 
 	.title {
 		width: 100%;
-		height: 100px;
-		/* border-bottom: solid 1px var(--primary); */
+		height: 140px;
+    border-bottom: solid 1px var(--primary-50);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -72,7 +73,7 @@
 
 	h1 {
 		-webkit-text-stroke: .85px var(--primary);
-		color: var(--background);
+		color: transparent;
 
 		font-family: var(--font-header);
 		font-size: 48px;
