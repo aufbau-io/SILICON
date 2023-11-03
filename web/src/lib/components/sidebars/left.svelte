@@ -65,6 +65,7 @@
 	.title {
 		width: 100%;
 		height: 140px;
+		padding-top: 10px;
     border-bottom: solid 1px var(--primary-50);
 		display: flex;
 		align-items: center;
