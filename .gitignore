@@ -1,7 +1,6 @@
 # ignore repo-level protected files
 data/json
 data/pkl
-archive
 
 # ignore server-level protected files and modules
 server/data

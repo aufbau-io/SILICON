@@ -1,7 +1,7 @@
 // const { PrismaClient } = require("@prisma/client");
 // const prisma = new PrismaClient();
 
-async function batchCreate(Model, data, batchSize = 250) {
+async function batchCreate(Model, data, batchSize = 100000) {
   for (let i = 0; i < data.length; i += batchSize) {
     const batch = data.slice(i, i + batchSize);
     const createManyData = batch.map((item) => ({ ...item }));
@@ -9,7 +9,7 @@ async function batchCreate(Model, data, batchSize = 250) {
   }
 }
 
-async function batchUpdateRelations(Model, records, updateKey, batchSize = 5) {
+async function batchUpdateRelations(Model, records, updateKey, batchSize = 75) {
   for (let i = 0; i < records.length; i += batchSize) {
     const batch = records.slice(i, i + batchSize);
     const updatePromises = batch.map(async (record) => {

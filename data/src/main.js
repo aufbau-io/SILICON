@@ -88,10 +88,18 @@ async function main() {
   //   }))
   // );
 
+  // Create a new object with records from index 140350 onwards
+  let slicedRecordDataObject = Object.keys(recordData)
+    .slice(140350)
+    .reduce((obj, key) => {
+      obj[key] = recordData[key];
+      return obj;
+    }, {});
+
   console.log("Step 5: Update Records with relations");
   await batchUpdateRelations(
     prisma.record,
-    Object.values(recordData).map((item) => ({
+    Object.values(slicedRecordDataObject).map((item) => ({
       id: parseInt(item.record_id, 10),
       data: {
         genres: { connect: (item.record_genres || []).map((id) => ({ id })) },
@@ -129,10 +137,14 @@ async function main() {
       id: item.label_id,
       data: {
         parentLabels: {
-          connect: (item.label_parent_label || []).map((id) => ({ id })),
+          connect: Array.isArray(item.label_parent_label)
+            ? item.label_parent_label.map((id) => ({ id }))
+            : [],
         },
         subLabels: {
-          connect: (item.label_sub_labels || []).map((id) => ({ id })),
+          connect: Array.isArray(item.label_sub_labels)
+            ? item.label_sub_labels.map((id) => ({ id }))
+            : [],
         },
       },
     })),
