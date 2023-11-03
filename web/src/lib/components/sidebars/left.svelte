@@ -37,7 +37,7 @@
 
 <style>
 	main {
-		width: 240px;
+		width: 250px;
 		height: 100%;
 
 		margin: auto;
@@ -94,6 +94,7 @@
 		border: solid 1px var(--primary-50);
 
 		margin: 20px;
+		margin-top: 10px;
 		padding: 5px;
 	}
 

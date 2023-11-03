@@ -3,14 +3,16 @@
 </script>
 
 <div class="filters">
-  <div class="filter"><p>randomise</p></div>
-  <div class="filter"><p>labels</p></div>
-  <div class="filter"><p>artists</p></div>
-  <div class="filter"><p>years</p></div>
-  <div class="filter"><p>countries</p></div>
-  <div class="filter"><p>genres</p></div>
-  <div class="filter"><p>styles</p></div>
-  <div class="filter"><p>rating</p></div>
+  <div class="main">
+    <div class="filter"><p>labels</p></div>
+    <div class="filter"><p>artists</p></div>
+    <div class="filter"><p>years</p></div>
+    <div class="filter"><p>countries</p></div>
+    <div class="filter"><p>genres</p></div>
+    <div class="filter"><p>styles</p></div>
+    <div class="filter"><p>rating</p></div>
+  </div>
+  <div class="filter randomise"><p>i'm feeling lucky</p></div>
 </div>
 
 <style>
@@ -18,8 +20,19 @@
     display: flex;
     flex-flow: column nowrap;
     width: 100%;
+    height: 100%;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
+    /* gap: 20px; */
+  }
+
+  .main {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    /* justify-content: center; */
     /* gap: 20px; */
   }
 
@@ -30,6 +43,11 @@
     width: 100%;
     padding: 20px;
     border-bottom: solid 1px var(--primary-50);
+  }
+  .randomise {
+    align-self: flex-end;
+    border-bottom: none;
+    border-top: solid 1px var(--primary-50);
   }
 
   .filter p {
