@@ -3,7 +3,9 @@
 </script>
 
 <div class="filters">
-  <div class="filter"><p>dealer's choice</p></div>
+  <div class="filter"><p>randomise</p></div>
+  <div class="filter"><p>labels</p></div>
+  <div class="filter"><p>artists</p></div>
   <div class="filter"><p>years</p></div>
   <div class="filter"><p>countries</p></div>
   <div class="filter"><p>genres</p></div>
