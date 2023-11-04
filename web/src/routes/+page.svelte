@@ -40,6 +40,7 @@
 
 		color: var(--background);
 		border: solid 1px var(--primary);
+		backdrop-filter: blur(10px);
 		padding:  20px;
 	}
 

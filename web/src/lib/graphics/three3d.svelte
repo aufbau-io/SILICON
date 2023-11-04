@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { screenType } from '$lib/store/store';
+	import { xPlane, yPlane, zPlane } from '$lib/store/store';
 	import { page } from '$app/stores';
 	import { afterNavigate } from '$app/navigation';
 
@@ -11,7 +11,7 @@
   import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 	import { ImprovedNoise } from 'three/addons/math/ImprovedNoise.js';
 
-	import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+	// import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 	import WebGL from 'three/addons/capabilities/WebGL.js';
 
 	if ( WebGL.isWebGL2Available() === false ) {
@@ -59,7 +59,7 @@
 
 				const d = perlin.noise( vector.x * scale, vector.y * scale, vector.z * scale );
 
-				data[ i ++ ] = d * 128 + 128;
+				data[ i ++ ] = d * size + size;
 
 			}
 
@@ -254,7 +254,7 @@
 
         // Use similar color calculation as in the main shader
         if (isAboveThreshold) {
-            vec3 colorShift = vec3(0.137) + 0.0 * sin(time + samplePos + n);
+            vec3 colorShift = vec3(0.137) + n; // vec3 colorShift = vec3(0.137) + 0.0 * sin(time + samplePos + n);
             color.rgb = colorShift;
             color.a = baseOpacity;
         } else {
@@ -299,9 +299,31 @@
 		controls = new OrbitControls(camera, renderer.domElement);
 		controls.target.set(0, 0, 0);  // Explicitly set target to origin
 		controls.update();
+		
 
 		onMount(() => {
 			container.appendChild(renderer.domElement);
+
+			const unsubscribeX = xPlane.subscribe(({ min, max, value }) => {
+      const regularizedValue = regularizeValue(value, min, max);
+      updatePlanePosition(planes[0], 'x', regularizedValue);
+    });
+
+			const unsubscribeY = yPlane.subscribe(({ min, max, value }) => {
+				const regularizedValue = regularizeValue(value, min, max);
+				updatePlanePosition(planes[1], 'y', regularizedValue);
+			});
+
+			const unsubscribeZ = zPlane.subscribe(({ min, max, value }) => {
+				const regularizedValue = regularizeValue(value, min, max);
+				updatePlanePosition(planes[2], 'z', regularizedValue);
+			});
+
+			return () => {
+				unsubscribeX();
+				unsubscribeY();
+				unsubscribeZ();
+			};
 		});
 	}
 
@@ -353,7 +375,6 @@
 				scene.add(plane);
 			}
 
-
 				// Align planes
 				planes[0].rotateY(Math.PI / 2);
 				planes[1].rotateX(Math.PI / 2);
@@ -366,115 +387,25 @@
 				planes[1].visible = INITIAL_SHOW_Y_PLANE;
 				planes[2].visible = INITIAL_SHOW_Z_PLANE;
 
-				// gui -----------------------------------------------------------------
-
-			// 	function updateMaterial() {
-			// 		material.uniforms.threshold.value = parameters.threshold;
-			// 		material.uniforms.steps.value = parameters.steps;
-			// 		material.uniforms.baseOpacity.value = parameters.baseOpacity;
-
-			// 		planes.forEach(plane => {
-			// 			plane.material.uniforms.threshold.value = parameters.threshold;
-			// 			plane.material.uniforms.steps.value = parameters.steps;
-			// 			plane.material.uniforms.baseOpacity.value = 1.0;
-			// 	});
-			// }
-
-				// function updatePlanes() {
-				// 	planes.forEach((plane, index) => {
-				// 		if (index === 0) {
-				// 			plane.visible = planeData['X Plane'];
-				// 			plane.position.x = planeData['X Position'];
-				// 			plane.material.uniforms.slicePosition.value = planeData['X Position'] + 0.5; // normalize to [0, 1]
-				// 		} else if (index === 1) {
-				// 			plane.visible = planeData['Y Plane'];
-				// 			plane.position.y = planeData['Y Position'];
-				// 			plane.material.uniforms.slicePosition.value = planeData['Y Position'] + 0.5;
-				// 		} else if (index === 2) {
-				// 			plane.visible = planeData['Z Plane'];
-				// 			plane.position.z = planeData['Z Position'];
-				// 			plane.material.uniforms.slicePosition.value = planeData['Z Position'] + 0.5;
-				// 		}
-				// 	});
-				// }
-
-			const parameters = { threshold: INITIAL_THRESHOLD, steps: INITIAL_STEPS, baseOpacity: INITIAL_OPACITY };
-
-				// const gui = new GUI();
-				// gui.add( parameters, 'threshold', 0, 1, 0.01 ).onChange( updateMaterial );
-				// gui.add( parameters, 'steps', 0, 300, 1 ).onChange( updateMaterial );
-				// gui.add(parameters, 'baseOpacity', 0, 1).onChange( updateMaterial );
-
-				// const planeFolder = gui.addFolder('Planes');
-				// const planeData = {
-				// 		'X Plane': INITIAL_SHOW_X_PLANE,
-				// 		'X Position': 0,
-				// 		'Y Plane': INITIAL_SHOW_Y_PLANE,
-				// 		'Y Position': 0,
-				// 		'Z Plane': INITIAL_SHOW_Z_PLANE,
-				// 		'Z Position': 0,
-				// };
-				
-
-				// gui.add(planeData, 'X Plane').name('Show X Plane').onChange(updatePlanes);
-				// gui.add(planeData, 'X Position', -0.5, 0.5).onChange(updatePlanes);
-				// gui.add(planeData, 'Y Plane').name('Show Y Plane').onChange(updatePlanes);
-				// gui.add(planeData, 'Y Position', -0.5, 0.5).onChange(updatePlanes);
-				// gui.add(planeData, 'Z Plane').name('Show Z Plane').onChange(updatePlanes);
-				// gui.add(planeData, 'Z Position', -0.5, 0.5).onChange(updatePlanes);
-
-				// YEAR CHANGES --------------------------------------------------------
-				
-				// Define the initial year and the range of years
-				const startYear = 1960;
-				const endYear = 2023;
-
-				// The year to start with when the code runs
-				const initialYear = 1992;
-
-
-				// Map the year range to a position range for the X plane
-				// Assuming that the X plane's position should vary between -0.5 and 0.5 over the years
-				const minPositionX = -0.4999;
-				const maxPositionX = 0.4999;
-
-				// Calculate the step size for each year
-				const positionStep = (maxPositionX - minPositionX) / (endYear - startYear);
-
-				// This function updates the X plane's position based on the year
-				function updateYear(year) {
-						const normalizedPosition = (year - startYear) * positionStep + minPositionX;
-
-						// Assuming 'planes' is an array of your planes and the X plane is at index 0
-						let xPlane = planes[0];
-						xPlane.position.x = normalizedPosition; // Update the X plane's position
-						xPlane.material.uniforms.slicePosition.value = normalizedPosition + 0.5; // Update the slicePosition uniform
-
-						// If you have any animations or render calls, they should be triggered here
-						// For example:
-						// renderer.render(scene, camera);
-				}
-
-				// GUI setup
-				const planeData = { 'Year': initialYear };
-
-				// const yearControl = gui.add(planeData, 'Year', startYear, endYear).step(1).onChange(updateYear);
-
-				// Call the update function initially to set the initial state
-				updateYear(initialYear);
-
-				// YEAR CHANGES --------------------------------------------------------
-
 				window.addEventListener( 'resize', onWindowResize );
 	}
 
+	function regularizeValue(actualValue, minActual, maxActual) {
+    const normalized = (actualValue - minActual) / (maxActual - minActual);
+    return normalized - 0.5;
+  }
+
+	function updatePlanePosition(plane, axis, position) {
+    plane.position[axis] = position;
+    plane.material.uniforms.slicePosition.value = position + 0.5;
+	}
 
 	function setScene () {
-
 		if ($page.url.pathname == '/') {
 			setHome();
+		} else {
+			setHome();
 		}
-
 	}
 
 	afterNavigate (onNavigate);
@@ -502,11 +433,11 @@
 	function animate() {
 		requestAnimationFrame(animate);
 		mesh.material.uniforms.cameraPos.value.copy( camera.position );
-		mesh.material.uniforms.time.value = clock.getElapsedTime() * 0.01;
+		mesh.material.uniforms.time.value = clock.getElapsedTime() * 0.025;
 
 		planes.forEach(plane => {
 			plane.material.uniforms.cameraPos.value.copy( camera.position );
-			plane.material.uniforms.time.value = clock.getElapsedTime() * 0.01;
+			plane.material.uniforms.time.value = clock.getElapsedTime() * 0.025;
 		});
 		renderer.render( scene, camera );
 	}

@@ -95,7 +95,7 @@
 		border: solid 1px var(--primary-50);
 
 		margin: 20px;
-		margin-top: 10px;
+		margin-top: 1px;
 		padding: 5px;
 	}
 
