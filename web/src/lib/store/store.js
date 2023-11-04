@@ -17,7 +17,7 @@ export const fullDatabaseView = writable(false);
 export const showFilters = writable(false);
 
 export const xPlane = writable({
-	visible: true,
+	visible: false,
 	name: 'YEAR',
 	min: 1900,
 	max: 2023,
@@ -25,7 +25,7 @@ export const xPlane = writable({
 });
 
 export const yPlane = writable({
-	visible: true,
+	visible: false,
 	name: 'INTENSITY',
 	min: 0,
 	max: 100,
@@ -33,7 +33,7 @@ export const yPlane = writable({
 });
 
 export const zPlane = writable({
-	visible: true,
+	visible: false,
 	name: 'TEXTURE',
 	min: 0,
 	max: 100,

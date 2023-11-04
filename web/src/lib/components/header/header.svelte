@@ -86,8 +86,8 @@
 
   <div class="right-sidebar-controls">
 
-      <button class="unit border-right" >
-        <p class={fullDatabaseViewClass} on:click={() => toggleFullDatabaseView()} on:keydown={() => toggleFullDatabaseView()}>Full Databse View</p>
+      <button class="unit border-right" on:click={() => toggleFullDatabaseView()} on:keydown={() => toggleFullDatabaseView()}>
+        <p class={fullDatabaseViewClass} >Full Databse View</p>
       </button>
 
       <!-- <button  class="unit" >
