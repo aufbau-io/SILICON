@@ -99,7 +99,7 @@
 			<slot />
 		</body> -->
 
-		{#if $screenType == 1}
+		{#if !showRightSidebar }
 		<div class="title">
 			<h1>silicon</h1>
 		</div> 
