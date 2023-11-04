@@ -41,7 +41,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 20px 0 ;
+    padding: 28px 0 ;
     border-bottom: solid 1px var(--primary-50);
   }
 
