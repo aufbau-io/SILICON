@@ -10,7 +10,7 @@
 			<a class="no-style" href='/'>
 				<div class="title">
 					<h1>silicon</h1>
-				</div>
+				</div> 
 			</a>
 
 		</div>
@@ -64,7 +64,7 @@
 
 	.title {
 		width: 100%;
-		height: 120px;
+		height: 112px;
 		padding-top: 0px;
     border-bottom: solid 1px var(--primary-50);
 		display: flex;

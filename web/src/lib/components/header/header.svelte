@@ -1,12 +1,18 @@
 <script>
-  import { xPlane, yPlane, zPlane, showRightSidebar, fullDatabaseView, showFilters } from '$lib/store/store';
+  import { xPlane, yPlane, zPlane, fullDatabaseView, showFilters } from '$lib/store/store';
   
-  let toggleShowRightSidebar = () => {
-    showRightSidebar.update(value => !value);
-  };
+  $: expanded = $showFilters;
+
+  // let toggleShowRightSidebar = () => {
+  //   showRightSidebar.update(value => !value);
+  // };
   
   let toggleFullDatabaseView = () => {
     fullDatabaseView.update(value => !value);
+
+    if (showFilters) {
+      showFilters.update(value => false);
+    }
   };
 
   let toggleShowFilters = () => {
@@ -63,7 +69,7 @@
       <p class="control-value">{zPlaneValue.value}</p>
     </div>
     <!-- FILTERS -->
-    <div class="control-group filters">
+    <div class="control-group filters-control">
       <button on:click={() => toggleShowFilters()}>
         <p> <span class={showFiltersClass === 'visible' ? 'hidden' : 'visible'}>FILTERS [ 0 ]</span></p>
       </button>
@@ -85,6 +91,12 @@
 
   </div>
 </header>
+
+<main class:expanded={expanded}>
+  {#if $showFilters}
+    <p>hi</p>
+  {/if}
+</main>
 
 <style>
   header {
@@ -110,7 +122,7 @@
     justify-content: center;
   }
 
-  .control-group.filters {
+  .control-group.filters-control {
     width: 17.5%;
   }
   
@@ -146,8 +158,22 @@
     height: 20px;
   }
 
-  .unit.border-right {
-    /* border-right: solid 1px var(--primary-50); */
+  main {
+    position: absolute;
+    top: 56px;
+    height: 0;
+    width: 100%;
+    width: calc(100vw - 400px);
+    transition: height 0.3s ease;
+    background: var(--background);
+
+
+  }
+
+  main.expanded {
+    height: calc(100vh - 56px);
+    transition: height 0.3s ease;
+    border-bottom: solid 1px var(--primary-50);
   }
 
   input[type=range] {
