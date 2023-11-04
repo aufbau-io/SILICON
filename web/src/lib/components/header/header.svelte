@@ -95,13 +95,13 @@
       </button>
     </div>
     
-  </div>
+  <!-- </div>
 
   {#if showSidebar}
 
-  <div class="right-sidebar-controls">
+  <div class="right-sidebar-controls"> -->
 
-      <button class="unit border-right" on:click={() => toggleFullDatabaseView()} on:keydown={() => toggleFullDatabaseView()}>
+      <button class="unit" on:click={() => toggleFullDatabaseView()} on:keydown={() => toggleFullDatabaseView()}>
         <p class={fullDatabaseViewClass} >Full Databse View</p>
       </button>
 
@@ -111,13 +111,12 @@
       
 
   </div>
-  {/if}
+  <!-- {/if} -->
 
 </header>
 
 <main class:expanded={expanded}>
   {#if $showFilters}
-    <p>hi</p>
   {/if}
 </main>
 
@@ -178,7 +177,7 @@
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 17.5%;
     height: 20px;
   }
 
