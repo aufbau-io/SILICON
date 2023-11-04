@@ -228,14 +228,14 @@
         vec3 samplePos;
 
         // Adding time-based transformations to the slicePosition
-        float animatedSlicePosition = slicePosition + sin(time) * 0.1;
+        // float animatedSlicePosition = slicePosition + sin(time) * 0.1;
 
         if (sliceAxis == 0) {
-            samplePos = vec3(animatedSlicePosition, vUv.y, 1.0 - vUv.x);
+            samplePos = vec3(slicePosition, vUv.y, 1.0 - vUv.x);
         } else if (sliceAxis == 1) {
-            samplePos = vec3(vUv.x, animatedSlicePosition, vUv.y);
+            samplePos = vec3(vUv.x, slicePosition, vUv.y);
         } else {
-            samplePos = vec3(vUv.x, vUv.y, animatedSlicePosition);
+            samplePos = vec3(vUv.x, vUv.y, slicePosition);
         }
 
         float n = noise(samplePos - time * 1.0);
