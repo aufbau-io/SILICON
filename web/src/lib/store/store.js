@@ -13,6 +13,8 @@ export const mousePosition = writable({ x: 0, y: 0, z: 0 });
 export const showRightSidebar = writable(true);
 export const showLeftSidebar = writable(true);
 
+export const fullDatabaseView = writable(false);
+
 export const xPlane = writable({
 	visible: true,
 	name: 'YEAR',

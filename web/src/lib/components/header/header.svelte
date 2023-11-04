@@ -1,8 +1,12 @@
 <script>
-  import { xPlane, yPlane, zPlane, showRightSidebar } from '$lib/store/store';
+  import { xPlane, yPlane, zPlane, showRightSidebar, fullDatabaseView } from '$lib/store/store';
   
   let toggleShowRightSidebar = () => {
     showRightSidebar.update(value => !value);
+  };
+  
+  let toggleFullDatabaseView = () => {
+    fullDatabaseView.update(value => !value);
   };
 
   // Function to toggle the visibility of a plane
@@ -23,6 +27,9 @@
   $: xPlaneClass = $xPlane.visible ? 'visible' : 'hidden';
   $: yPlaneClass = $yPlane.visible ? 'visible' : 'hidden';
   $: zPlaneClass = $zPlane.visible ? 'visible' : 'hidden';
+
+  $: showRightSidebarClass = $showRightSidebar ? 'visible' : 'hidden';
+  $: fullDatabaseViewClass = $fullDatabaseView ? 'visible' : 'hidden';
 </script>
 <header>
   <div class="controls">
@@ -54,13 +61,15 @@
   </div>
 
   <div class="right-sidebar-controls">
-    <button >
-      <p on:click={() => toggleShowRightSidebar()} on:keydown={() => toggleShowRightSidebar()}>Full Databse View</p>
-    </button>
 
-    <button >
-      <p on:click={() => toggleShowRightSidebar()} on:keydown={() => toggleShowRightSidebar()}>Hide right sidebar</p>
-    </button>
+      <button class="unit border-right" >
+        <p class={fullDatabaseViewClass} on:click={() => toggleFullDatabaseView()} on:keydown={() => toggleFullDatabaseView()}>Full Databse View</p>
+      </button>
+
+
+      <button  class="unit" >
+        <p class={showRightSidebarClass} on:click={() => toggleShowRightSidebar()} on:keydown={() => toggleShowRightSidebar()}>Show Results</p>
+      </button>
 
   </div>
 </header>
@@ -101,9 +110,23 @@
 
   .right-sidebar-controls {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: space-around;
     width: 580px;
+    height: 100%;
+  }
+
+  .unit {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20px;
+  }
+
+  .unit.border-right {
+    border-right: solid 1px var(--primary-50);
   }
 
   input[type=range] {
