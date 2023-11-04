@@ -42,7 +42,7 @@
   // ---------------------------------------------------------------------------
 
 	const size = 128;
-	const scale = 6;
+	const scale = 8;
 	const data = new Uint8Array( size * size * size );
 
 	let i = 0;
