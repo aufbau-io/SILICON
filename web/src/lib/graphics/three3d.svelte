@@ -22,10 +22,6 @@
 	const INITIAL_OPACITY = 0.9;
 	const INITIAL_STEPS = 100;
 
-	const INITIAL_SHOW_X_PLANE = true;
-	const INITIAL_SHOW_Y_PLANE = true;
-	const INITIAL_SHOW_Z_PLANE = true;
-
 	let container;
   let controls;
 
@@ -295,19 +291,22 @@
 		onMount(() => {
 			container.appendChild(renderer.domElement);
 
-			const unsubscribeX = xPlane.subscribe(({ min, max, value }) => {
+			const unsubscribeX = xPlane.subscribe(({ min, max, value, visible }) => {
       const regularizedValue = regularizeValue(value, min, max);
       updatePlanePosition(planes[0], 'x', regularizedValue);
+			planes[0].visible = visible;
     });
 
-			const unsubscribeY = yPlane.subscribe(({ min, max, value }) => {
+			const unsubscribeY = yPlane.subscribe(({ min, max, value, visible }) => {
 				const regularizedValue = regularizeValue(value, min, max);
 				updatePlanePosition(planes[1], 'y', regularizedValue);
+				planes[1].visible = visible;
 			});
 
-			const unsubscribeZ = zPlane.subscribe(({ min, max, value }) => {
+			const unsubscribeZ = zPlane.subscribe(({ min, max, value, visible }) => {
 				const regularizedValue = regularizeValue(value, min, max);
 				updatePlanePosition(planes[2], 'z', regularizedValue);
+				planes[2].visible = visible;
 			});
 
 			return () => {
@@ -374,16 +373,16 @@
 				planes[1].material.uniforms.sliceAxis.value = 1;
 				planes[2].material.uniforms.sliceAxis.value = 2;
 
-				planes[0].visible = INITIAL_SHOW_X_PLANE;
-				planes[1].visible = INITIAL_SHOW_Y_PLANE;
-				planes[2].visible = INITIAL_SHOW_Z_PLANE;
+				planes[0].visible = xPlane.visible;
+				planes[1].visible = yPlane.visible;
+				planes[2].visible = zPlane.visible;
 
 				window.addEventListener( 'resize', onWindowResize );
 	}
 
 	function regularizeValue(actualValue, minActual, maxActual) {
     const normalized = (actualValue - minActual) / (maxActual - minActual);
-    return normalized - 0.5;
+    return normalized - 0.4999;
   }
 
 	function updatePlanePosition(plane, axis, position) {

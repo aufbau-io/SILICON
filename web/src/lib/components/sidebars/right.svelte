@@ -12,7 +12,6 @@
 <style>
 	main {
 		width: 600px;
-		height: 100%;
 
 		margin: auto;
 		margin: 0;

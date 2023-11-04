@@ -1,95 +1,130 @@
 <script>
-	import Nav from './nav.svelte';
-	// import { darkMode, screenType } from '$lib/store/store';
+  import { xPlane, yPlane, zPlane, showRightSidebar } from '$lib/store/store';
+  
+  let toggleShowRightSidebar = () => {
+    showRightSidebar.update(value => !value);
+  };
 
-	// import { page } from '$app/stores';
-	// import { goto } from '$app/navigation';
+  // Function to toggle the visibility of a plane
+  function togglePlaneVisibility(plane) {
+    plane.update(current => ({ ...current, visible: !current.visible }));
+  }
 
-	// stub data out
-	const navItems = [
-		{
-			name: 'AUFBAU',
-			href: '/'
-		},
-		{
-			name: 'RAUM',
-			href: '/raum'
-		},
-		{
-			name: 'NIELS',
-			href: '/niels'
-		},
+  // Function to update the value of a plane
+  function updatePlaneValue(plane, newValue) {
+    plane.update(current => ({ ...current, value: newValue }));
+  }
 
-	];
+  // For direct access in the markup, subscribe to the stores
+  $: xPlaneValue = $xPlane;
+  $: yPlaneValue = $yPlane;
+  $: zPlaneValue = $zPlane;
 
-	// let toggleDarkMode = () => {
-	// 	darkMode.set(!$darkMode);
-	// 	document.querySelector(':root').classList.toggle('dark-mode');
-	// 	};
+  $: xPlaneClass = $xPlane.visible ? 'visible' : 'hidden';
+  $: yPlaneClass = $yPlane.visible ? 'visible' : 'hidden';
+  $: zPlaneClass = $zPlane.visible ? 'visible' : 'hidden';
 </script>
-
 <header>
-	<main>
+  <div class="controls">
+    <!-- X Plane Control -->
+    <div class="control-group">
+      <button on:click={() => togglePlaneVisibility(xPlane)}>
+        <p><span class={xPlaneClass}>{xPlaneValue.name}</span> / <span class={xPlaneClass === 'visible' ? 'hidden' : 'visible'}>off</span></p>
+      </button>
+      <input type="range" bind:value={xPlaneValue.value} min={xPlaneValue.min} max={xPlaneValue.max} on:input={(e) => updatePlaneValue(xPlane, parseFloat(e.target.value))}>
+      <p class="control-value">{xPlaneValue.value}</p>
+    </div>
+    <!-- Y Plane Control -->
+    <div class="control-group">
+      <button on:click={() => togglePlaneVisibility(yPlane)}>
+        <p><span class={yPlaneClass}>{yPlaneValue.name}</span> / <span class={yPlaneClass === 'visible' ? 'hidden' : 'visible'}>off</span></p>
+      </button>
+      <input type="range" bind:value={yPlaneValue.value} min={yPlaneValue.min} max={yPlaneValue.max} on:input={(e) => updatePlaneValue(yPlane, parseFloat(e.target.value))}>
+      <p class="control-value">{yPlaneValue.value}</p>
+    </div>
+    <!-- Z Plane Control -->
+    <div class="control-group">
+      <button on:click={() => togglePlaneVisibility(zPlane)}>
+        <p><span class={zPlaneClass}>{zPlaneValue.name}</span> / <span class={zPlaneClass === 'visible' ? 'hidden' : 'visible'}>off</span></p>
+      </button>
+      <input type="range" bind:value={zPlaneValue.value} min={zPlaneValue.min} max={zPlaneValue.max} on:input={(e) => updatePlaneValue(zPlane, parseFloat(e.target.value))}>
+      <p class="control-value">{zPlaneValue.value}</p>
+    </div>
 
-		<Nav {navItems} />
+  </div>
 
-	<!-- <div on:click={() => toggleDarkMode()} on:keydown={() => toggleDarkMode()} class="darkMode right">
-		<p class:selected={$darkMode == false}>ONLINE</p>
-		<p class="selected">/</p>
-		<p class:selected={$darkMode == true}>OFFLINE</p>
-	</div> -->
+  <div class="right-sidebar-controls">
+    <button >
+      <p on:click={() => toggleShowRightSidebar()} on:keydown={() => toggleShowRightSidebar()}>Full Databse View</p>
+    </button>
 
-	<div class="icons">
-    <a href="/dan_humphries_cv.pdf">
-        <img src="/icons/cv.svg" alt="cv" class="icon" />
-    </a>
-    <a href="mailto: dan@aufbau.io">
-        <img src="/icons/mail.svg" alt="mail" class="icon" />
-    </a>
-    <a href="https://www.instagram.com/dn.niels" target="_blank" rel="noreferrer">
-        <img src="/icons/insta.svg" alt="instagram" class="icon" />
-    </a>
-</div>
+    <button >
+      <p on:click={() => toggleShowRightSidebar()} on:keydown={() => toggleShowRightSidebar()}>Hide right sidebar</p>
+    </button>
 
-</main>
+  </div>
 </header>
 
 <style>
-	header {
-		user-select: none;
-		color: var(--primary);
-	}
+  header {
+    color: var(--primary);
+    width: 100%;
+    margin: auto;
+    z-index: 1;
+    border-bottom: solid 1px var(--primary-50);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(10px);
+  }
 
-	main {
-		margin: auto;
-		max-width: 100vw;
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-start;
+  .control-group {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .control-value {
+    width: 1em;
+    text-align: right;
+  }
 
-		padding: 20px;
-		font-size: 12px;
-		height: calc(2 * var(--margin));
-	}
+  .controls {
+    display: flex;
+    justify-content: space-around;
+    width: calc(100% - 580px);
+    border-right: solid 1px var(--primary-50); 
+  }
 
-	.icons {
-		display: flex;
-		gap: 15px;
-		padding: 6px 15px;
-		justify-content: space-evenly;
-		background: var(--background);
-		border: var(--border);
-	}
+  .right-sidebar-controls {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 580px;
+  }
 
-	.icon {
-		height: 20px;
-		width: 20px;
+  input[type=range] {
+    width: 30%;
+  }
 
-		cursor: pointer;
-		opacity: 1;
-	}
+  .visible {
+    opacity: 1;
+  }
 
-	.icon:hover{
-		opacity:.5;
+  .hidden {
+    opacity: 0.5;
+  }
+  
+  @media only screen and (max-width: 1440px) {
+		.controls {
+			width: 100%;
 		}
+
+    .right-sidebar-controls {
+      width: 100%;
+    }
+	}
 </style>

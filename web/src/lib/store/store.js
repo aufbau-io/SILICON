@@ -10,20 +10,29 @@ export const mouseOnLink = writable(false);
 
 export const mousePosition = writable({ x: 0, y: 0, z: 0 });
 
+export const showRightSidebar = writable(true);
+export const showLeftSidebar = writable(true);
+
 export const xPlane = writable({
-	min: 0,
-	max: 1,
-	value: 0.5
+	visible: true,
+	name: 'YEAR',
+	min: 1900,
+	max: 2023,
+	value: 1996
 });
 
 export const yPlane = writable({
+	visible: true,
+	name: 'INTENSITY',
 	min: 0,
-	max: 1,
-	value: 0.5
+	max: 100,
+	value: 50
 });
 
 export const zPlane = writable({
+	visible: true,
+	name: 'TEXTURE',
 	min: 0,
-	max: 1,
-	value: 0.5
+	max: 100,
+	value: 50
 });

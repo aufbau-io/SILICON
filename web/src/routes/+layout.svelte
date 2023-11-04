@@ -2,9 +2,9 @@
 	import './app.css';
 
 	import { onMount } from 'svelte';
-	import { screenType, isIframe } from '$lib/store/store';
+	import { screenType, isIframe, showRightSidebar } from '$lib/store/store';
 
-	// import Header from '$lib/components/header/header.svelte';
+	import Header from '$lib/components/header/header.svelte';
 	// import Footer from '$lib/components/footer/footer.svelte';
 	import LeftSidebar from '$lib/components/sidebars/left.svelte';
 	import RightSidebar from '$lib/components/sidebars/right.svelte';
@@ -72,9 +72,7 @@
 
 {#if $screenType}
 	<main>
-		<!-- <header>
-			<Header />
-		</header> -->
+
 
 
 		<div class="sidebar left">
@@ -83,11 +81,15 @@
 
 
 
+		{#if $showRightSidebar}
 		<div class="sidebar right">
 			<RightSidebar />
 		</div>
+		{/if}
 
-
+		<header>
+			<Header />
+		</header>
 		<!-- <body>
 			<slot />
 		</body> -->
@@ -112,7 +114,8 @@
 		position: absolute;
 		z-index: 1;
 		top: 0;
-		width: 100%;
+		left: 220px;
+		width: calc(100% - 220px);
 	}
 
 	footer {
@@ -135,6 +138,9 @@
 
 	.sidebar.right {
 		right: 0;
+		top: 56px;
+		height: calc(100% - 56px);
+		overflow: hidden;
 	}
 
 	body {
@@ -143,6 +149,6 @@
 		/* padding: calc(1 * var(--margin)); */
 		width: calc(100% - 800px);
 		transform: translateX(240px);
-		height: 100%;
 	}
+
 </style>
