@@ -53,7 +53,7 @@
         <p><span class={xPlaneClass}>{xPlaneValue.name}</span> / <span class={xPlaneClass === 'visible' ? 'hidden' : 'visible'}>off</span></p>
       </button>
       <input type="range" bind:value={xPlaneValue.value} min={xPlaneValue.min} max={xPlaneValue.max} on:input={(e) => updatePlaneValue(xPlane, parseFloat(e.target.value))}>
-      <p class="control-value">{xPlaneValue.value}</p>
+      <p class="control-value"><span class={xPlaneClass}>{xPlaneValue.value}</span></p>
     </div>
     <!-- Y Plane Control -->
     <div class="control-group">
@@ -61,7 +61,7 @@
         <p><span class={yPlaneClass}>{yPlaneValue.name}</span> / <span class={yPlaneClass === 'visible' ? 'hidden' : 'visible'}>off</span></p>
       </button>
       <input type="range" bind:value={yPlaneValue.value} min={yPlaneValue.min} max={yPlaneValue.max} on:input={(e) => updatePlaneValue(yPlane, parseFloat(e.target.value))}>
-      <p class="control-value">{yPlaneValue.value}</p>
+      <p class="control-value"><span class={yPlaneClass}>{yPlaneValue.value}</span></p>
     </div>
     <!-- Z Plane Control -->
     <div class="control-group">
@@ -69,7 +69,7 @@
         <p><span class={zPlaneClass}>{zPlaneValue.name}</span> / <span class={zPlaneClass === 'visible' ? 'hidden' : 'visible'}>off</span></p>
       </button>
       <input type="range" bind:value={zPlaneValue.value} min={zPlaneValue.min} max={zPlaneValue.max} on:input={(e) => updatePlaneValue(zPlane, parseFloat(e.target.value))}>
-      <p class="control-value">{zPlaneValue.value}</p>
+      <p class="control-value"><span class={zPlaneClass}>{zPlaneValue.value}</span></p>
     </div>
     {#if showSidebar}
     <!-- FILTERS -->
