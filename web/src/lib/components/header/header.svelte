@@ -1,5 +1,5 @@
 <script>
-  import { xPlane, yPlane, zPlane, fullDatabaseView, showFilters } from '$lib/store/store';
+  import { xPlane, yPlane, zPlane, fullDatabaseView, showFilters, screenType } from '$lib/store/store';
   
   $: expanded = $showFilters;
 
@@ -41,6 +41,9 @@
   // $: showRightSidebarClass = $showRightSidebar ? 'visible' : 'hidden';
   $: fullDatabaseViewClass = $fullDatabaseView ? 'visible' : 'hidden';
   $: showFiltersClass = $showFilters ? 'hidden' : 'visible';
+
+  $: showSidebar = $screenType == 3 && window.innerWidth > 1000 ? true : false;
+
 </script>
 <header>
   <div class="controls">
@@ -77,12 +80,13 @@
     
   </div>
 
+  {#if showSidebar}
+
   <div class="right-sidebar-controls">
 
       <button class="unit border-right" >
         <p class={fullDatabaseViewClass} on:click={() => toggleFullDatabaseView()} on:keydown={() => toggleFullDatabaseView()}>Full Databse View</p>
       </button>
-
 
       <!-- <button  class="unit" >
         <p class={showRightSidebarClass} on:click={() => toggleShowRightSidebar()} on:keydown={() => toggleShowRightSidebar()}>Show Results</p>
@@ -90,6 +94,8 @@
       
 
   </div>
+  {/if}
+
 </header>
 
 <main class:expanded={expanded}>
@@ -189,6 +195,10 @@
   }
   
   @media only screen and (max-width: 1440px) {
+    header {
+      left: 0;
+      width: 100%;
+    }
 		.controls {
 			width: 100%;
 		}

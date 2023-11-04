@@ -2,12 +2,15 @@
 	import './app.css';
 
 	import { onMount } from 'svelte';
-	import { screenType, isIframe, showRightSidebar } from '$lib/store/store';
+	import { screenType, isIframe } from '$lib/store/store';
 
 	import Header from '$lib/components/header/header.svelte';
 	// import Footer from '$lib/components/footer/footer.svelte';
 	import LeftSidebar from '$lib/components/sidebars/left.svelte';
 	import RightSidebar from '$lib/components/sidebars/right.svelte';
+
+	$: showleftSidebar = $screenType == 3 && window.innerWidth > 1000 ? true : false;
+	$: showRightSidebar = $screenType == 3 && window.innerWidth > 1000 ? true : false;
 
 	let Geometry;
 
@@ -75,13 +78,15 @@
 
 
 
+		{#if showleftSidebar}
 		<div class="sidebar left">
 			<LeftSidebar />
 		</div>
+		{/if}
 
 
 
-		{#if $showRightSidebar}
+		{#if showRightSidebar}
 		<div class="sidebar right">
 			<RightSidebar />
 		</div>
@@ -149,6 +154,13 @@
 		/* padding: calc(1 * var(--margin)); */
 		width: calc(100% - 800px);
 		transform: translateX(240px);
+	}
+
+	@media only screen and (max-width: 1440px) {
+    header {
+      left: 0;
+      width: 100%;
+    }
 	}
 
 </style>
