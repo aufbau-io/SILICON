@@ -16,6 +16,8 @@ export const mousePosition = writable({ x: 0, y: 0, z: 0 });
 export const fullDatabaseView = writable(false);
 export const showFilters = writable(false);
 
+export const visual = writable('space');
+
 export const xPlane = writable({
 	visible: false,
 	name: 'YEAR',

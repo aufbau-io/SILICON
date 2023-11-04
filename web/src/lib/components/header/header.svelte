@@ -1,5 +1,5 @@
 <script>
-  import { xPlane, yPlane, zPlane, fullDatabaseView, showFilters, screenType } from '$lib/store/store';
+  import { xPlane, yPlane, zPlane, fullDatabaseView, showFilters, screenType, visual } from '$lib/store/store';
   
   $: expanded = $showFilters;
 
@@ -17,6 +17,14 @@
 
   let toggleShowFilters = () => {
     showFilters.update(value => !value);
+  };
+
+  let toggleVisual = () => {
+    if ($visual === 'space') {
+      visual.set('graph');
+    } else {
+      visual.set('space');
+    }
   };
 
   // Function to toggle the visibility of a plane
@@ -42,11 +50,20 @@
   $: fullDatabaseViewClass = $fullDatabaseView ? 'visible' : 'hidden';
   $: showFiltersClass = $showFilters ? 'hidden' : 'visible';
 
+  $: visualSpaceClass = $visual === 'space' ? 'visible' : 'hidden';
+  $: visualGraphClass = $visual === 'graph' ? 'visible' : 'hidden';
+
   $: showSidebar = $screenType == 3 && window.innerWidth > 1000 ? true : false;
 
 </script>
 <header>
   <div class="controls">
+        <!-- FILTERS -->
+      <div class="control-group filters-control">
+        <button on:click={() => toggleVisual()}>
+          <p><span class={visualSpaceClass}>SPACE</span> / <span class={visualGraphClass}>GRAPH</span></p>
+        </button>
+      </div>
     <!-- X Plane Control -->
     <div class="control-group">
       <button on:click={() => togglePlaneVisibility(xPlane)}>
@@ -71,14 +88,12 @@
       <input type="range" bind:value={zPlaneValue.value} min={zPlaneValue.min} max={zPlaneValue.max} on:input={(e) => updatePlaneValue(zPlane, parseFloat(e.target.value))}>
       <p class="control-value"><span class={zPlaneClass}>{zPlaneValue.value}</span></p>
     </div>
-    {#if showSidebar}
     <!-- FILTERS -->
     <div class="control-group filters-control">
       <button on:click={() => toggleShowFilters()}>
         <p> <span class={showFiltersClass === 'visible' ? 'hidden' : 'visible'}>FILTERS [ 0 ]</span></p>
       </button>
     </div>
-    {/if}
     
   </div>
 
