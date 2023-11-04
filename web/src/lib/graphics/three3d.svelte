@@ -20,7 +20,7 @@
 
 	const INITIAL_THRESHOLD = 0.5;
 	const INITIAL_OPACITY = 0.9;
-	const INITIAL_STEPS = 100;
+	const INITIAL_STEPS = 200;
 
 	let container;
   let controls;
