@@ -4,14 +4,15 @@
 
 <div class="filters">
   <div class="main">
-    <div class="filter"><p>years</p></div>
-    <div class="filter"><p>countries</p></div>
+    <div class="filter"><p>filters // 0 filters</p></div>
+    <div class="filter randomise"><p>bump and shuffle</p></div>
+    <!-- <div class="filter"><p>countries</p></div>
     <div class="filter"><p>genres</p></div>
     <div class="filter"><p>styles</p></div>
-    <div class="filter"><p>rating</p></div>
+    <div class="filter"><p>rating</p></div> -->
     <div class="filler"></div>
   </div>
-  <div class="filter randomise"><p>bump and shuffle</p></div>
+
 </div>
 
 <style>
@@ -40,21 +41,22 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 20px;
+    padding: 20px 0 ;
     border-bottom: solid 1px var(--primary-50);
   }
 
   .filler {
     width: 100%;
     height: 100%;
-    border-left: solid 1px var(--primary-50);
-    border-right: solid 1px var(--primary-50);
+    border: solid 1px var(--primary-50);
+
+    margin-bottom: 20px;
   }
 
   .randomise {
     align-self: flex-end;
+    border-top: none;
     border-bottom: none;
-    border-top: solid 1px var(--primary-50);
   }
 
   .filter p {

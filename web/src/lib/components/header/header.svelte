@@ -70,6 +70,7 @@
       <button  class="unit" >
         <p class={showRightSidebarClass} on:click={() => toggleShowRightSidebar()} on:keydown={() => toggleShowRightSidebar()}>Show Results</p>
       </button>
+      
 
   </div>
 </header>
