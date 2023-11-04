@@ -14,6 +14,7 @@ export const showRightSidebar = writable(true);
 export const showLeftSidebar = writable(true);
 
 export const fullDatabaseView = writable(false);
+export const showFilters = writable(false);
 
 export const xPlane = writable({
 	visible: true,

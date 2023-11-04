@@ -3,7 +3,7 @@
 </script>
 
 <div class="results--item">
-  <p class="">lorem ipsum dolor </p>
+  <p class="">- Lorem ipsum dolor sit amet - consectetur -</p>
 </div>
 
 <style>

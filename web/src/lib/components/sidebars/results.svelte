@@ -4,13 +4,18 @@
   import Result from '$lib/components/sidebars/result.svelte';
 </script>
 
+<div class="results--header">
+  <p style="opacity:.5;">//</p>
+  <p style="opacity:.5;">LABELS</p>
+  <p style="opacity:.5;">//</p>
+  <p style="opacity:1;">ARTISTS</p>
+  <p style="opacity:.5;">//</p>
+  <p style="opacity:.5;">RECORDS</p>
+  <p style="opacity:.5;">//</p>
+</div>
+
 <div class="three-cols">
   <div class="results">
-    <div class="results--header">
-      <p>//</p>
-      <p>LABELS</p>
-      <p>//</p>
-    </div>
     <div class="results--block">
       {#each Array.from({ length: 100 }, (_, i) => i) as item}
         <Result />
@@ -18,31 +23,27 @@
     </div>
   </div>
 
-  <div class="results middle">
+  <!-- <div class="results middle">
     <div class="results--header">
-      <p>//</p>
-      <p>ARTISTS</p>
-      <p>//</p>
-    </div>
-    <div class="results--block">
-      {#each Array.from({ length: 100 }, (_, i) => i) as item}
-        <Result />
-      {/each}
-    </div>
-  </div>
 
-  <div class="results">
-    <div class="results--header">
-      <p>//</p>
-      <p>RECORDS</p>
-      <p>//</p>
     </div>
     <div class="results--block">
       {#each Array.from({ length: 100 }, (_, i) => i) as item}
         <Result />
       {/each}
     </div>
-  </div>
+  </div> -->
+
+  <!-- <div class="results">
+    <div class="results--header">
+
+    </div>
+    <div class="results--block">
+      {#each Array.from({ length: 100 }, (_, i) => i) as item}
+        <Result />
+      {/each}
+    </div>
+  </div> -->
 </div>
 
 <style>

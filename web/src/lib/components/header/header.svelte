@@ -1,5 +1,5 @@
 <script>
-  import { xPlane, yPlane, zPlane, showRightSidebar, fullDatabaseView } from '$lib/store/store';
+  import { xPlane, yPlane, zPlane, showRightSidebar, fullDatabaseView, showFilters } from '$lib/store/store';
   
   let toggleShowRightSidebar = () => {
     showRightSidebar.update(value => !value);
@@ -7,6 +7,10 @@
   
   let toggleFullDatabaseView = () => {
     fullDatabaseView.update(value => !value);
+  };
+
+  let toggleShowFilters = () => {
+    showFilters.update(value => !value);
   };
 
   // Function to toggle the visibility of a plane
@@ -28,8 +32,9 @@
   $: yPlaneClass = $yPlane.visible ? 'visible' : 'hidden';
   $: zPlaneClass = $zPlane.visible ? 'visible' : 'hidden';
 
-  $: showRightSidebarClass = $showRightSidebar ? 'visible' : 'hidden';
+  // $: showRightSidebarClass = $showRightSidebar ? 'visible' : 'hidden';
   $: fullDatabaseViewClass = $fullDatabaseView ? 'visible' : 'hidden';
+  $: showFiltersClass = $showFilters ? 'hidden' : 'visible';
 </script>
 <header>
   <div class="controls">
@@ -57,7 +62,13 @@
       <input type="range" bind:value={zPlaneValue.value} min={zPlaneValue.min} max={zPlaneValue.max} on:input={(e) => updatePlaneValue(zPlane, parseFloat(e.target.value))}>
       <p class="control-value">{zPlaneValue.value}</p>
     </div>
-
+    <!-- FILTERS -->
+    <div class="control-group filters">
+      <button on:click={() => toggleShowFilters()}>
+        <p> <span class={showFiltersClass === 'visible' ? 'hidden' : 'visible'}>FILTERS [ 0 ]</span></p>
+      </button>
+    </div>
+    
   </div>
 
   <div class="right-sidebar-controls">
@@ -67,9 +78,9 @@
       </button>
 
 
-      <button  class="unit" >
+      <!-- <button  class="unit" >
         <p class={showRightSidebarClass} on:click={() => toggleShowRightSidebar()} on:keydown={() => toggleShowRightSidebar()}>Show Results</p>
-      </button>
+      </button> -->
       
 
   </div>
@@ -92,20 +103,26 @@
   .control-group {
     display: flex;
     flex-direction: row;
+    WIDTH: 27.5%;
     gap: 10px;
     align-items: center;
     justify-content: center;
+  }
+
+  .control-group.filters {
+    width: 17.5%;
   }
   
   .control-value {
     width: 1em;
     text-align: right;
+    white-space: nowrap;
   }
 
   .controls {
     display: flex;
     justify-content: space-around;
-    width: calc(100% - 580px);
+    width: calc(100% - 340px);
     border-right: solid 1px var(--primary-50); 
   }
 
@@ -113,7 +130,7 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
-    width: 580px;
+    width: 400px;
     height: 100%;
   }
 
@@ -127,7 +144,7 @@
   }
 
   .unit.border-right {
-    border-right: solid 1px var(--primary-50);
+    /* border-right: solid 1px var(--primary-50); */
   }
 
   input[type=range] {

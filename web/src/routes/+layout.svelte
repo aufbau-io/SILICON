@@ -44,7 +44,7 @@
 </script>
 
 <svelte:head>
-	<title>SILICON | DANCE MUSIC RAUM</title>
+	<title>SILICON | DANCE MUSIC SEARCH ENGINE</title>
 	<meta name="description" content="SILICON FM DEMO. DANCE MUSIC SEARCH ENGINE." />
 
 	<!-- <link
@@ -114,8 +114,8 @@
 		position: absolute;
 		z-index: 1;
 		top: 0;
-		left: 220px;
-		width: calc(100% - 220px);
+		left: 400px;
+		width: calc(100% - 400px);
 	}
 
 	footer {

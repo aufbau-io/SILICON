@@ -4,15 +4,15 @@
 
 <div class="filters">
   <div class="main">
-    <div class="filter"><p>filters // 0 filters</p></div>
-    <div class="filter randomise"><p>bump and shuffle</p></div>
+    <div class="filter"><a href="mailto: dan@aufbau.io">dance music search demo // suggest features</a></div>
+    <!-- <div class="filter randomise"><p>bump and shuffle</p></div> -->
     <!-- <div class="filter"><p>countries</p></div>
     <div class="filter"><p>genres</p></div>
     <div class="filter"><p>styles</p></div>
     <div class="filter"><p>rating</p></div> -->
-    <div class="filler"></div>
-  </div>
 
+  </div>
+  <div class="filler"></div>
 </div>
 
 <style>
@@ -28,10 +28,11 @@
 
   .main {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row nowrap;
     width: 100%;
-    height: 100%;
-    align-items: center;
+    /* height: 100%; */
+    align-items: flex-start;
+    /* padding-bottom: 20px; */
     /* justify-content: center; */
     /* gap: 20px; */
   }
@@ -41,8 +42,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 28px 0 ;
-    border-bottom: solid 1px var(--primary-50);
+    padding: 20px 0 ; 
+   /* border-bottom: solid 1px var(--primary-50); */
   }
 
   .filler {
@@ -54,9 +55,9 @@
   }
 
   .randomise {
-    align-self: flex-end;
-    border-top: none;
-    border-bottom: none;
+    /* align-self: flex-end; */
+    border-left: solid 1px var(--primary-50);
+    /* border-bottom: none; */
   }
 
   .filter p {

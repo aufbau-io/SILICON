@@ -37,7 +37,7 @@
 
 <style>
 	main {
-		width: 220px;
+		width: 400px;
 		height: 100%;
 
 		margin: auto;
@@ -64,7 +64,7 @@
 
 	.title {
 		width: 100%;
-		height: 124px;
+		height: 120px;
 		padding-top: 0px;
     border-bottom: solid 1px var(--primary-50);
 		display: flex;

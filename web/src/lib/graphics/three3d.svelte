@@ -28,7 +28,8 @@
 	let camera, scene, renderer;
 	let mesh;
 
-	let width = window.innerWidth > 1440 ? window.innerWidth * 0.8125 : window.innerWidth;
+	// let width = window.innerWidth > 1440 ? window.innerWidth * 0.8125 : window.innerWidth;
+	let width = window.innerWidth;
 	let height = window.innerHeight;
 
 	const clock = new THREE.Clock();
@@ -411,7 +412,8 @@
 	}
 
 	function onWindowResize() {
-		let width = window.innerWidth > 1440 ? window.innerWidth * 0.8125 : window.innerWidth;
+		// let width = window.innerWidth > 1440 ? window.innerWidth * 0.8125 : window.innerWidth;
+		let width = window.innerWidth;
 		let height = window.innerHeight;
 
 		camera.aspect = width / height;
