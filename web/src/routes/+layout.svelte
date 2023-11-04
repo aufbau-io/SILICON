@@ -43,7 +43,14 @@
 
 		screenType.set(getDeviceType());
 		isIframe.set(window.location !== window.parent.location);
+
+			// onResize, update screenType
+	window.addEventListener('resize', () => {
+		window.location.reload();
 	});
+	});
+
+
 </script>
 
 <svelte:head>
