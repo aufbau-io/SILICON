@@ -100,6 +100,7 @@
 			<Header />
 		</header>
 		{/if}
+
 		<!-- <body>
 			<slot />
 		</body> -->
@@ -159,13 +160,11 @@
 		overflow: hidden;
 	}
 
-	body {
+	/* body {
 		display: flex;
 		flex-direction: column;
-		/* padding: calc(1 * var(--margin)); */
-		width: calc(100% - 800px);
-		transform: translateX(240px);
-	}
+
+	} */
 
     /* header {
       left: 0;

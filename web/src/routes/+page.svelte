@@ -30,6 +30,10 @@
 
 
 	.main {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 		max-width: 800px;
 		min-width: 270px;
 
@@ -42,7 +46,9 @@
 		border: solid 1px var(--primary);
 		backdrop-filter: blur(10px);
 		padding:  20px;
+		z-index: 10;
 	}
+
 
 	.main p {
 		padding: 10px;
