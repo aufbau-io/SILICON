@@ -4,15 +4,13 @@
 
 <div class="filters">
   <div class="main">
-    <!-- <div class="filter"><p>labels</p></div>
-    <div class="filter"><p>artists</p></div> -->
     <div class="filter"><p>years</p></div>
     <div class="filter"><p>countries</p></div>
     <div class="filter"><p>genres</p></div>
     <div class="filter"><p>styles</p></div>
     <div class="filter"><p>rating</p></div>
   </div>
-  <div class="filter randomise"><p>give me a bump</p></div>
+  <div class="filter randomise"><p>bump and shuffle</p></div>
 </div>
 
 <style>

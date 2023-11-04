@@ -23,8 +23,8 @@
 	const INITIAL_STEPS = 100;
 
 	const INITIAL_SHOW_X_PLANE = true;
-	const INITIAL_SHOW_Y_PLANE = false;
-	const INITIAL_SHOW_Z_PLANE = false;
+	const INITIAL_SHOW_Y_PLANE = true;
+	const INITIAL_SHOW_Z_PLANE = true;
 
 	let container;
   let controls;
@@ -32,7 +32,7 @@
 	let camera, scene, renderer;
 	let mesh;
 
-	let width = window.innerWidth;
+	let width = window.innerWidth > 1440 ? window.innerWidth * 0.8125 : window.innerWidth;
 	let height = window.innerHeight;
 
 	const clock = new THREE.Clock();
@@ -80,9 +80,6 @@
 
 	// Add these to the top, near other variables
 	let planes = [];
-	const planeHelpers = [];
-	const planeMatrices = [];
-
 
   // ---------------------------------------------------------------------------
 	// Material ------------------------------------------------------------------
@@ -151,8 +148,6 @@
 		}
 
 		float sample1( vec3 p ) {
-				// Oscillate coordinates within the hitbox
-				p += vec3(cos(time), sin(time), cos(time + 3.14159 / 2.0)) * 0.15;
 				return texture(map, p).r;
 		}
 
@@ -180,6 +175,7 @@
 
         if (d > animatedThreshold) {
             vec3 colorShift = vec3(0.75) + 0.5 * cos(time + pos + vec3(4, 1, -4) + n);
+						
             color.rgb = colorShift;
             color.a = baseOpacity;
             break;
@@ -224,18 +220,19 @@
 
     float noise(vec3 position) {
         // Same noise function as used in the main shader
+				position *= 5.0;
         vec3 ip = floor(position);
         vec3 fp = fract(position);
         float n = mix(mix(dot(ip, vec3(1.0, 57.0, 113.0)), dot(ip + vec3(1.0, 0.0, 0.0), vec3(1.0, 57.0, 113.0)), fp.x),
                       mix(dot(ip + vec3(0.0, 1.0, 0.0), vec3(1.0, 57.0, 113.0)), dot(ip + vec3(1.0, 1.0, 0.0), vec3(1.0, 57.0, 113.0)), fp.x), fp.y);
-        return fract(atan(n) * 437585.453);
+        return fract(sin(n) * 437585.453);
     }
 
     void main() {
         vec3 samplePos;
 
         // Adding time-based transformations to the slicePosition
-        float animatedSlicePosition = slicePosition + sin(time) * 0.05;
+        float animatedSlicePosition = slicePosition + sin(time) * 0.1;
 
         if (sliceAxis == 0) {
             samplePos = vec3(animatedSlicePosition, vUv.y, 1.0 - vUv.x);
@@ -245,8 +242,8 @@
             samplePos = vec3(vUv.x, vUv.y, animatedSlicePosition);
         }
 
-        float n = noise(samplePos * 10.0 - time * 1.0);
-        float animatedThreshold = threshold + n * 0.1;
+        float n = noise(samplePos - time * 1.0);
+        float animatedThreshold = threshold + n * 0.2;
 
         // Sample the volume texture at the animated position
         float sampledValue = texture(map, samplePos).r;
@@ -254,18 +251,12 @@
 
         // Use similar color calculation as in the main shader
         if (isAboveThreshold) {
-            vec3 colorShift = vec3(0.137) + n; // vec3 colorShift = vec3(0.137) + 0.0 * sin(time + samplePos + n);
+            vec3 colorShift = vec3(0.137) + n * 0.8; // vec3 colorShift = vec3(0.137) + 0.0 * sin(time + samplePos + n);
             color.rgb = colorShift;
             color.a = baseOpacity;
         } else {
-            color = vec4(0.657, 0.137, 0.137, 0.0);
+            color = vec4(0.137, 0.137, 0.137, 0.0);
         }
-
-        // Highlight the edges of the slice
-        // float edgeThreshold = 0.001;
-        // if(vUv.x < edgeThreshold || vUv.x > 1.0 - edgeThreshold || vUv.y < edgeThreshold || vUv.y > 1.0 - edgeThreshold) {
-        //     color = vec4(0.137, 0.137, 0.137, 1.0);
-        // }
     }
 `;
 
@@ -421,7 +412,7 @@
 	}
 
 	function onWindowResize() {
-		let width = window.innerWidth;
+		let width = window.innerWidth > 1440 ? window.innerWidth * 0.8125 : window.innerWidth;
 		let height = window.innerHeight;
 
 		camera.aspect = width / height;

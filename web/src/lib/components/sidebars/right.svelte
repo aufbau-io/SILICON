@@ -11,7 +11,7 @@
 
 <style>
 	main {
-		width: 350px;
+		width: 600px;
 		height: 100%;
 
 		margin: auto;
@@ -21,7 +21,7 @@
 		flex-flow: column nowrap;
 		justify-content: space-between;
 		/* align-items: flex-start; */
-		/* border-left: solid 1px var(--primary-50); */
+		border-left: solid 1px var(--primary-50);
 
 	
 		font-size: 12px;
