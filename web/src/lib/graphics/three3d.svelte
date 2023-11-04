@@ -287,6 +287,9 @@
 		controls = new OrbitControls(camera, renderer.domElement);
 		controls.target.set(0, 0, 0);  // Explicitly set target to origin
 		controls.update();
+		// don't allow pan
+		controls.enablePan = false;
+
 		
 
 		onMount(() => {

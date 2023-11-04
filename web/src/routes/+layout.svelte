@@ -99,12 +99,18 @@
 			<slot />
 		</body> -->
 
+		{#if $screenType == 1}
+		<div class="title">
+			<h1>silicon</h1>
+		</div> 
+		{/if}
 
 		<!-- {#if $screenType == 3}
 		<footer>
 			<Footer />
 		</footer>
 		{/if} -->
+		
 	</main>
 {/if}
 
@@ -160,7 +166,35 @@
     header {
       left: 0;
       width: 100%;
+
+			/* TEMP EDIT */ 
+			opacity:0;
+      pointer-events: none;
+      user-select: none;
     }
+
+		.title {
+			z-index: 10;
+			height: 100%;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			pointer-events: none;
+		user-select: none;
+		}
+
+		h1 {
+		-webkit-text-stroke: .85px var(--primary);
+		color: transparent;
+
+		font-family: var(--font-header);
+		font-size: 48px;
+		letter-spacing: 2px;
+
+
+	}
 	}
 
 </style>
