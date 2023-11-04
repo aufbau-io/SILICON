@@ -7,11 +7,11 @@
 
 		<div class="top">
 
-			<a class="no-style" href='/'>
+			<!-- <a class="no-style" href='/'> -->
 				<div class="title">
 					<h1>silicon</h1>
 				</div> 
-			</a>
+			<!-- </a> -->
 
 		</div>
 
@@ -79,6 +79,9 @@
 		font-family: var(--font-header);
 		font-size: 48px;
 		letter-spacing: 2px;
+
+		cursor: default;
+		user-select: none;
 	}
 
 	a.no-style {
