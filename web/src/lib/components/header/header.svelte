@@ -71,12 +71,14 @@
       <input type="range" bind:value={zPlaneValue.value} min={zPlaneValue.min} max={zPlaneValue.max} on:input={(e) => updatePlaneValue(zPlane, parseFloat(e.target.value))}>
       <p class="control-value">{zPlaneValue.value}</p>
     </div>
+    {#if showSidebar}
     <!-- FILTERS -->
     <div class="control-group filters-control">
       <button on:click={() => toggleShowFilters()}>
         <p> <span class={showFiltersClass === 'visible' ? 'hidden' : 'visible'}>FILTERS [ 0 ]</span></p>
       </button>
     </div>
+    {/if}
     
   </div>
 
@@ -142,17 +144,18 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
-    border-right: solid 1px var(--primary-50); 
+
   }
 
   .right-sidebar-controls {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
-    width: 379px;
-    max-width: 379px;
-    min-width: 379px;
+    width: 380px;
+    max-width: 380px;
+    min-width: 380px;
     height: 100%;
+    border-left: solid 1px var(--primary-50); 
   }
 
   .unit {
@@ -205,6 +208,38 @@
 
     .right-sidebar-controls {
       width: 100%;
+    }
+	}
+
+  @media only screen and (max-width: 768px) {
+    header {
+      left: 0;
+      width: 100%;
+      height: 80px;
+      padding: 0;
+      padding-top: 5px;
+    }
+		.controls {
+			width: 100%;
+		}
+
+    p {
+      font-size: 10px;
+    }
+
+    .control-group {
+      flex-flow: column wrap;
+      gap: 5px;
+      width: 100%;
+    }
+
+    .right-sidebar-controls {
+      width: 100%;
+    }
+
+    /* full width range input slider */
+    input[type=range] {
+      width: 67%;
     }
 	}
 </style>
