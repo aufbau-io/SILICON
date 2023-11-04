@@ -13,7 +13,7 @@
 
 <style>
 	main {
-		width: 400px;
+		width: 420px;
 
 		margin: auto;
 		margin: 0;
@@ -32,7 +32,7 @@
 	}
 
 	main.expanded {
-		width: calc(100vw - 400px);
+		width: calc(100vw - 420px);
 		border-left:none;
 		background-color: var(--background);
 		color: var(--background);

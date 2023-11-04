@@ -90,6 +90,7 @@
   header {
     color: var(--primary);
     width: 100%;
+    height: 56px;
     margin: auto;
     z-index: 1;
     border-bottom: solid 1px var(--primary-50);
@@ -103,7 +104,7 @@
   .control-group {
     display: flex;
     flex-direction: row;
-    WIDTH: 27.5%;
+    width: 27.5%;
     gap: 10px;
     align-items: center;
     justify-content: center;
@@ -122,7 +123,7 @@
   .controls {
     display: flex;
     justify-content: space-around;
-    width: calc(100% - 340px);
+    width: 100%;
     border-right: solid 1px var(--primary-50); 
   }
 
@@ -130,7 +131,9 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
-    width: 400px;
+    width: 399px;
+    max-width: 399px;
+    min-width: 399px;
     height: 100%;
   }
 

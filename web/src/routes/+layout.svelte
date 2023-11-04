@@ -114,8 +114,8 @@
 		position: absolute;
 		z-index: 1;
 		top: 0;
-		left: 400px;
-		width: calc(100% - 400px);
+		left: 420px;
+		width: calc(100% - 420px);
 	}
 
 	footer {
