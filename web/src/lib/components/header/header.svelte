@@ -26,7 +26,7 @@
 
   // Function to update the value of a plane
   function updatePlaneValue(plane, newValue) {
-    plane.update(current => ({ ...current, value: newValue }));
+    plane.update(current => ({ ...current, value: newValue, visible: true }));
   }
 
   // For direct access in the markup, subscribe to the stores
