@@ -131,9 +131,9 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
-    width: 399px;
-    max-width: 399px;
-    min-width: 399px;
+    width: 379px;
+    max-width: 379px;
+    min-width: 379px;
     height: 100%;
   }
 
