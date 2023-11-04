@@ -76,19 +76,21 @@
 			<Header />
 		</header> -->
 
+
 		<div class="sidebar left">
 			<LeftSidebar />
 		</div>
+
 
 
 		<div class="sidebar right">
 			<RightSidebar />
 		</div>
 
-		<body>
-			<slot />
-		</body>
 
+		<!-- <body>
+			<slot />
+		</body> -->
 
 
 		<!-- {#if $screenType == 3}
@@ -139,7 +141,8 @@
 		display: flex;
 		flex-direction: column;
 		/* padding: calc(1 * var(--margin)); */
-		width: 100%;
+		width: calc(100% - 800px);
+		transform: translateX(240px);
 		height: 100%;
 	}
 </style>

@@ -1,11 +1,11 @@
 <script>
 </script>
 
-<!-- <section>
+<section>
 	<div class="main">
 		<p>dig</p>
 	</div>	
-</section> -->
+</section>
 
 <style>
 	section {
@@ -22,7 +22,7 @@
 
 		/* background: var(--primary-50); */
 		overflow: auto;
-		z-index: 1;
+		z-index: 10;
 
 		user-select: none;
 		pointer-events: none;
