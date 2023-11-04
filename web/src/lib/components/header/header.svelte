@@ -197,7 +197,7 @@
     opacity: 0.5;
   }
   
-  @media only screen and (max-width: 1440px) {
+  /* @media only screen and (max-width: 1440px) {
     header {
       left: 0;
       width: 100%;
@@ -209,9 +209,9 @@
     .right-sidebar-controls {
       width: 100%;
     }
-	}
+	} */
 
-  @media only screen and (max-width: 768px) {
+  /* @media only screen and (max-width: 768px) {
     header {
       left: 0;
       width: 100%;
@@ -237,9 +237,8 @@
       width: 100%;
     }
 
-    /* full width range input slider */
     input[type=range] {
       width: 67%;
     }
-	}
+	} */
 </style>

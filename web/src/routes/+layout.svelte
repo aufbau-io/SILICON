@@ -3,14 +3,14 @@
 
 	import { onMount } from 'svelte';
 	import { screenType, isIframe } from '$lib/store/store';
+	import { page } from '$app/stores';
 
 	import Header from '$lib/components/header/header.svelte';
 	// import Footer from '$lib/components/footer/footer.svelte';
 	import LeftSidebar from '$lib/components/sidebars/left.svelte';
 	import RightSidebar from '$lib/components/sidebars/right.svelte';
 
-	$: showleftSidebar = $screenType == 3 && window.innerWidth > 1000 ? true : false;
-	$: showRightSidebar = $screenType == 3 && window.innerWidth > 1000 ? true : false;
+	$: showSidebar = $screenType == 3 && window.innerWidth > 1000 && $page.url.pathname == '/' ? true : false;
 
 	let Geometry;
 
@@ -78,7 +78,7 @@
 
 
 
-		{#if showleftSidebar}
+		{#if showSidebar}
 		<div class="sidebar left">
 			<LeftSidebar />
 		</div>
@@ -86,20 +86,22 @@
 
 
 
-		{#if showRightSidebar}
+		{#if showSidebar}
 		<div class="sidebar right">
 			<RightSidebar />
 		</div>
 		{/if}
 
+		{#if showSidebar}
 		<header>
 			<Header />
 		</header>
+		{/if}
 		<!-- <body>
 			<slot />
 		</body> -->
 
-		{#if !showRightSidebar }
+		{#if !showSidebar }
 		<div class="title">
 			<h1>silicon</h1>
 		</div> 
@@ -162,16 +164,14 @@
 		transform: translateX(240px);
 	}
 
-	@media only screen and (max-width: 1440px) {
-    header {
+    /* header {
       left: 0;
       width: 100%;
 
-			/* TEMP EDIT */ 
 			opacity:0;
       pointer-events: none;
       user-select: none;
-    }
+    } */
 
 		.title {
 			z-index: 10;
@@ -193,8 +193,6 @@
 		font-size: 48px;
 		letter-spacing: 2px;
 
-
-	}
-	}
+		}
 
 </style>
