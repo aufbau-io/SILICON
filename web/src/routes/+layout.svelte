@@ -44,7 +44,7 @@
 </script>
 
 <svelte:head>
-	<title>SILICON</title>
+	<title>SILICON | DANCE MUSIC RAUM</title>
 	<meta name="description" content="DEMO DEMO DEMO" />
 
 	<!-- <link
