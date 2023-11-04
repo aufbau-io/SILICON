@@ -45,7 +45,7 @@
 
 <svelte:head>
 	<title>SILICON | DANCE MUSIC RAUM</title>
-	<meta name="description" content="DEMO DEMO DEMO" />
+	<meta name="description" content="SILICON FM DEMO. DANCE MUSIC SEARCH ENGINE." />
 
 	<!-- <link
 		rel="preload"
