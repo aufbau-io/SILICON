@@ -9,6 +9,7 @@
     <div class="filter"><p>genres</p></div>
     <div class="filter"><p>styles</p></div>
     <div class="filter"><p>rating</p></div>
+    <div class="filler"></div>
   </div>
   <div class="filter randomise"><p>bump and shuffle</p></div>
 </div>
@@ -42,6 +43,14 @@
     padding: 20px;
     border-bottom: solid 1px var(--primary-50);
   }
+
+  .filler {
+    width: 100%;
+    height: 100%;
+    border-left: solid 1px var(--primary-50);
+    border-right: solid 1px var(--primary-50);
+  }
+
   .randomise {
     align-self: flex-end;
     border-bottom: none;
