@@ -223,7 +223,7 @@
         float n = mix(mix(dot(ip, vec3(1.0, 57.0, 113.0)), dot(ip + vec3(1.0, 0.0, 0.0), vec3(1.0, 57.0, 113.0)), fp.x),
                       mix(dot(ip + vec3(0.0, 1.0, 0.0), vec3(1.0, 57.0, 113.0)), dot(ip + vec3(1.0, 1.0, 0.0), vec3(1.0, 57.0, 113.0)), fp.x), fp.z);
         // return fract(sin(n) * 4375.85453);
-				return sin(n) * cos(1.0 - n);
+				return sin(n) * cos(n);
     }
 
     void main() {
