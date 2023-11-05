@@ -14,11 +14,13 @@
 
 		<div class="top">
 
-			<!-- <a class="no-style" href='/'> -->
-				<div class="title">
-					<h1>-silicon-</h1>
-				</div> 
-			<!-- </a> -->
+			<div class="title">
+				<h1>-silicon-</h1>
+			</div> 
+
+			<div class="subtitle">
+				<p>dance music search engine // wip prototype</p>
+			</div>
 
 		</div>
 
@@ -40,7 +42,7 @@
 
 			<p>//</p>
 
-			<p on:click={() => toggleDarkMode()} on:keydown={() => toggleDarkMode()} class={darkModeClass}>dark mode</p>
+			<p on:click={() => toggleDarkMode()} on:keydown={() => toggleDarkMode()} class={darkModeClass}>toggle dark mode</p>
 
 		</div>
 
@@ -106,6 +108,14 @@
 		text-decoration: none !important;
 	}
 
+	.subtitle {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 15px;
+	}
+
 
 	.end {
 		display: flex;
@@ -129,8 +139,9 @@
 		justify-content: flex-start;
 		/* border: solid 1px var(--primary-50); */
 
-		margin: 20px 0px;
+		margin: 15px 0px;
 		margin-top: 0px;
+		user-select: none;
 	}
 
 	.filters {
@@ -145,7 +156,7 @@
 	.end p, .end a {
 		color: var(--primary);
 
-		font-size: 12px;
+		/* font-size: 12px; */
 		padding: 0px 0px;
 		text-align: center;
 	}

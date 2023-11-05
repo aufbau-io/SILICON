@@ -3,15 +3,7 @@
 </script>
 
 <div class="filters">
-  <div class="main">
-    <div class="filter"><p>dance music search engine // wip prototype</p></div>
-    <!-- <div class="filter randomise"><p>bump and shuffle</p></div> -->
-    <!-- <div class="filter"><p>countries</p></div>
-    <div class="filter"><p>genres</p></div>
-    <div class="filter"><p>styles</p></div>
-    <div class="filter"><p>rating</p></div> -->
 
-  </div>
   <div class="filler"></div>
 </div>
 

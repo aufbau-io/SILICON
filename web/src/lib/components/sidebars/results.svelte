@@ -75,7 +75,7 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     border-bottom: solid 1px var(--primary-50);
-    padding: 20px;
+    padding: 15px;
   }
 
   .results--block {
