@@ -10,7 +10,7 @@
 	import LeftSidebar from '$lib/components/sidebars/left.svelte';
 	import RightSidebar from '$lib/components/sidebars/right.svelte';
 
-	$: showSidebar = $screenType == 3 && window.innerWidth > 1000 && $page.url.pathname == '/' ? true : false;
+	$: showSidebar = $screenType == 3 && $page.url.pathname == '/' ? true : false;
 	// $: showSidebar = true;
 
 	let Geometry;
