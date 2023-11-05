@@ -19,12 +19,18 @@
 			<Filters />
 		</div>
 
-		{#if $screenType == 3}
 		<div class="end">
-			<a href="https://aufbau.io" target="_blank" rel="noreferrer">ein aufbau ding</a>
-			<!-- <p>NO THOUGHTS ALL VIBES</p> -->
+
+			<a href="https://aufbau.io" target="_blank" rel="noreferrer">
+				an aufbau thing
+			</a>
+
+			<p>//</p>
+			<a href="mailto: dan@aufbau.io" target="_blank" rel="noreferrer">
+				suggest features
+			</a>
+
 		</div>
-		{/if}
 
 	<!-- <div on:click={() => toggleDarkMode()} on:keydown={() => toggleDarkMode()} class="darkMode right">
 		<p class:selected={$darkMode == false}>ONLINE</p>
@@ -88,18 +94,31 @@
 		text-decoration: none !important;
 	}
 
+
 	.end {
 		display: flex;
-		width: calc(100% - 40px);
+		flex-flow: row nowrap;
+		align-items: center;
+		justify-content: flex-end;
+		width: 100%;
+		padding: 0 10px ;
+	}
+
+	.end button, .end a, .end p {
+		display: flex;
+		width: 100%;
+		/* take up width based on content, but fluidly fill full space */
+		width: max-content;
+		flex: 1 1 auto;
+		flex-flow: row nowrap;
 		flex-flow: column nowrap;
 		align-self: flex-end;
 		align-items: center;
 		justify-content: flex-start;
-		border: solid 1px var(--primary-50);
+		/* border: solid 1px var(--primary-50); */
 
-		margin: 20px;
-		margin-top: 1px;
-		padding: 5px;
+		margin: 20px 10px;
+		margin-top: 0px;
 	}
 
 	.filters {
@@ -115,8 +134,12 @@
 		color: var(--primary);
 
 		font-size: 12px;
-		padding: 5px 10px;
+		padding: 0px 0px;
 		text-align: center;
+	}
+
+	.p {
+		user-select: none;
 	}
 
 	@media only screen and (max-width: 768px) {

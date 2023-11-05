@@ -1,5 +1,5 @@
 <script>
-  import { xPlane, yPlane, zPlane, fullDatabaseView, showFilters, screenType, visual } from '$lib/store/store';
+  import { xPlane, yPlane, zPlane, animations, fullDatabaseView, showFilters, screenType, visual } from '$lib/store/store';
   
   $: expanded = $showFilters;
 
@@ -19,13 +19,22 @@
     showFilters.update(value => !value);
   };
 
-  let toggleVisual = () => {
-    if ($visual === 'space') {
-      visual.set('graph');
-    } else {
-      visual.set('space');
-    }
+  let bumpAndShuffle = () => {
+    // do nothing
   };
+
+  // Function to update animation speed
+  function updateAnimationSpeed(newValue) {
+    animations.update(value => newValue);
+  }
+
+  // let toggleVisual = () => {
+  //   if ($visual === 'space') {
+  //     visual.set('roi');
+  //   } else {
+  //     visual.set('space');
+  //   }
+  // };
 
   // Function to toggle the visibility of a plane
   function togglePlaneVisibility(plane) {
@@ -46,6 +55,8 @@
   $: yPlaneClass = $yPlane.visible ? 'visible' : 'hidden';
   $: zPlaneClass = $zPlane.visible ? 'visible' : 'hidden';
 
+  $: animationsClass = $animations ? 'visible' : 'hidden';
+
   // $: showRightSidebarClass = $showRightSidebar ? 'visible' : 'hidden';
   $: fullDatabaseViewClass = $fullDatabaseView ? 'visible' : 'hidden';
   $: showFiltersClass = $showFilters ? 'hidden' : 'visible';
@@ -58,12 +69,17 @@
 </script>
 <header>
   <div class="controls">
-        <!-- FILTERS -->
-      <div class="control-group filters-control">
-        <button on:click={() => toggleVisual()}>
-          <p><span class={visualSpaceClass}>SPACE</span> / <span class={visualGraphClass}>GRAPH</span></p>
+      <!-- <div class="control-group filters-control">
+        <button on:click={() => bumpAndShuffle()}>
+          <p class="selectable">BUMP AND SHUFFLE</p>
         </button>
-      </div>
+      </div> -->
+        <!-- TOGGLE VISUAL MODE -->
+      <!-- <div class="control-group filters-control">
+        <button on:click={() => toggleVisual()}>
+          <p><span class={visualSpaceClass}>CUBE</span> / <span class={visualGraphClass}>ROI</span></p>
+        </button>
+      </div> -->
     <!-- X Plane Control -->
     <div class="control-group">
       <button on:click={() => togglePlaneVisibility(xPlane)}>
@@ -87,6 +103,13 @@
       </button>
       <input type="range" bind:value={zPlaneValue.value} min={zPlaneValue.min} max={zPlaneValue.max} on:input={(e) => updatePlaneValue(zPlane, parseFloat(e.target.value))}>
       <p class="control-value"><span class={zPlaneClass}>{zPlaneValue.value}</span></p>
+    </div>
+    <!-- ANIMATIONS -->
+    <div class="control-group filters-control">
+      <button>
+        <p><span class={animationsClass}>ANIMATIONS</span></p>
+      </button>
+      <input type="range" bind:value={$animations} min=0 max=1 step=0.1 on:input={(e) => updateAnimationSpeed(parseFloat(e.target.value))}>
     </div>
     <!-- FILTERS -->
     <div class="control-group filters-control">
@@ -117,6 +140,7 @@
 
 <main class:expanded={expanded}>
   {#if $showFilters}
+    <p>filters</p>
   {/if}
 </main>
 
@@ -179,6 +203,15 @@
     align-items: center;
     width: 17.5%;
     height: 20px;
+  }
+
+  .selectable {
+    opacity: .5;
+    cursor: pointer;
+  }
+
+  .selectable:hover {
+    opacity: 1;
   }
 
   main {

@@ -5,8 +5,7 @@ export const screenType = writable(null);
 export const isIframe = writable(true);
 export const darkMode = writable(false);
 
-export const lobbySelected = writable(false);
-export const mouseOnLink = writable(false);
+export const animations = writable(0.5);
 
 export const mousePosition = writable({ x: 0, y: 0, z: 0 });
 
@@ -19,7 +18,7 @@ export const showFilters = writable(false);
 export const visual = writable('space');
 
 export const xPlane = writable({
-	visible: false,
+	visible: true,
 	name: 'YEAR',
 	min: 1900,
 	max: 2023,
@@ -27,7 +26,7 @@ export const xPlane = writable({
 });
 
 export const yPlane = writable({
-	visible: false,
+	visible: true,
 	name: 'INTENSITY',
 	min: 0,
 	max: 100,
@@ -35,7 +34,7 @@ export const yPlane = writable({
 });
 
 export const zPlane = writable({
-	visible: false,
+	visible: true,
 	name: 'TEXTURE',
 	min: 0,
 	max: 100,

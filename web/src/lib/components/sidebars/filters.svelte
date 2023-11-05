@@ -4,7 +4,7 @@
 
 <div class="filters">
   <div class="main">
-    <div class="filter"><a href="mailto: dan@aufbau.io">dance music search demo // suggest features</a></div>
+    <div class="filter"><p>dance music search engine // wip prototype</p></div>
     <!-- <div class="filter randomise"><p>bump and shuffle</p></div> -->
     <!-- <div class="filter"><p>countries</p></div>
     <div class="filter"><p>genres</p></div>
@@ -60,9 +60,10 @@
     /* border-bottom: none; */
   }
 
-  .filter p {
+  .filter p, .filter a {
     display: flex;
     align-items: center;
     justify-content: center;
+    user-select: none;
   }
 </style>

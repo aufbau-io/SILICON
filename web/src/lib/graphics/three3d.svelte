@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { xPlane, yPlane, zPlane } from '$lib/store/store';
+	import { xPlane, yPlane, zPlane, animations } from '$lib/store/store';
 	import { page } from '$app/stores';
 	import { afterNavigate } from '$app/navigation';
 
@@ -137,6 +137,7 @@
 
 		float noise(vec3 position) {
 				// A simple gradient noise function
+				position *= 1.0;
 				vec3 ip = floor(position);
 				vec3 fp = fract(position);
 				float n = mix(mix(dot(ip, vec3(1.0, 57.0, 113.0)), dot(ip + vec3(1.0, 0.0, 0.0), vec3(1.0, 57.0, 113.0)), fp.x),
@@ -217,19 +218,17 @@
 
     float noise(vec3 position) {
         // Same noise function as used in the main shader
-				position *= 5.0;
+				position *= 1.0;
         vec3 ip = floor(position);
         vec3 fp = fract(position);
         float n = mix(mix(dot(ip, vec3(1.0, 57.0, 113.0)), dot(ip + vec3(1.0, 0.0, 0.0), vec3(1.0, 57.0, 113.0)), fp.x),
-                      mix(dot(ip + vec3(0.0, 1.0, 0.0), vec3(1.0, 57.0, 113.0)), dot(ip + vec3(1.0, 1.0, 0.0), vec3(1.0, 57.0, 113.0)), fp.x), fp.y);
-        return fract(sin(n) * 437585.453);
+                      mix(dot(ip + vec3(0.0, 1.0, 0.0), vec3(1.0, 57.0, 113.0)), dot(ip + vec3(1.0, 1.0, 0.0), vec3(1.0, 57.0, 113.0)), fp.x), fp.z);
+        // return fract(sin(n) * 43758545.3);
+				return sin(n);
     }
 
     void main() {
         vec3 samplePos;
-
-        // Adding time-based transformations to the slicePosition
-        // float animatedSlicePosition = slicePosition + sin(time) * 0.1;
 
         if (sliceAxis == 0) {
             samplePos = vec3(slicePosition, vUv.y, 1.0 - vUv.x);
@@ -239,20 +238,37 @@
             samplePos = vec3(vUv.x, vUv.y, slicePosition);
         }
 
-        float n = noise(samplePos - time * 1.0);
-        float animatedThreshold = threshold + n * 0.2;
+        float n = noise(samplePos + sin(time * 1.0));
+        float animatedThreshold = threshold + n * 0.05;
 
         // Sample the volume texture at the animated position
         float sampledValue = texture(map, samplePos).r;
         bool isAboveThreshold = sampledValue > animatedThreshold;
 
+				bool isAboveThreshold2 = sampledValue > animatedThreshold / 1.07;
+				bool isAboveThreshold3 = sampledValue > animatedThreshold / 1.1;
+				bool isAboveThreshold4 = sampledValue > animatedThreshold / 1.13;
+
         // Use similar color calculation as in the main shader
         if (isAboveThreshold) {
-            vec3 colorShift = vec3(0.137) + n * 0.8; // vec3 colorShift = vec3(0.137) + 0.0 * sin(time + samplePos + n);
-            color.rgb = colorShift;
-            color.a = baseOpacity;
-        } else {
-            color = vec4(0.137, 0.137, 0.137, 0.0);
+					// vec3 colorShift = vec3(0.137) + 0.01 * log(samplePos);
+					// color.rgb = colorShift;
+					// color.a = baseOpacity;
+					color = vec4(0.137, 0.137, 0.137, 1.0);
+        } else if (isAboveThreshold2) {
+					discard;
+				} else if (isAboveThreshold3) {
+						// vec3 colorShift = vec3(0.863) * sin(samplePos); // sin(time + samplePos + n);
+            // color.rgb = colorShift;
+            // color.a = baseOpacity;
+						color = vec4(0.6, 0.6, 0.5, 0.5);
+					} else if (isAboveThreshold4) {
+						discard;
+					// } else {
+					// 	vec3 colorShift = vec3(0.137)  + 0.01 * log(samplePos);
+					// 	color.rgb = colorShift;
+					// 	color.a = baseOpacity;
+					discard;
         }
     }
 `;
@@ -428,11 +444,11 @@
 	function animate() {
 		requestAnimationFrame(animate);
 		mesh.material.uniforms.cameraPos.value.copy( camera.position );
-		mesh.material.uniforms.time.value = clock.getElapsedTime() * 0.025;
+			mesh.material.uniforms.time.value = clock.getElapsedTime() * 0.025 * $animations;
 
 		planes.forEach(plane => {
 			plane.material.uniforms.cameraPos.value.copy( camera.position );
-			plane.material.uniforms.time.value = clock.getElapsedTime() * 0.025;
+			plane.material.uniforms.time.value = clock.getElapsedTime() * 0.025 * $animations;
 		});
 		renderer.render( scene, camera );
 	}
