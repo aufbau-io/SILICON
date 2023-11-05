@@ -245,30 +245,25 @@
         float sampledValue = texture(map, samplePos).r;
         bool isAboveThreshold = sampledValue > animatedThreshold;
 
-				bool isAboveThreshold2 = sampledValue > animatedThreshold / 1.07;
+				bool isAboveThreshold2 = sampledValue > animatedThreshold / 1.05;
 				bool isAboveThreshold3 = sampledValue > animatedThreshold / 1.1;
-				bool isAboveThreshold4 = sampledValue > animatedThreshold / 1.13;
+				bool isAboveThreshold4 = sampledValue > animatedThreshold / 1.15;
 
         // Use similar color calculation as in the main shader
         if (isAboveThreshold) {
-					// vec3 colorShift = vec3(0.137) + 0.01 * log(samplePos);
-					// color.rgb = colorShift;
-					// color.a = baseOpacity;
 					color = vec4(0.137, 0.137, 0.137, 1.0);
         } else if (isAboveThreshold2) {
-					discard;
+					vec3 colorShift = vec3(0.5) + 0.2 * cos(time + samplePos + vec3(4, 1, -4) + n);
+            color.rgb = colorShift;
+            color.a = baseOpacity;
 				} else if (isAboveThreshold3) {
-						// vec3 colorShift = vec3(0.863) * sin(samplePos); // sin(time + samplePos + n);
-            // color.rgb = colorShift;
-            // color.a = baseOpacity;
-						color = vec4(0.6, 0.6, 0.5, 0.5);
-					} else if (isAboveThreshold4) {
-						discard;
-					// } else {
-					// 	vec3 colorShift = vec3(0.137)  + 0.01 * log(samplePos);
-					// 	color.rgb = colorShift;
-					// 	color.a = baseOpacity;
 					discard;
+					} else if (isAboveThreshold4) {
+						vec3 colorShift = vec3(0.5) + 0.2 * cos(time + samplePos + vec3(4, 1, -4) + n);
+            color.rgb = colorShift;
+            color.a = baseOpacity;
+					} else {
+						color = vec4(0.137, 0.137, 0.137, 1.0);
         }
     }
 `;
