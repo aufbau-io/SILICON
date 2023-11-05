@@ -50,7 +50,7 @@
 </script>
 
 <svelte:head>
-	<title>SILICON | DANCE MUSIC SEARCH ENGINE</title>
+	<title>SILICON | KEEP DANCING</title>
 	<meta name="description" content="SILICON FM DEMO. DANCE MUSIC SEARCH ENGINE." />
 
 	<!-- <link
