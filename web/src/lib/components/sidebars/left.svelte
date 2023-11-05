@@ -16,7 +16,7 @@
 
 			<!-- <a class="no-style" href='/'> -->
 				<div class="title">
-					<h1>silicon</h1>
+					<h1>-silicon-</h1>
 				</div> 
 			<!-- </a> -->
 
