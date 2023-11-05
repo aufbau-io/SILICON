@@ -97,7 +97,7 @@
 		color: transparent;
 
 		font-family: var(--font-header);
-		font-size: 48px;
+		font-size: 56px;
 		letter-spacing: 2px;
 
 		cursor: default;
