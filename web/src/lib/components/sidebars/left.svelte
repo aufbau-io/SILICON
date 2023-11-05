@@ -78,13 +78,13 @@
 		display: flex;
 		flex-flow: column nowrap;
 		/* gap: 20px; */
-		padding: 0 20px;
+		padding: 0 0;
 
 	}
 
 	.title {
 		width: 100%;
-		height: 112px;
+		height: 106px;
 		padding-top: 0px;
     border-bottom: solid 1px var(--primary-50);
 		display: flex;
@@ -97,7 +97,7 @@
 		color: transparent;
 
 		font-family: var(--font-header);
-		font-size: 56px;
+		font-size: 52px;
 		letter-spacing: 2px;
 
 		cursor: default;
