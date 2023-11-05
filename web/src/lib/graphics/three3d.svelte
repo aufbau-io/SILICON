@@ -276,7 +276,7 @@
 	animate();
 
 	function init() {
-		camera = new THREE.PerspectiveCamera(20, width / height, 0.1, 10000);
+		camera = new THREE.PerspectiveCamera(20, width / height, 0.01, 100);
 		camera.position.x = 3; 	
 		camera.position.y = 2; 	
 		camera.position.z = 3; 	
@@ -332,7 +332,7 @@
 	}
 
 	function setHome () {
-		const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+		const geometry = new THREE.BoxGeometry( 1.001, 1.001, 1.001 );
 			const material = new THREE.RawShaderMaterial( {
 				glslVersion: THREE.GLSL3,
 				uniforms: {
@@ -346,7 +346,6 @@
 				vertexShader,
 				fragmentShader,
 				side: THREE.BackSide,
-				transparent: true,
 			} );
 
 			mesh = new THREE.Mesh( geometry, material );
@@ -372,7 +371,7 @@
 						},
 						vertexShader: planeVertexShader,
 						fragmentShader: planeFragmentShader,
-						side: THREE.DoubleSide
+						side: THREE.DoubleSide,
 				});
 				const plane = new THREE.Mesh(planeGeom, planeMat);
 				planes.push(plane);
@@ -396,7 +395,7 @@
 
 	function regularizeValue(actualValue, minActual, maxActual) {
     const normalized = (actualValue - minActual) / (maxActual - minActual);
-    return normalized - 0.4999;
+    return normalized - 0.5;
   }
 
 	function updatePlanePosition(plane, axis, position) {
