@@ -93,7 +93,7 @@
 	}
 
 	h1 {
-		-webkit-text-stroke: .75px var(--primary);
+		-webkit-text-stroke: .8px var(--primary);
 		color: transparent;
 
 		font-family: var(--font-header);
