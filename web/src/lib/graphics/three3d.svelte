@@ -19,7 +19,7 @@
 	}
 
 	const INITIAL_THRESHOLD = 0.5;
-	const INITIAL_OPACITY = 0.9;
+	const INITIAL_OPACITY = 0.8;
 	const INITIAL_STEPS = 200;
 
 	let container;
@@ -172,7 +172,7 @@
         float d = sample1(pos);
 
         if (d > animatedThreshold) {
-            vec3 colorShift = vec3(0.75) + 0.5 * cos(time + pos + vec3(4, 1, -4) + n);
+            vec3 colorShift = vec3(0.75) + 0.5 * cos(pos + vec3(4, 1, -4) + n); // vec3 colorShift = vec3(0.75) + 0.5 * cos(time + pos + vec3(4, 1, -4) + n);
 						
             color.rgb = colorShift;
             color.a = baseOpacity;
@@ -252,13 +252,13 @@
         if (isAboveThreshold) {
 					color = vec4(0.168, 0.168, 0.168, 1.0);
         } else if (isAboveThreshold2) {
-					vec3 colorShift = vec3(0.5) + 0.2 * cos(time + samplePos + vec3(4, 1, -4) + n);
+					vec3 colorShift = vec3(0.5) + 0.2 * cos( samplePos + vec3(4, 1, -4) + n); // vec3 colorShift = vec3(0.5) + 0.2 * cos(time + samplePos + vec3(4, 1, -4) + n);
             color.rgb = colorShift;
             color.a = baseOpacity;
 				} else if (isAboveThreshold3) {
 					discard;
 					} else if (isAboveThreshold4) {
-						vec3 colorShift = vec3(0.5) + 0.2 * cos(time + samplePos + vec3(4, 1, -4) + n);
+						vec3 colorShift = vec3(0.5) + 0.2 * cos(samplePos + vec3(4, 1, -4) + n); // vec3 colorShift = vec3(0.5) + 0.2 * cos(time + samplePos + vec3(4, 1, -4) + n);
             color.rgb = colorShift;
             color.a = baseOpacity;
 					} else {
