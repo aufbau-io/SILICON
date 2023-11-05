@@ -4,7 +4,7 @@
 
 <main>
   <div class="search">
-
+    <p>search</p>
     <div class="item search-simple">
       <p>simple search</p>
       <input type="text" placeholder="artist, label, record, etc." />
