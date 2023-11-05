@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { xPlane, yPlane, zPlane, animations } from '$lib/store/store';
+	import { xPlane, yPlane, zPlane, animationSpeed } from '$lib/store/store';
 	import { page } from '$app/stores';
 	import { afterNavigate } from '$app/navigation';
 
@@ -438,11 +438,11 @@
 	function animate() {
 		requestAnimationFrame(animate);
 		mesh.material.uniforms.cameraPos.value.copy( camera.position );
-			mesh.material.uniforms.time.value = clock.getElapsedTime() * 0.0125 * $animations;
+			mesh.material.uniforms.time.value = clock.getElapsedTime() * 0.0125 * $animationSpeed;
 
 		planes.forEach(plane => {
 			plane.material.uniforms.cameraPos.value.copy( camera.position );
-			plane.material.uniforms.time.value = clock.getElapsedTime() * 0.0125 * $animations;
+			plane.material.uniforms.time.value = clock.getElapsedTime() * 0.0125 * $animationSpeed;
 		});
 		renderer.render( scene, camera );
 	}

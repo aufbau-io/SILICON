@@ -1,5 +1,5 @@
 <script>
-  import { xPlane, yPlane, zPlane, animations, fullDatabaseView, showFilters, screenType, visual } from '$lib/store/store';
+  import { xPlane, yPlane, zPlane, animationSpeed, lastAnimationSpeed, fullDatabaseView, showFilters, screenType, visual } from '$lib/store/store';
   
   $: expanded = $showFilters;
 
@@ -25,7 +25,16 @@
 
   // Function to update animation speed
   function updateAnimationSpeed(newValue) {
-    animations.update(value => newValue);
+    animationSpeed.update(value => newValue);
+  }
+
+  function toggleAnimations() {
+    if ($animationSpeed) {
+      lastAnimationSpeed.update(value => $animationSpeed);
+      animationSpeed.update(value => 0);
+    } else {
+      animationSpeed.update(value => $lastAnimationSpeed);
+    }
   }
 
   // let toggleVisual = () => {
@@ -55,7 +64,7 @@
   $: yPlaneClass = $yPlane.visible ? 'visible' : 'hidden';
   $: zPlaneClass = $zPlane.visible ? 'visible' : 'hidden';
 
-  $: animationsClass = $animations ? 'visible' : 'hidden';
+  $: animationsClass = $animationSpeed ? 'visible' : 'hidden';
 
   // $: showRightSidebarClass = $showRightSidebar ? 'visible' : 'hidden';
   $: fullDatabaseViewClass = $fullDatabaseView ? 'visible' : 'hidden';
@@ -106,10 +115,10 @@
     </div>
     <!-- ANIMATIONS -->
     <div class="control-group filters-control">
-      <button>
+      <button on:click={() => toggleAnimations()}>
         <p><span class={animationsClass}>ANIMATIONS</span></p>
       </button>
-      <input type="range" bind:value={$animations} min=0 max=1 step=0.1 on:input={(e) => updateAnimationSpeed(parseFloat(e.target.value))}>
+      <input type="range" bind:value={$animationSpeed} min=0 max=1 step=0.1 on:input={(e) => updateAnimationSpeed(parseFloat(e.target.value))}>
     </div>
     <!-- FILTERS -->
     <div class="control-group filters-control">

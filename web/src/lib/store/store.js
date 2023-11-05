@@ -5,7 +5,8 @@ export const screenType = writable(null);
 export const isIframe = writable(true);
 export const darkMode = writable(false);
 
-export const animations = writable(1.0);
+export const animationSpeed = writable(1.0);
+export const lastAnimationSpeed = writable(null);
 
 export const mousePosition = writable({ x: 0, y: 0, z: 0 });
 
