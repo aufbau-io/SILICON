@@ -13,8 +13,8 @@
 :root {
 	--background: #deded0;
 	--background-50: #deded080;
-	--primary: #2b2b2b;
-	--primary-50: #2b2b2b80;
+	--primary: #232323;
+	--primary-50: #23232380;
 
 	--border: solid 1px var(--primary-50);
 }
