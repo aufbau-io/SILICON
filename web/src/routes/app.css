@@ -13,6 +13,7 @@
 :root {
 	--background: #deded0;
 	--background-50: #deded080;
+	--background-dark: #d0d0c4;
 	--primary: #232323;
 	--primary-50: #23232380;
 
@@ -22,6 +23,7 @@
 :root.dark-mode {
 	--background: #2b2b2b;
 	--background-50: #2b2b2b80;
+	--background-dark: #2b2b2b;
 	--primary: #e8c8b8;
 	--primary-50: #e8c8b880;
 
@@ -46,11 +48,55 @@
 	font-weight: 700;
 }
 
-html {
+html,
+body {
 	margin: 0;
-	background-attachment: fixed;
 	background-color: var(--background);
 	background-size: 100% 100%;
+}
+
+body {
+	background-color: var(--background);
+	background-image: linear-gradient(
+			45deg,
+			rgba(0, 0, 0, 0.12) 25%,
+			transparent 25%,
+			transparent 75%,
+			rgba(0, 0, 0, 0.12) 75%,
+			rgba(0, 0, 0, 0.12)
+		),
+		linear-gradient(
+			45deg,
+			rgba(0, 0, 0, 0.12) 25%,
+			transparent 25%,
+			transparent 75%,
+			rgba(0, 0, 0, 0.12) 75%,
+			rgba(0, 0, 0, 0.12)
+		);
+	background-size: 10px 10px;
+	background-position: 0 0, 5px 5px;
+}
+
+body.dark-mode {
+	background-color: var(--background);
+	background-image: linear-gradient(
+			45deg,
+			rgba(1, 1, 1, 1) 25%,
+			transparent 25%,
+			transparent 75%,
+			rgba(1, 1, 1, 1) 75%,
+			rgba(1, 1, 1, 1)
+		),
+		linear-gradient(
+			45deg,
+			rgba(1, 1, 1, 1) 25%,
+			transparent 25%,
+			transparent 75%,
+			rgba(1, 1, 1, 1) 75%,
+			rgba(1, 1, 1, 1)
+		);
+	background-size: 10px 10px;
+	background-position: 0 0, 5px 5px;
 }
 
 h1,

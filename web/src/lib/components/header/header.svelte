@@ -230,9 +230,8 @@
     width: 100%;
     width: calc(100vw - 400px);
     transition: height 0.3s ease;
-    background: var(--background);
-
-
+    /* background-color: var(--background); */
+		background-color: var(--background-dark);
   }
 
   main.expanded {

@@ -34,7 +34,8 @@
 	main.expanded {
 		width: calc(100vw - 400px);
 		border-left:none;
-		background-color: var(--background);
+		/* backdrop-filter: blur(200px); */
+		background-color: var(--background-dark);
 		color: var(--background);
 		transition: width 0.3s ease, background-color 0s linear;
 	}
