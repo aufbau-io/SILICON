@@ -11,10 +11,10 @@
 }
 
 :root {
-	--background: #232323;
-	--background-50: #23232380;
-	--primary: #d0d0d0;
-	--primary-50: #d0d0d080;
+	--background: #f2dfce;
+	--background-50: #d0d0d080;
+	--primary: #232323;
+	--primary-50: #23232380;
 
 	--green: #008080;
 	--white: #d0d0d0;
@@ -23,16 +23,16 @@
 	--border: solid 1px var(--primary-50);
 }
 
-/* :root.dark-mode {
+:root.dark-mode {
 	--background: #232323;
 	--background-50: #23232380;
-	--primary: #d0d0d0;
-	--primary-50: #f0f0f080;
+	--primary: #f2dfce;
+	--primary-50: #f2dfce80;
 
 	--green: #008080;
 	--white: #d0d0d0;
 	--black: #232323;
-} */
+}
 
 @font-face {
 	font-family: nb-architekt;
@@ -52,12 +52,12 @@
 	font-weight: 700;
 }
 
-/* html {
+html {
 	margin: 0;
 	background-attachment: fixed;
 	background-color: var(--background);
 	background-size: 100% 100%;
-} */
+}
 
 h1,
 h2,

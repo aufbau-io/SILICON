@@ -1,6 +1,13 @@
 <script>
-	import { screenType } from '$lib/store/store';
+	import { darkMode } from '$lib/store/store';
 	import Filters from '$lib/components/sidebars/filters.svelte';
+
+		let toggleDarkMode = () => {
+		darkMode.set(!$darkMode);
+		document.querySelector(':root').classList.toggle('dark-mode');
+		};
+
+		$: darkModeClass = $darkMode ? 'darkMode hidden' : 'darkMode visible';
 </script>
 
 	<main>
@@ -22,17 +29,22 @@
 		<div class="end">
 
 			<a href="https://aufbau.io" target="_blank" rel="noreferrer">
-				an aufbau thing
+				aufbau
 			</a>
 
 			<p>//</p>
+
 			<a href="mailto: dan@aufbau.io" target="_blank" rel="noreferrer">
 				suggest features
 			</a>
 
+			<p>//</p>
+
+			<p on:click={() => toggleDarkMode()} on:keydown={() => toggleDarkMode()} class={darkModeClass}>dark mode</p>
+
 		</div>
 
-	<!-- <div on:click={() => toggleDarkMode()} on:keydown={() => toggleDarkMode()} class="darkMode right">
+	<!-- <div>
 		<p class:selected={$darkMode == false}>ONLINE</p>
 		<p class="selected">/</p>
 		<p class:selected={$darkMode == true}>OFFLINE</p>
@@ -117,7 +129,7 @@
 		justify-content: flex-start;
 		/* border: solid 1px var(--primary-50); */
 
-		margin: 20px 10px;
+		margin: 20px 0px;
 		margin-top: 0px;
 	}
 
@@ -140,6 +152,18 @@
 
 	.p {
 		user-select: none;
+	}
+
+	.darkMode {
+		cursor: pointer;
+	}
+
+	.darkMode.visible {
+		opacity: 1;
+	}
+
+	.darkMode.hidden {
+		opacity: 0.5;
 	}
 
 	@media only screen and (max-width: 768px) {

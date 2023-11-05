@@ -289,8 +289,8 @@
 		renderer.setPixelRatio(window.devicePixelRatio);
 		renderer.setSize(width, height);
 
-		renderer.setClearColor(0x232323, 1);
-		renderer.autoClearColor = true;
+		// renderer.setClearColor(0x232323, 0);
+		renderer.autoClearColor = false;
 		renderer.autoClearDepth = true;
 		renderer.autoClearStencil = true;
 
