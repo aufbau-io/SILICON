@@ -55,7 +55,7 @@ body {
 	background-size: 100% 100%;
 }
 
-body {
+/* body {
 	background-color: var(--background);
 	background-image: linear-gradient(
 			45deg,
@@ -75,6 +75,25 @@ body {
 		);
 	background-size: 10px 10px;
 	background-position: 0 0, 5px 5px;
+} */
+
+.grain-overlay {
+	position: fixed; /* Use fixed to cover the whole screen at all times */
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none; /* Allows clicks to pass through */
+	background-image: url('/grain.png');
+	background-repeat: repeat; /* Repeat the texture across the whole screen */
+	opacity: 0.25; /* Adjust to your liking */
+	mix-blend-mode: multiply; /* Create the multiply effect */
+	z-index: 100; /* Ensure it's above all content but below popups/modals */
+	background-size: contain;
+}
+
+html.dark-mode body div.grain-overlay {
+	opacity: 0.67;
 }
 
 h1,
