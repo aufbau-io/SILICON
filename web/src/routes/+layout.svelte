@@ -54,7 +54,7 @@
 	<title>SILICON | KEEP DANCING</title>
 	<meta name="description" content="SILICON FM DEMO. LATENT SPACE // DANCE MUSIC SEARCH ENGINE." />
 
-	<!-- <link
+	<link
 		rel="preload"
 		href="/fonts/NB-Architekt-Pro-Light.woff"
 		as="font"
@@ -63,12 +63,22 @@
 	/>
 
 	<link
+	rel="preload"
+	href="/fonts/manifold_1.woff2"
+	as="font"
+	type="font/woff2"
+	crossorigin="anonymous"
+/>
+
+	<link
 		rel="preload"
 		href="/fonts/NB-Architekt-Pro-Bold.woff"
 		as="font"
 		type="font/woff"
 		crossorigin="anonymous"
-	/> -->
+	/>
+
+	<link rel="preload" href="/sand.jpg" as="image">
 
 	<!-- <link rel="preload" href="icons/cv.svg" as="image">
 	<link rel="preload" href="icons/insta.svg" as="image">
