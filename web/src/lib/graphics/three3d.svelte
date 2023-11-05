@@ -250,7 +250,7 @@
 
         // Use similar color calculation as in the main shader
         if (isAboveThreshold) {
-					color = vec4(0.137, 0.137, 0.137, 1.0);
+					color = vec4(0.168, 0.168, 0.168, 1.0);
         } else if (isAboveThreshold2) {
 					vec3 colorShift = vec3(0.5) + 0.2 * cos(time + samplePos + vec3(4, 1, -4) + n);
             color.rgb = colorShift;
@@ -262,7 +262,7 @@
             color.rgb = colorShift;
             color.a = baseOpacity;
 					} else {
-						color = vec4(0.137, 0.137, 0.137, 1.0);
+						color = vec4(0.168, 0.168, 0.168, 1.0);
         }
     }
 `;

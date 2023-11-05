@@ -12,9 +12,9 @@
 
 :root {
 	--background: #f2dfce;
-	--background-50: #d0d0d080;
-	--primary: #232323;
-	--primary-50: #23232380;
+	--background-50: #f2dfce80;
+	--primary: #2b2b2b;
+	--primary-50: #2b2b2b80;
 
 	--green: #008080;
 	--white: #d0d0d0;
@@ -24,8 +24,8 @@
 }
 
 :root.dark-mode {
-	--background: #232323;
-	--background-50: #23232380;
+	--background: #2b2b2b;
+	--background-50: #2b2b2b80;
 	--primary: #f2dfce;
 	--primary-50: #f2dfce80;
 
