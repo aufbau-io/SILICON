@@ -15,7 +15,7 @@
       <textarea placeholder="Enter something colourful and poetic" name="Text1" cols="40" rows="3"></textarea>
     </div>
     <button class="dig">
-      <p>dig</p>
+      <p>dig // search</p>
     </button>
   </div>
   <div class="filters">
@@ -89,31 +89,34 @@
     align-items: center;
     justify-content: center;
 
-    border: double 3px var(--background);
-    background: var(--primary);
+    border: solid 1px var(--primary-50);
+    
   }
 
   .dig:hover {
-    background: var(--background);
-    border-color: var(--primary-50);
+    background: var(--primary);
+    border-color: var(--background);
   }
 
   .dig p {
-    font-weight: 700;
+    /* font-weight: 700; */
     font-size: 12px;
-    color: var(--background);
+    letter-spacing: 4px;
   }
 
   .dig:hover p {
-    color: var(--primary);
-
+    color: var(--background);
   }
 
   .randomise {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: double 3px var(--primary-50);
+    border: solid 1px var(--primary-50);
+  }
+
+  .randomise p {
+    letter-spacing: 4px;
   }
 
   .randomise:hover {
