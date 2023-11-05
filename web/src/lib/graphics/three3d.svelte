@@ -218,13 +218,12 @@
 
     float noise(vec3 position) {
         // Same noise function as used in the main shader
-				position *= 1.0;
         vec3 ip = floor(position);
         vec3 fp = fract(position);
         float n = mix(mix(dot(ip, vec3(1.0, 57.0, 113.0)), dot(ip + vec3(1.0, 0.0, 0.0), vec3(1.0, 57.0, 113.0)), fp.x),
                       mix(dot(ip + vec3(0.0, 1.0, 0.0), vec3(1.0, 57.0, 113.0)), dot(ip + vec3(1.0, 1.0, 0.0), vec3(1.0, 57.0, 113.0)), fp.x), fp.z);
-        // return fract(sin(n) * 43758545.3);
-				return sin(n);
+        // return fract(sin(n) * 4375.85453);
+				return sin(n) * cos(1.0 - n);
     }
 
     void main() {
@@ -439,11 +438,11 @@
 	function animate() {
 		requestAnimationFrame(animate);
 		mesh.material.uniforms.cameraPos.value.copy( camera.position );
-			mesh.material.uniforms.time.value = clock.getElapsedTime() * 0.025 * $animations;
+			mesh.material.uniforms.time.value = clock.getElapsedTime() * 0.0125 * $animations;
 
 		planes.forEach(plane => {
 			plane.material.uniforms.cameraPos.value.copy( camera.position );
-			plane.material.uniforms.time.value = clock.getElapsedTime() * 0.025 * $animations;
+			plane.material.uniforms.time.value = clock.getElapsedTime() * 0.0125 * $animations;
 		});
 		renderer.render( scene, camera );
 	}
