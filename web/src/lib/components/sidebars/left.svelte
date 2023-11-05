@@ -100,6 +100,7 @@
 		font-size: 52px;
 		letter-spacing: 2px;
 
+
 		cursor: default;
 		user-select: none;
 	}
