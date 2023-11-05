@@ -1,6 +1,6 @@
 <script>
 	import { darkMode } from '$lib/store/store';
-	import Filters from '$lib/components/sidebars/filters.svelte';
+	import Search from '$lib/components/sidebars/search.svelte';
 
 		let toggleDarkMode = () => {
 		darkMode.set(!$darkMode);
@@ -24,8 +24,8 @@
 
 		</div>
 
-		<div class="filters">
-			<Filters />
+		<div class="search">
+			<Search />
 		</div>
 
 		<div class="end">
@@ -144,13 +144,14 @@
 		user-select: none;
 	}
 
-	.filters {
+	.search {
 		display: flex;
 		height: 100%;
 		flex-flow: column nowrap;
 		align-items: flex-start;
 		gap: 20px;
 		padding: 0 20px;
+		overflow: hidden;
 	}
 
 	.end p, .end a {
