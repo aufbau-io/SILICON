@@ -19,24 +19,24 @@ export const showFilters = writable(false);
 export const visual = writable('space');
 
 export const xPlane = writable({
-	visible: true,
 	name: 'YEAR',
+	visible: true,
 	min: 1900,
 	max: 2023,
 	value: 1996
 });
 
 export const yPlane = writable({
-	visible: true,
 	name: 'INTENSITY',
+	visible: true,
 	min: 0,
 	max: 100,
 	value: 50
 });
 
 export const zPlane = writable({
-	visible: true,
 	name: 'TEXTURE',
+	visible: true,
 	min: 0,
 	max: 100,
 	value: 50
