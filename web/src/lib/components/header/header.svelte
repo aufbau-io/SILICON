@@ -123,7 +123,7 @@
     <!-- FILTERS -->
     <div class="control-group filters-control">
       <button on:click={() => toggleShowFilters()}>
-        <p> <span class={showFiltersClass === 'visible' ? 'hidden' : 'visible'}>FILTERS [ 0 ]</span></p>
+        <p> <span class={showFiltersClass === 'visible' ? 'hidden' : 'visible'}>SOME FEATURE IDK</span></p>
       </button>
     </div>
     
@@ -149,7 +149,7 @@
 
 <main class:expanded={expanded}>
   {#if $showFilters}
-    <p>filters</p>
+    <p>what feature tho?</p>
   {/if}
 </main>
 
