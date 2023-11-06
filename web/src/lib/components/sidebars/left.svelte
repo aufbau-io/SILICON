@@ -71,7 +71,7 @@
 	
 		font-size: 12px;
 
-		backdrop-filter: blur(10px);
+		backdrop-filter: blur(20px);
 	}
 
 	.top {

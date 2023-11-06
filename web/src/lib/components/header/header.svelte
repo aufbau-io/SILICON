@@ -165,7 +165,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
   }
 
   .control-group {

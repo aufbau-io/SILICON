@@ -27,7 +27,7 @@
 	
 		font-size: 12px;
 
-		backdrop-filter: blur(10px);
+		backdrop-filter: blur(20px);
 		transition: width 0.3s ease, background-color 0s 0.3s linear;
 	}
 
