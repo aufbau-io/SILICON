@@ -86,14 +86,14 @@ body {
 	pointer-events: none; /* Allows clicks to pass through */
 	background-image: url('/sand.jpg'); /* This is the texture image */
 	background-repeat: repeat; /* Repeat the texture across the whole screen */
-	opacity: 0.1; /* Adjust to your liking */
+	opacity: 0.05; /* Adjust to your liking */
 	mix-blend-mode: multiply; /* Create the multiply effect */
 	z-index: 100; /* Ensure it's above all content but below popups/modals */
 	background-size: contain;
 }
 
 html.dark-mode body div.grain-overlay {
-	/* mix-blend-mode: multiply; */
+	opacity: 0.15;
 }
 
 h1,
