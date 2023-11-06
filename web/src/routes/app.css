@@ -93,8 +93,7 @@ body {
 }
 
 html.dark-mode body div.grain-overlay {
-	opacity: 0.1;
-	mix-blend-mode: darken;
+	/* mix-blend-mode: multiply; */
 }
 
 h1,
