@@ -52,7 +52,7 @@
 
 <svelte:head>
 	<title>SILICON</title>
-	<meta name="description" content="SILICON FM DEMO. LATENT SPACE // DANCE MUSIC SEARCH ENGINE." />
+	<meta name="description" content="SILICON FM DEMO. LATENT SPACE DANCE MUSIC SEARCH ENGINE." />
 
 	<link
 		rel="preload"

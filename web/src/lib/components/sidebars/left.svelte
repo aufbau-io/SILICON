@@ -19,7 +19,7 @@
 			</div> 
 
 			<div class="subtitle">
-				<p> latent space // dance music search engine // prototype</p>
+				<p> latent space dance music search engine // prototype</p>
 			</div>
 
 		</div>
